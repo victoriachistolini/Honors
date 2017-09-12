@@ -8,7 +8,7 @@
 - minimize the relative entropy between two probability densities: the prescence data locations and the covariate space (enviromnetal inputs).
 
 - Input variables (covariates) undergo a variety of transformations:
-- Transformations help to model the complexity of the relationships between the species and its environment.
+- Transformations help to model the complexity of the relationships between the species and its environment:
 
       - Linear
       - Product
@@ -16,6 +16,22 @@
       - hinge <- change in gradient in response, piecewise linear spline
       - threshold <- "step" in fitted function
       - categorical
+
+# Creating Covariate Distributions
+If L is a geographic region of interest
+
+L1 ⊂  L represents where the species is located (this distribution is unknown to the modeler)
+
+L2 ⊂ L1 represents a random sampling of locations from L1, where the species has been observed
+
+L3 ⊂ L represent a set of background points that are a random sample of L, which represent the null model.
+
+f(z) is probability density of covarites on L, use L3 to approximate this.
+
+f1(z) is the probability density of covariates on L1, use L2 to approximate this.
+
+Then Bayes’ rule gives:
+Pr(y = 1 | z) = f1(z)Pr(y = 1)/f(z)
 
 # Coeficient Estimation
 - constraints 
