@@ -6,6 +6,8 @@
 # MaxEnt Goals
 
 - minimize the relative entropy between two probability densities: the prescence data locations and the covariate space (enviromnetal inputs).
+- Maximizing the penalized log likelihood
+- wnat maximize improvement of penalized averalge log likelihood compared to null model.
 
 - Input variables (covariates) undergo a variety of transformations:
 - Transformations help to model the complexity of the relationships between the species and its environment:
@@ -17,7 +19,7 @@
       - threshold <- "step" in fitted function
       - categorical
 
-# Creating Covariate Distributions
+# Covariate Distributions
 If L is a geographic region of interest
 
 L1 ⊂  L represents where the species is located (this distribution is unknown to the modeler)
@@ -31,10 +33,14 @@ f(z) is probability density of covarites on L, use L3 to approximate this.
 f1(z) is the probability density of covariates on L1, use L2 to approximate this.
 
 Then Bayes’ rule gives:
-"Pr(y = 1 | z) = f1(z)Pr(y = 1)/f(z)"
+Pr(y = 1 | z) = f1(z)Pr(y = 1)/f(z)
 
-# Coeficient Estimation
-- constraints 
+# Coeficient Estimation and Model Selection
+- constraints determined to avoid overfitting 
+- regularization of distributions using the L1 regularization method.
+- Cross validation
+- L1 better than stepwise elimination.
+- Robust Bayes Approach
 
 # Role of Background Points
 - Background points are used to define the null models such that species have no preference in region. 
