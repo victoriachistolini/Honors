@@ -31,7 +31,7 @@ f(z) is probability density of covarites on L, use L3 to approximate this.
 f1(z) is the probability density of covariates on L1, use L2 to approximate this.
 
 Then Bayes’ rule gives:
-Pr(y = 1 | z) = f1(z)Pr(y = 1)/f(z)
+"Pr(y = 1 | z) = f1(z)Pr(y = 1)/f(z)"
 
 # Coeficient Estimation
 - constraints 
