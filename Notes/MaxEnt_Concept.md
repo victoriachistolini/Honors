@@ -1,4 +1,4 @@
-## MaxEnt
+# MaxEnt
 
 * maxEnt is a classifier, which is used to model prescence only species data : meaning that the data only contains information as to where the species is located but not data on where it is not located. We are trying to estimate the distribution of the species across geogrpahic space.
 
@@ -9,12 +9,13 @@
 
 - Input variables (covariates) undergo a variety of transformations:
 - Transformations help to model the complexity of the relationships between the species and its environment.
-      Linear
-      Product
-      quadratic
-      hinge <- change in gradient in response, piecewise linear spline
-      threshold <- "step" in fitted function
-      categorical
+
+      - Linear
+      - Product
+      - quadratic
+      - hinge <- change in gradient in response, piecewise linear spline
+      - threshold <- "step" in fitted function
+      - categorical
 
 # Coeficient Estimation
 - constraints 
