@@ -1,7 +1,7 @@
 #MaxEnt Output
 
 
-# The coeficients (Lambda File)
+#The coeficients (Lambda File)
 
 The coefficients of the Maxent model for a species are output in a
   file called species.lambdas.  The entries in the lambdas file are
