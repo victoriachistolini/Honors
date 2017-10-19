@@ -17,7 +17,9 @@ A repository for organizing my research sources, notes, questions and code.
 * Could using differnt numbers of background points influence forecast skill?
 * Is the current method of selecting background points really effective in creating a null model for the desired geographic region?
 * Determine if selected parameters are good and free from correlation.
-* Usage of sampling bias grids.
-
+* Usage of sampling bias grids, maxent supports a weighting matrix that could be developed to weight sampling points based on demographic knowledge of population density.
+* Development of an ensemble forecast using BIOMOD package which features different macheine learning tools.
 
 ## Methods
+
+Use the BIOMOD package to explore different models: https://cran.r-project.org/web/packages/biomod2/biomod2.pdf
