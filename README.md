@@ -24,10 +24,4 @@ A repository for organizing my research sources, notes, questions and code.
 
 ## Methods
 
-Use the BIOMOD package to explore different models: https://cran.r-project.org/web/packages/biomod2/biomod2.pdf
-
-Experiment 1
-how well is the model doing?
-Model AUC
-Model forecasting -> forecast AUC 
-Unit is day would we do better if we used 
+- [Presence Points and AUC Statistic](https://github.com/victoriachistolini/Honors/wiki/Experiment-1:----Basic-Model-Optimizations#part-1--presence-points-and-auc-statistic)
