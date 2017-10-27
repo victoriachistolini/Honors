@@ -19,7 +19,15 @@ A repository for organizing my research sources, notes, questions and code.
 * Determine if selected parameters are good and free from correlation.
 * Usage of sampling bias grids, maxent supports a weighting matrix that could be developed to weight sampling points based on demographic knowledge of population density.
 * Development of an ensemble forecast using BIOMOD package which features different macheine learning tools.
+* Run model for each day using window of 20 days-> what is the right number of day January 
+
 
 ## Methods
 
 Use the BIOMOD package to explore different models: https://cran.r-project.org/web/packages/biomod2/biomod2.pdf
+
+Experiment 1
+how well is the model doing?
+Model AUC
+Model forecasting -> forecast AUC 
+Unit is day would we do better if we used 
