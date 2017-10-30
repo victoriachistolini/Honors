@@ -25,3 +25,9 @@ A repository for organizing my research sources, notes, questions and code.
 ## Methods
 
 - [Presence Points and AUC Statistic](https://github.com/victoriachistolini/Honors/wiki/Experiment-1:----Basic-Model-Optimizations#part-1--presence-points-and-auc-statistic)
+
+## Code
+
+The code for this project is primarily written in R. It is currently private, and for those who have access the link to the analytics repository is below.
+
+- [Analytics Code](https://github.com/BigelowLab/tickcast-analyses)
