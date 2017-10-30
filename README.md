@@ -24,8 +24,8 @@ A repository for organizing my research sources, notes, questions and code.
 
 ## Methods
 
-- [Presence Points and AUC Statistic](https://github.com/victoriachistolini/Honors/wiki/Experiment-1:----Basic-Model-Optimizations#part-1--presence-points-and-auc-statistic)
-- [Modifications to the MAXent Model](https://github.com/victoriachistolini/Honors/wiki/Modifications-to-MaxEnt)
+A detailed description of the experiments and research methods are described in the Thesis Outline.
+- [Thesis Outline](https://github.com/victoriachistolini/Honors/wiki#organization-of-paper)
 
 ## Code
 
