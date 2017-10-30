@@ -25,6 +25,7 @@ A repository for organizing my research sources, notes, questions and code.
 ## Methods
 
 - [Presence Points and AUC Statistic](https://github.com/victoriachistolini/Honors/wiki/Experiment-1:----Basic-Model-Optimizations#part-1--presence-points-and-auc-statistic)
+- [Modifications to the MAXent Model](https://github.com/victoriachistolini/Honors/wiki/Modifications-to-MaxEnt)
 
 ## Code
 
