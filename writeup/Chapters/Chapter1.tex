@@ -1,0 +1,147 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+%----------------------------------------------------------------------------------------
+
+% Define some commands to keep the formatting separated from the content 
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\tabhead}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{\bfseries#1}}
+\newcommand{\option}[1]{\texttt{\itshape#1}}
+
+%----------------------------------------------------------------------------------------
+
+\section{What is Species Distribution Modeling}
+According to the Center for Disease Control (CDC) in 2015, 95\% of reported Lyme Disease cases came from only 14 states; of these 14, 12 were on the east coast and all 6 of the New England States were represented. Since 1996 the annual number of confirmed cases of Lyme Disease per year has increased by over 10,000 additional cases in 2016 [1]. Given the growing magnitude of the problem presented by ticks and Lyme Disease infection, there has been a deep interest to understand where Lyme Disease carrying ticks are located and how we can most effectively reduce human contact. \newline
+
+\noindent Beginning in 1995, the Maine State Government began a project to create detailed records of the locations of discovered infected ticks. Doctors were encouraged to have their patients bring in any ticks that they found on their bodies, in their homes or on their pets, for free testing to determine if the tick were carrying Lyme Disease [2]. Data about the locations of tick sightings, tick gender and disease status, were recorded as part of the study until 2014. \newline
+
+\noindent Species Distribution Modeling (SDM) is a term used to categorize a whole class of models developed for the purpose of understanding the patterns and relationships of an observed species and its environment [3]. Often, the purpose of these models is to predict the range of a species based on where the species has been recorded during surveillance. Another application of SDM models is to predict wether or not a species will be found in a certain location based on the environmental variables of the location. It is with this latter focus that we will pursue Species Distribution models throughout this work.   \newline
+
+\subsection{Data used in Species Distribution Models}
+
+\noindent This database of tick encounters developed by the Maine state government houses an enormous amount of information about the distribution of likely locations for ticks sightings in the state of Maine, however in its raw form it is missing a crucial metric: information about where ticks are not likely to be found. This lack of essential data is the crux of what makes species distribution models difficult to develop. \newline
+
+\noindent Classical modeling techniques use a set of predictor variables to classify events under certain conditions as likely or unlikely to happen. A logistic regression model, for example could take predictor variables about patients' heart rate and temperature to determine the response of the likelihood that the patient has the flu. In order to make a good prediction about the patient, the model needs heart rates and temperatures from patients who are healthy and those who are sick in order to be able to discriminate sick from healthy metrics. Unfortunately, our tick dataset does not provide information about the absence of ticks in locations, which motivates the need to use different models. The primary goal of this thesis is to develop a model to best predict human-tick encounters based on our data. We will be using methods such as the maximum entropy model MaxEnt, and randomly generated ensembles of models, which have been shown to be effective, with data such as ours [cite]. \newline
+
+
+%----------------------------------------------------------------------------------------
+
+
+
+\section{Predictor Selection and Exploratory Analysis}
+Our dataset is special in several ways: one way which is mentioned above, is that contains a subset of human-tick encounter observations from the state of Maine over a 15 year period, but no information about the subset of human-no tick encounters, a crucial piece of information necessary in classification algorithms. Another complicating factor of this dataset is that it contains data concerning spacial locations across time; spacial and temporal dimensions require explicit analysis and dictate the use of distinct statistical techniques. Spacial analysis is the use of specialized statistical techniques that are designed to help identify patterns that derive from the spacial dimensions of the data [4]. \newline
+
+\subsection{Spacial Analysis}
+In species distribution modeling there are two components to the data set that will be used to make predictions on the location of ticks in the environment. We have described the first part of the dataset, the tick observations, a set of latitude, longitude pairs that uniquely define a point in space where a tick has been sighted by a person, as well as the date of observation. The second part of the dataset are the predictors, which are a set of environmental variables that will be used to define the specie's environmental niche [3]. Environmental data, collected by the weather service can be downloaded for the location and date of the sightings and will be stored in memory as a raster object, which is a grid of pixels used to represent spacial data[4].  \newline
+
+\noindent Selection of appropriate predictors to use for model building can be very difficult because it takes a good deal of understanding about the way in which the species interacts with its environment to understand what types of environmental parameters influence a its ability to live in an environment. In our case, many additional factors influence the ability of a tick to survive and disperse throughout its environment such as availability of host animals, whose distribution may also be unknown. Further, once we have an idea of what parameters are appropriate to use in to model, based on the literature of known tick habitat conditions, we must be careful to select only variables that are not correlated with one another to include in model building, otherwise contribution estimates for the predictors are confounded. \newline
+
+\noindent Based on our insights, before attempting to build a predictive model we must preform an exploratory analysis of the relationships between our predictors and our observations. Creating pairwise regression models of each predictor against one another, help us to identify and quantify correlation between covariates. Once we have identified which predictors are significantly correlated with one another, we must select a subset of parameters which optimally characterize tick behavior while reducing the possibility of correlation. For example, if we hypothesize that the two predictors vegetation cover and elevation are important parameters in characterizing a tick's suitable habitat, but find that the type of vegetation in an ecosystem is almost completely determined by the ecosystem's elevation, we cannot include both parameters in our model, but which should we include? \newline
+
+\noindent A branch of spacial analysis called point pattern analysis can help us understand how the tick observation points are distributed differently across different covariates and may help us to further understand the utility of each parameter. There are several types of point pattern analysis algorithms, however, we will focus on two in our analysis: quadrant density and Poisson Point process. The premise of both of these techniques is the same: to understand how the distribution of the observation points relate to the distribution of the covariate. \newline
+
+\noindent In the quadrant density method as the researcher you must look at the distribution of the covariate and break it into discrete categories, in our example of elevation, we might separate the predictor into a high, medium and low elevation group for example and then compute density of the region, defined as the number of points over region area [4]. Since the categorization of the variable is determined at the discretion of the researcher, very different conclusions can be made based on the categorization strategy, which can lead to unreflective conclusions, however the Poison Point process will allow us to use a less biased approach based on creating a logistic regression model of points based on the predictor:
+
+\begin{equation}
+\lambda(i) = e^{\alpha +\beta(i)}
+\end{equation}
+
+\noindent This logistic model allows the researcher to understand the density of point observations at any arbitrary input location, and thus understand more deeply the relationship that the point observations have with a particular covariate.\newline
+
+\noindent Also, other examples have included the use of PCA analysis as a preprocessing step to reduce the features used in modeling building to independent highly effective features, with reduced dimensionality [8].   \newline
+
+
+\subsection{Temporal Analysis}
+Time also plays a key role in our model. There is evidence that the range of suitable tick habitats continues to expand as the effects of global climate change become more dramatic [5]. At this point in our primary analysis we have not explicitly done any analysis on the tick distribution and time. We expect that there will be some correlation with the tick distribution, its predictors and time. In order to test this correlation, we can build regression models for each predictor at each location across time. We may display the resulting correlation coefficients for the a particular covariate at a particular location on a heat map to get a picture of how for a given predictor it correlated throughout time in space.  \newline
+
+\noindent Another temporal component of analysis concerns the amount of point data that the dataset has at different times of the year. Ideally we will be looking to make a model for each day of the year to use for forecast prediction. However, due to the fact that one is less likely to encounter a tick in winter months, we have fewer observations for this time frame. With fewer observations to build the model, the forecast predictions are less accurate.  Thus, we must preform an experiment to understand the impact of the amount of data used to build the model and the model's subsequent accuracy. We seek to understand if adding more data from the observations of surrounding months to the model when there are few observations will positively impact accuracy. We also seek to determine a threshold about the number of observations necessary to achieve a certain error tolerance. \newline
+
+\subsection{Communicating Uncertainty}
+There is immanent uncertainly in the models that we build to predict human-tick encounters, and clearly communicating this expected margin of error is important for those who seek to use the models. One source of error for our models comes from the data that we use as predictor variables. Our models inherit the uncertainty of the tools used to measure these environmental variables. There is generally well understood data on the accuracy and expected error for satellite weather data. \newline
+
+\noindent Another source of uncertainty and error however, comes from the point observations of the human-tick encounters. Since there is likely sampling bias in the data collection methods due to human activity not being randomly distributed throughout the state of Maine, some areas of the state or more represented and over-sampled, while other areas, particularly in the Northern regions may be left un-sampled. Thus, if we have weather data accurate to the county level in Maine, then we may report our forecast predictions at this level of aggregation, however there will be unequal uncertainty in each of the counties which must be quantified and reported.
+
+
+%----------------------------------------------------------------------------------------
+
+\section{The MaxEnt Model}
+Since we have previously described that we cannot use traditional models to build a tick-human encounter predictive model, due to the fact that our data contains only information about the presence locations of observations and no information on their absence locations, we will begin by discussing the MaxEnt model and how methods of its model building process allow it to work well with presence only data. The basic premise of the MaxEnt model is that the model has two probability densities as input: the point observations of tick locations and the environmental predictor variables [6]. The algorithm at its core needs to solve the problem of minimizing the entropy between the the two probability densities. It is through this process that the predictor variables undergo transformations that help to maximize the entropy of the solution during the model fitting process [6]. The covariates can become terms of the following type in the final model: linear, quadratic, product (representing interaction), hinge, threshold or categorical, and the terms are deemed effective through cross validation and an L1 regulation process [6].  \newline
+
+\noindent To better understand the MaxEnt model, we first need to get a better idea of what maximum entropy is \newline
+
+
+\subsection{Current MaxEnt model}
+
+-> predictors used, model structure \newline
+
+
+\subsection{Additional Features of MaxEnt}
+
+-> population density, \newline host density, \newline weightings versus adding predictors \newline
+
+
+
+%----------------------------------------------------------------------------------------
+
+\section{Ensemble Models}
+
+
+ ...\newline
+
+\subsection{Ensembles with MaxEnt}
+* model physics \newline
+* initial conditions\newline
+* training data \newline
+
+
+%----------------------------------------------------------------------------------------
+
+\section{Model Assessment }
+
+\subsection{Assessment of a single model}
+
+% draw a confusion matrix here....
+Assessment of classification algorithms is an essential part of determining their utility as valid predictive models. Classically testing the strength of a classification algorithm involves building the model with a subset of the dataset and keeping another subset for use in testing the model called the training dataset. Then the model is run with the training data and an assessment is made about how well the model has done. The construction of a confusion matrix helps to communicate how well the model did in classifying the training data, by tabulating the number of correctly classified results as well as false positives and false negatives. 
+
+\begin{equation} \bordermatrix{~ & Observed \hspace{0.2cm} Presence & Observed \hspace{0.2cm} Absence \cr
+                  Predicted\hspace{0.2cm}  Presence & a & b \cr
+                  Predicted \hspace{0.2cm} Absence & c & d \cr} \end{equation}
+                  
+\noindent The data in the confusion matrix can then be visualized in a plot called the ROC curve. The ROC curve plots the classifier's sensitivity versus 1-specificity, where sensitivity is easily calculated from the confusion matrix as  $\frac{a}{a+c}$ and 1- specificity is $\frac{b}{b+d}$ [7]. Since the results of the MaxEnt model are a series of probabilities given environmental conditions of encountering a tick at a particular location, then in order to create a confusion matrix, we would need to decide on some arbitrary threshold at which we decide that a probability is high enough to be considered a presence of a tick. \newline
+
+\noindent Since the decision of a threshold is arbitrary then ROC is formed from finding the confusion matrix for each threshold, which will give a new sensitivity and 1-specificity value to plot for each matrix. The summary statistic used to characterize the ROC curve is the area under the ROC curve or AUC, which evaluates the strength of the classifier by the characteristics of the ROC curve. An AUC statistic of 0.5 represents a random classifier, and scores above 0.5 represent a better than random model [7].    \newline
+
+\noindent Given the type of data we are using, presence only data, and the fact that we are generating a forecast, the traditional methods of model assessment fall short. Firstly, since the training dataset would be only a series of presence observations, so there would be 0 observations correctly classified for no encounter, cell d,  which would make it impossible to calculate summary statistics, used to calculated the ROC curve. Given these two complicating factors, we will pursue other methods of assessment which employ modifications on the classical techniques to be functional for a presence only dataset.  \newline
+
+\noindent Since we do not have absence data in our dataset and thus our training dataset is devoid of this essential information, then a more accurate substitute is using is using the proportion of area predicted present instead of 1-specificity [7]. With the simple modification under way we can proceed to interpret the AUC in a similar fashion as our interpretations of the traditionally defined AUC.  \newline
+
+\noindent Another limiting factor that about AUC that we have previously mentioned is that it represents the classification ability of the model independent of a threshold. The threshold determines the minimum probability that will be considered a presence. In our application this threshold is important because we are creating a forecast and the interpretability of a forecast greatly depends on the ability to discriminate events from non-events, thus the their seems to be an implied necessity to define the threshold as a single number when calculating a summary statistic about the skill of the forecast. The statistic True Skill Statistic (TSS):
+\begin{equation}
+TSS \hspace{0.2cm} = \hspace{0.2cm} sensitivity \hspace{0.2cm} + \hspace{0.2cm} specificity\hspace{0.2cm}  -\hspace{0.2cm} 1 \hspace{0.2cm} =  \hspace{0.2cm} \frac{ad -bc}{(a+c)(b+d)}
+\end{equation}
+can be used used to quantify the strength of the classifier at a given threshold [9]. The TSS statistic has been shown to have a good behavior and is well correlated with the AUC statistic [9]. However, in order to calculate the TSS statistic we would need to have access to a complete confusion matrix which we do not have, thus in order to use this powerful statistic, we will need to determine if there is a modified version that we can use. \newline
+
+\noindent A few other metrics to consider are forecast AUC, AIC, and the procedure of cross validation which we will discuss later on ....\newline
+
+\subsection{Assessment of an ensemble of models}
+* summarizing ensembles -> a bayesian approach \newline
+
+%\keyword{example.bib} -
+%\subsection{References}
+ %footnotes\footnote{Such as this footnote, here down at the bottom of the page.}. 
+ %start: \code{hello WORLD;}.
+
+
+%\begin{figure}
+%\centering
+%\includegraphics{Figures/Electron}
+%\decoRule
+%\caption[An Electron]{An electron (artist's impression).}
+%\label{fig:Electron}
+%\end{figure}
+
