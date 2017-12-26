@@ -72,8 +72,14 @@ There is immanent uncertainly in the models that we build to predict human-tick 
 \section{The MaxEnt Model}
 Since we have previously described that we cannot use traditional models to build a tick-human encounter predictive model, due to the fact that our data contains only information about the presence locations of observations and no information on their absence locations, we will begin by discussing the MaxEnt model and how methods of its model building process allow it to work well with presence only data. The basic premise of the MaxEnt model is that the model has two probability densities as input: the point observations of tick locations and the environmental predictor variables [6]. The algorithm at its core needs to solve the problem of minimizing the entropy between the the two probability densities. It is through this process that the predictor variables undergo transformations that help to maximize the entropy of the solution during the model fitting process [6]. The covariates can become terms of the following type in the final model: linear, quadratic, product (representing interaction), hinge, threshold or categorical, and the terms are deemed effective through cross validation and an L1 regulation process [6].  \newline
 
-\noindent To better understand the MaxEnt model, we first need to get a better idea of what maximum entropy is \newline
+\noindent To better understand the MaxEnt model, we first need to get a better idea of what the maximum entropy method is. Maximum entropy and minimum cross entropy are methods which are based in Bayesian statistics and information theory. If we begin by thinking in the discrete setting, we understand that there is a set of ticks and they are distributed with a certain probability function based on the environmental parameters with a given probability. In a way, we already have an idea about where tick are distributed in space based on our observations and so we know some information about their distribution, but we are missing information. We do not have the complete picture of all of the suitable locations and we have no information about unsuitable locations. Since we do have some information about the distribution however, we can use a cross entropy approach [10]. Minimizing the cross entropy of a system is analogous to finding the relative entropy which is analogous to maximizing entropy [10].   At this point, we have some information about the distribution of ticks and we also have constraints on our distribution, the region that we are mapping to, which is represented by background points. The theory of minimizing cross entropy says that given the information that we do have we can actually find a unique distribution that optimized to the information that we know and does not penalize us for what we don't know, by selecting the distribution with minimal cross entropy:  \newline
 
+\begin{equation}
+... equation to come ...
+\end{equation}
+
+
+\noindent The L1 regularization method for feature selection... \newline
 
 \subsection{Current MaxEnt model}
 
