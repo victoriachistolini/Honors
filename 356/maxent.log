@@ -1,0 +1,34 @@
+Mon Jul 10 05:35:16 EDT 2017
+MaxEnt version 3.3.3k
+Reading file absence
+readGrid: max memory 477233152, total allocated 298188800, free 65306288, used 232882512, increment -3712352
+Reading samples from presence
+Read samples: max memory 477233152, total allocated 290455552, free 214671752, used 75783800, increment -157098712
+Adding samples to background in feature space
+Command line used:  autorun -e /opt/data/tickcast/versions/v2/v2.10/model/356/absence -o /opt/data/tickcast/versions/v2/v2.10/model/356 -s /opt/data/tickcast/versions/v2/v2.10/model/356/presence -z
+Command line to repeat: java density.MaxEnt nowarnings noprefixes outputdirectory=/opt/data/tickcast/versions/v2/v2.10/model/356 samplesfile=/opt/data/tickcast/versions/v2/v2.10/model/356/presence environmentallayers=/opt/data/tickcast/versions/v2/v2.10/model/356/absence autorun novisible
+Species: species
+Layers: first_vegtyp max_airtemp mean_airtemp mean_relhum mean_sncvr mean_sncvr_DJF mean_sndep mean_trnstr mean_uwind mean_vegcvr mean_vwind mean_wilt min_airtemp sum_precip
+Layertypes: Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous
+outputdirectory: /opt/data/tickcast/versions/v2/v2.10/model/356
+samplesfile: /opt/data/tickcast/versions/v2/v2.10/model/356/presence
+environmentallayers: /opt/data/tickcast/versions/v2/v2.10/model/356/absence
+autorun: true
+visible: false
+
+getSamples: max memory 477233152, total allocated 290455552, free 214671752, used 75783800, increment 0
+Making features
+makeFeatures: max memory 477233152, total allocated 290455552, free 211395792, used 79059760, increment 3275960
+species: 
+Regularization values: linear/quadratic/product: 0.629, categorical: 0.357, threshold: 1.860, hinge: 0.500
+14 samples
+Density: max memory 477233152, total allocated 290455552, free 211395792, used 79059760, increment 0
+linearPredictor: max memory 477233152, total allocated 290455552, free 211395792, used 79059760, increment 0
+FeaturedSpace: max memory 477233152, total allocated 290455552, free 211395792, used 79059760, increment 0
+Sequential: max memory 477233152, total allocated 290455552, free 211395792, used 79059760, increment 0
+Initial loss: 6.843749949006225
+200: time = 0.035000 loss = 5.024942
+Resulting gain: 1.8188082131785732
+Projecting...
+Writing file /opt/data/tickcast/versions/v2/v2.10/model/356/species.csv
+Ending

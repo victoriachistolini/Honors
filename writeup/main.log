@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 DEC 2017 23:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 DEC 2017 23:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1697,59 +1697,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
+ []
+
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--106
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--114
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
 
-Overfull \hbox (7.34601pt too wide) in paragraph at lines 123--124
+Overfull \hbox (7.34601pt too wide) in paragraph at lines 131--132
 \T1/ppl/m/n/10.95 con-fu-sion ma-trix for each thresh-old, which will give a ne
 w sen-si-tiv-ity and 1-specificity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 132--134
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
@@ -1758,8 +1763,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
 
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 140--142
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
@@ -1867,7 +1882,7 @@ Here is how much of TeX's memory you used:
  32416 multiletter control sequences out of 15000+600000
  48048 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,20n,76p,10454b,1739s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,19n,76p,10454b,1723s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -1877,7 +1892,7 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (19 pages, 125761 bytes).
+Output written on main.pdf (19 pages, 126889 bytes).
 PDF statistics:
  248 PDF objects out of 1000 (max. 8388607)
  216 compressed objects within 3 object streams

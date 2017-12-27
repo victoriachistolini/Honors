@@ -1,0 +1,15 @@
+Predictor variable,Categorical,Sample average
+first_vegtyp,false,11.714285714285714
+max_airtemp,false,277.3417205810547
+mean_airtemp,false,274.57374790736606
+mean_relhum,false,64.96428571428571
+mean_sncvr,false,24.464285714285715
+mean_sncvr_DJF,false,44.828757422310964
+mean_sndep,false,0.006104285618286147
+mean_trnstr,false,0.23089284982000077
+mean_uwind,false,2.160139969417027
+mean_vegcvr,false,3.1607142857142856
+mean_vwind,false,0.07466786248343331
+mean_wilt,false,0.03937499863760812
+min_airtemp,false,272.1748788016183
+sum_precip,false,1.9017857142857142
