@@ -82,10 +82,42 @@ Since we have previously described that we cannot use traditional models to buil
 \int q(x)log(\frac{q(x)}{p(x)}) dx
 \end{equation}
 
-\noindent At this point we have a better idea of how our data might fit into a maximum entropy approach due to the information that we have available and how entropy based methods do not assume or require knowledge of the metrics that we do not know, however we fail to understand a solid background of the concept of entropy based models and how theory motivates them. We begin with the fact that entropy at its core is a good measure of uncertainty [10]. \newline
+\noindent where $p(x)$ is the probability density function of the distribution of ticks and $q(x)$ is the probably density function of the tick encounter likelihood based on weather conditions. We have an estimate of $q(x)$ because of our observations, but we don't know anything about q(x) other than some constraints about geographic location and weather conditions.\newline
+
+\noindent When we began the modeling process, we had our dataset of tick observations, which highlight the set of locations where ticks are know to be able to survive, we also start with another subset of point locations in the state of Maine, called the background points, which represent the landscape that we are trying to model. Perhaps the background points dataset with two environmental features, elevation and vegetation type look like this: 
+
+\begin{center}
+ \begin{tabular}{||c c c c||} 
+ \hline
+ x & Elevation & Vegetation Type & p(x) \\ [0.5ex] 
+ \hline\hline
+ 1 & H &  1& 0.1  \\ 
+ \hline
+  2 & H & 3 & 0.1\\
+ \hline
+   3 & H & 2 & 0.1\\
+ \hline
+ 4 & M & 2 & 0.1  \\
+ \hline
+  5 & L & 4 & 0.1 \\
+ \hline
+   6 & L & 3 & 0.1\\
+ \hline
+  7 & M & 5 & 0.1 \\
+ \hline
+   8 & M & 4 & 0.1\\
+ \hline
+ 9 & L & 3 & 0.1 \\
+ \hline
+   10 & M & 3 & 0.1\\
+ \hline
+\end{tabular}
+\end{center}
 
 
 
+
+\noindent We know nothing more than this about the background locations, so we distribute probability to the subset of locations uniformly. That is if we were to go back to each of these locations then the chances of us getting a tick is equally in each location; so if we have $n$ observations in our set, then the probability of getting a tick at any of the locations would be $\frac{1}{n}$. This is a very naive estimate that each location is equiprobable this is our best first guess at the distribution and is called the prior distribution. By preforming a spacial analysis we may be able to find patterns between the locations of our tick sightings in the observations dataset, for example that 90\% of the locations were below a certain elevation. Based on this insight, which we call a constraint, we can recalculate the probabilities predicted for each location in our background point dataset. This toy example is based off of work done in [11]. \newline
 
 \noindent The L1 regularization method for feature selection... \newline
 
