@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 DEC 2017 00:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 DEC 2017 22:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1688,78 +1688,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
+Underfull \hbox (badness 10000) in paragraph at lines 70--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--76
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--146
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
-
- []
-
-
-Overfull \hbox (7.34601pt too wide) in paragraph at lines 163--164
-\T1/ppl/m/n/10.95 con-fu-sion ma-trix for each thresh-old, which will give a ne
-w sen-si-tiv-ity and 1-specificity
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
@@ -1769,35 +1743,81 @@ Underfull \hbox (badness 10000) in paragraph at lines 167--168
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--191
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Overfull \hbox (7.34601pt too wide) in paragraph at lines 208--209
+\T1/ppl/m/n/10.95 con-fu-sion ma-trix for each thresh-old, which will give a ne
+w sen-si-tiv-ity and 1-specificity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-) [8]
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--219
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+
+ []
+
+) [9]
 \openout2 = `Appendices/AppendixA.aux'.
 
- (./Appendices/AppendixA.tex
-Appendix A.
-)
-1: section
-[9
+ (./Appendices/AppendixA.tex [10
 
 
 
 ]
+Appendix A.
+)
+1: section
+[11]
 \openout2 = `Bib/bib.aux'.
 
- (./Bib/bib.tex [10
+ (./Bib/bib.tex [12
 
 
 
@@ -1876,9 +1896,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
 )
 1: section
-[11]
+[13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
  (./main.aux (./Chapters/Chapter1.aux) (./Appendices/AppendixA.aux)
@@ -1886,19 +1911,19 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0EA73292BF353D24A1C7B5D1047898A2;3352.
+(rerunfilecheck)             Checksum: 60DAD477E0F8B2FC0F0CEE2338BE5D22;3576.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29289 strings out of 493089
- 597548 string characters out of 6134842
- 722171 words of memory out of 5000000
- 32416 multiletter control sequences out of 15000+600000
- 48048 words of font info for 89 fonts, out of 8000000 for 9000
+ 29295 strings out of 493089
+ 597607 string characters out of 6134842
+ 723171 words of memory out of 5000000
+ 32417 multiletter control sequences out of 15000+600000
+ 48305 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,20n,77p,10454b,1735s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,19n,78p,10454b,1774s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -1908,10 +1933,10 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (19 pages, 128855 bytes).
+Output written on main.pdf (21 pages, 133534 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 216 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 263 PDF objects out of 1000 (max. 8388607)
+ 229 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
