@@ -19,6 +19,11 @@
 \contentsline {section}{\numberline {1.5}Model Assessment }{7}{section.20}
 \contentsline {subsection}{\numberline {1.5.1}Assessment of a single model}{7}{subsection.21}
 \contentsline {subsection}{\numberline {1.5.2}Assessment of an ensemble of models}{9}{subsection.24}
-\contentsline {chapter}{\numberline {A}Code for Experiments}{11}{appendix.25}
-\contentsline {section}{\numberline {A.1}Experiment 1}{11}{section.26}
-\contentsline {chapter}{\numberline {B}Sources}{13}{appendix.27}
+\contentsline {chapter}{\numberline {2}Exploratory Analysis}{11}{chapter.25}
+\contentsline {section}{\numberline {2.1}Analyzing Spacial Patterns}{11}{section.26}
+\contentsline {subsection}{\numberline {2.1.1}What is a point pattern}{11}{subsection.27}
+\contentsline {subsection}{\numberline {2.1.2}Null Model and Modified Point Processes}{11}{subsection.28}
+\contentsline {subsection}{\numberline {2.1.3}Controlling for Processes between points and within points}{11}{subsection.29}
+\contentsline {chapter}{\numberline {A}Code for Experiments}{13}{appendix.30}
+\contentsline {section}{\numberline {A.1}Experiment 1}{13}{section.31}
+\contentsline {chapter}{\numberline {B}Sources}{15}{appendix.32}
