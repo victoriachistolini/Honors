@@ -9,7 +9,7 @@ The data are stored in model output screen shots. Here is the format for the nam
 
 ## figure names patterns:
 
-* **model type** _ **day** _ **window size** _ **year**
+### **model type**_**day**_**window size**_**year**.png
 
 * **model** type: full model or reduced model
 
