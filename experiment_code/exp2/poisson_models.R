@@ -21,6 +21,9 @@ library(ggplot2)
 predictor_stack <- process_predictor_stack(SS, params, window, day)
 dataset <- create_point_process_dataset(SS,day, window,predictor_stack)
 
+
+
+
 # covariates converted to image format
 predictors.im <- convert_predictors_to_im(predictor_stack)
 
@@ -37,8 +40,11 @@ tick.ppp <- convert_obs(dataset)
 
 
 # do some analysis with the dataset values 
-
-
+d_cor <- as.matrix(cor(dataset[,params]))
+d_cor_melt <- arrange(melt(d_cor), -abs(value))
+d_cor_melt <- dplyr::filter(d_cor_melt, value > .5)
+d_cor_melt <- dplyr::filter(d_cor_melt, value != 1)
+#d_cor_melt <- dplyr::distinct(d_cor_melt, value)
 
 
 
