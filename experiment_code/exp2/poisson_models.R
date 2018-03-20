@@ -63,7 +63,7 @@ download.file("http://colby.edu/~mgimond/Spatial/Data/Income_schooling.zip", des
 unzip(tmp, exdir = ".")
 s1 <- readOGR(".", "Income_schooling")
 
-tm_shape(s1) +
+tm_shape(s1) +  tm_polygons("MAP_COLORS", palette="Greys") +
   tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
                                  border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
   tm_legend(outside = TRUE, text.size = .8) 
