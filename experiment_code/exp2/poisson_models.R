@@ -16,6 +16,7 @@ library(magrittr)
 library(dataTools)
 library(reshape2)
 library(ggplot2)
+library(tmap)
 
 
 # 3 vs 7 day window, had twice as many points but came to the same conclusions...
@@ -40,8 +41,33 @@ min_airtemp <- compress_predictor_stack(predictor_stack[[12]])
 sum_precip <- compress_predictor_stack(predictor_stack[[13]])
 
 # obs converted to ppp format
-tick.ppp <- convert_obs(dataset)
-plot(tick.ppp)
+#tick.ppp <- convert_obs(dataset)
+
+vecvr <- mean(predictor_stack[[9]])
+tick.sp <- SpatialPoints( dataset[,c("x","y")],CRS(proj4string(vecvr)))
+ticks.ppp  <- as(tick.sp, "ppp")
+
+tm_shape(World,bbox="Maine") + tm_polygons("MAP_COLORS", palette="Pastel2") +
+  tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
+                            border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
+  tm_legend(outside = TRUE, text.size = .8) 
+
+tm_shape(World,bbox="Maine") + tm_polygons("MAP_COLORS", palette="Pastel2") +
+  tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
+                                 border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
+  tm_legend(outside = TRUE, text.size = .8) 
+
+
+tmp <- tempfile()
+download.file("http://colby.edu/~mgimond/Spatial/Data/Income_schooling.zip", destfile = tmp)
+unzip(tmp, exdir = ".")
+s1 <- readOGR(".", "Income_schooling")
+
+tm_shape(s1) +
+  tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
+                                 border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
+  tm_legend(outside = TRUE, text.size = .8) 
+
 
 # do some analysis with the dataset values 
 d_cor <- as.matrix(cor(dataset[,params]))
@@ -56,9 +82,10 @@ PPM2 <- ppm(tick.ppp ~ max_airtemp + mean_humidity + mean_vegcvr + uwind + vwind
 PPM3 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + uwind  + sum_precip )
 PPM4 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + trnstr + uwind + vwind + sum_precip )
 
-anova(PPM3, PPM1, test="LRT")
+anova( PPM4,PPM3, test="LRT")
 
-
+plot(effectfun(PPM3,  c("mean_airtemp" , "mean_humidity" , "uwind"  , "sum_precip"), se.fit=TRUE), main=NULL, cex.axis=0.6,cex.lab=0.6,
+     legend=FALSE)
 
 
 # CONSTANTS AND PARAMETERS
