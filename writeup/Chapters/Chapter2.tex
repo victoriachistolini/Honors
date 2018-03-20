@@ -91,5 +91,31 @@ data_matrx = read.csv("fall.csv")
 process_corr_matrix(data_matrx,params)
 
 \end{lstlisting}
- %start: \code{hello WORLD;}.
+
+\section{Poisson Point Process Models }
+
+\noindent My first look at the Poisson Point Process Models for explaining the distribution of points across the state focused on Day 150 over the years of our experiment 2006-2013. I tried two different window sizes: +/- 3 days and +/- 7 days. Both window periods have lead me to similar conclusions, however the 7 day window had twice as many points so I will discuss my findings for this window.\newline
+
+\noindent Figure 2.2 shows the points observations for the tick sightings on this day of the year for the experiment time period plotted over the state of Maine. We see that there is a good geographic distribution along the highly populated areas of the state. \newline
+
+\noindent We have found three different models that show all highly significant predictors for this day in time:
+
+\begin{equation}
+\lambda(i) = e^{-432.54 + 1.37*airtemp^*(i) + 0.49*meanHumidity(i) + 0.038*meanVegcvr(i) - 5.10*uwind(i) + 2.69*vwind(i) + 1.0*sumPrecip(i) }
+\end{equation}
+
+\noindent We say $airtemp^* $because you can include here mean, max or min airtemp and come to similar results.
+
+
+\begin{equation}
+\lambda(i) = e^{-483.93 + 1.54*meanAirtemp(i) + 0.58*meanHumidity(i) + 4.46*trnstr(i) - 5*uwind(i) + 1.35*vwind(i) + 0.81*sumPrecip(i) }
+\end{equation}
+
+
+
+\begin{figure} [t]
+\centerline{\psfig{figure=Figures/pts,width=7in,height=9in}}
+\caption{Tick observations in the State of Maine on May 30, 2006-2013.}
+\label{fig6}
+\end{figure}
 
