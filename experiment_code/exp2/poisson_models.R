@@ -26,6 +26,47 @@ predictor_stack <- process_predictor_stack(SS, params, window, day)
 dataset <- create_point_process_dataset(SS,day, window,predictor_stack)
 
 
+table(dataset$first_vegtyp)
+
+table(dataset$first_vegtyp)
+first_veg <-  mean(predictor_stack[[1]])
+
+###### v3 #####
+
+
+plot(first_veg)
+first_veg2 <- first_veg
+
+first_veg2[] <- ifelse(first_veg[]>10 & first_veg[]<12 , 1, 0)
+plot(first_veg2)
+
+#send raster to file
+path = "/home/vchisto/veg_raster_data/v3.tif"
+writeRaster(first_veg2, path, format="GTiff")
+
+###### v2 #####
+plot(first_veg)
+first_veg2 <- first_veg
+
+first_veg2[] <- ifelse(first_veg[]>=14 & first_veg[]<17, 1, 0)
+plot(first_veg2)
+
+#send raster to file
+path = "/home/vchisto/veg_raster_data/v2.tif"
+writeRaster(first_veg2, path, format="GTiff")
+
+###### v1 #####
+plot(first_veg)
+first_veg2 <- first_veg
+
+first_veg2[] <- ifelse(first_veg[] > 5, 0, 1)
+plot(first_veg2)
+#send raster to file
+path = "/home/vchisto/veg_raster_data/v1.tif"
+writeRaster(first_veg2, path, format="GTiff")
+
+v1 <- raster(path)
+plot(v1)
 
 # covariates converted to image format
 first_veg <- compress_predictor_stack(predictor_stack[[1]])
@@ -39,6 +80,8 @@ vwind <- compress_predictor_stack(predictor_stack[[10]])
 wilt <- compress_predictor_stack(predictor_stack[[11]])
 min_airtemp <- compress_predictor_stack(predictor_stack[[12]])
 sum_precip <- compress_predictor_stack(predictor_stack[[13]])
+
+
 
 # obs converted to ppp format
 #tick.ppp <- convert_obs(dataset)
@@ -81,6 +124,8 @@ PPM1 <- ppm(tick.ppp ~ min_airtemp + mean_humidity + mean_vegcvr + uwind + vwind
 PPM2 <- ppm(tick.ppp ~ max_airtemp + mean_humidity + mean_vegcvr + uwind + vwind + sum_precip )
 PPM3 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + uwind  + sum_precip )
 PPM4 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + trnstr + uwind + vwind + sum_precip )
+
+
 
 anova( PPM4,PPM3, test="LRT")
 
