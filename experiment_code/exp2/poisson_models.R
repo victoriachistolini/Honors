@@ -19,54 +19,19 @@ library(ggplot2)
 library(tmap)
 
 
-# 3 vs 7 day window, had twice as many points but came to the same conclusions...
-
 # load covariates and extract values into dataset
 predictor_stack <- process_predictor_stack(SS, params, window, day)
-dataset <- create_point_process_dataset(SS,day, window,predictor_stack)
+#dataset <- create_point_process_dataset(SS,day, window,predictor_stack)
+obs = load_trimmed_tick_obs(SS,day,window)
+# get values from covariate images
+prescence_points <- extract_precsence_points(predictor_stack,obs)
 
+# create dataset with obs and prescence points
+dataset <- cbind(obs,prescence_points)
 
-table(dataset$first_vegtyp)
+# look at distribution of vegitation types
+hist(dataset$first_vegtyp, main="histogram of veg type")
 
-table(dataset$first_vegtyp)
-first_veg <-  mean(predictor_stack[[1]])
-
-###### v3 #####
-
-
-plot(first_veg)
-first_veg2 <- first_veg
-
-first_veg2[] <- ifelse(first_veg[]>10 & first_veg[]<12 , 1, 0)
-plot(first_veg2)
-
-#send raster to file
-path = "/home/vchisto/veg_raster_data/v3.tif"
-writeRaster(first_veg2, path, format="GTiff")
-
-###### v2 #####
-plot(first_veg)
-first_veg2 <- first_veg
-
-first_veg2[] <- ifelse(first_veg[]>=14 & first_veg[]<17, 1, 0)
-plot(first_veg2)
-
-#send raster to file
-path = "/home/vchisto/veg_raster_data/v2.tif"
-writeRaster(first_veg2, path, format="GTiff")
-
-###### v1 #####
-plot(first_veg)
-first_veg2 <- first_veg
-
-first_veg2[] <- ifelse(first_veg[] > 5, 0, 1)
-plot(first_veg2)
-#send raster to file
-path = "/home/vchisto/veg_raster_data/v1.tif"
-writeRaster(first_veg2, path, format="GTiff")
-
-v1 <- raster(path)
-plot(v1)
 
 # covariates converted to image format
 first_veg <- compress_predictor_stack(predictor_stack[[1]])
@@ -82,68 +47,59 @@ min_airtemp <- compress_predictor_stack(predictor_stack[[12]])
 sum_precip <- compress_predictor_stack(predictor_stack[[13]])
 
 
+# bindary vegtype rasters 
+v1 <-as.im( raster("/home/vchisto/veg_raster_data/v1.tif"))
+v2 <- as.im(raster("/home/vchisto/veg_raster_data/v2.tif"))
+v3 <- as.im(raster("/home/vchisto/veg_raster_data/v3.tif"))
 
-# obs converted to ppp format
-#tick.ppp <- convert_obs(dataset)
+v4 = v2+v3
 
-vecvr <- mean(predictor_stack[[9]])
-tick.sp <- SpatialPoints( dataset[,c("x","y")],CRS(proj4string(vecvr)))
+# obs converted to ppp/sp format
+tick.sp <- SpatialPoints( dataset[,c("x","y")],CRS(PROJ))
 ticks.ppp  <- as(tick.sp, "ppp")
 
-tm_shape(World,bbox="Maine") + tm_polygons("MAP_COLORS", palette="Pastel2") +
-  tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
-                            border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
-  tm_legend(outside = TRUE, text.size = .8) 
+# load maine state boundries/extent
+s2 <- readOGR("/home/vchisto/maine_shape_data", "Income_schooling")
+s22 <- spTransform(s2, CRS(PROJ))
 
-tm_shape(World,bbox="Maine") + tm_polygons("MAP_COLORS", palette="Pastel2") +
-  tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
-                                 border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
-  tm_legend(outside = TRUE, text.size = .8) 
+# restrict tick.ppp extent to maine state window
+W  <- as(s22, "owin")
+Window(ticks.ppp) <- W
+plot(ticks.ppp)
 
-
-tmp <- tempfile()
-download.file("http://colby.edu/~mgimond/Spatial/Data/Income_schooling.zip", destfile = tmp)
-unzip(tmp, exdir = ".")
-s1 <- readOGR(".", "Income_schooling")
-
-tm_shape(s1) +  tm_polygons("MAP_COLORS", palette="Greys") +
+# plot the observations 
+tm_shape(s22) +  tm_polygons("MAP_COLORS", palette="Greys") +
   tm_shape(tick.sp) + tm_bubbles(col="red", alpha=0.5, 
                                  border.col = "yellow", border.lwd = 0.5, scale = 0.5) + 
   tm_legend(outside = TRUE, text.size = .8) 
 
 
-# do some analysis with the dataset values 
+# do some correlations analysis 
 d_cor <- as.matrix(cor(dataset[,params]))
 d_cor_melt <- arrange(melt(d_cor), -abs(value))
 d_cor_melt <- dplyr::filter(d_cor_melt, value > .5)
 d_cor_melt <- dplyr::filter(d_cor_melt, value != 1)
-#d_cor_melt <- dplyr::distinct(d_cor_melt, value)
-
-PPM0 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + mean_vegcvr + uwind + vwind + sum_precip )
-PPM1 <- ppm(tick.ppp ~ min_airtemp + mean_humidity + mean_vegcvr + uwind + vwind + sum_precip )
-PPM2 <- ppm(tick.ppp ~ max_airtemp + mean_humidity + mean_vegcvr + uwind + vwind + sum_precip )
-PPM3 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + uwind  + sum_precip )
-PPM4 <- ppm(tick.ppp ~ mean_airtemp + mean_humidity + trnstr + uwind + vwind + sum_precip )
 
 
+PPM0 <- 	ppm(ticks.ppp ~  mean_airtemp+ uwind+ vwind+ sum_precip+trnstr )
 
-anova( PPM4,PPM3, test="LRT")
 
-plot(effectfun(PPM3,  c("mean_airtemp" , "mean_humidity" , "uwind"  , "sum_precip"), se.fit=TRUE), main=NULL, cex.axis=0.6,cex.lab=0.6,
-     legend=FALSE)
+PPM0 <- 		ppm(ticks.ppp ~ first_veg+max_airtemp + mean_airtemp+ mean_humidity+ trnstr+ uwind+mean_vegcvr+ vwind+ wilt + min_airtemp + sum_precip )
+
+anova( PPM0,PPM1, test="LRT")
+
 
 
 # CONSTANTS AND PARAMETERS
-window = c(-7,7)
-day = 150
+window = c(-3,3)
+day = 292
 params = c("first_vegtyp", "max_airtemp", "mean_airtemp", "mean_relhum", 
            "mean_sncvr", "mean_sndep", "mean_trnstr", "mean_uwind", "mean_vegcvr", 
            "mean_vwind", "mean_wilt", "min_airtemp", "sum_precip")
 
 SS = as.POSIXct(c("2006-06-01 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
 
-PROJ <- c(longlat =  "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0",
-          lcc = "+proj=lcc +lat_1=25 +lat_0=25 +lon_0=-95 +k_0=1 +x_0=0 +y_0=0 +a=6367470.21484375 +b=6367470.21484375 +units=km +no_defs")
+PROJ <- "+proj=lcc +lat_1=25 +lat_0=25 +lon_0=-95 +k_0=1 +x_0=0 +y_0=0 +a=6367470.21484375 +b=6367470.21484375 +units=km +no_defs"
 
 # create a single raster, from stack
 compress_predictor_stack <- function(raster_stack){

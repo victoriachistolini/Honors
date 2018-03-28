@@ -39,7 +39,15 @@ writeRaster(first_veg2, path, format="GTiff")
 
 
 
+v1 <- raster(path)
+plot(v1)
 
+
+# how to crop a raster
+maine_extent <- extent(s22)
+veg_maine <- crop(x=veg3, y=maine_extent)
+plot(veg_maine)
+plot(s22,add=TRUE)
 
 ####Constants
 # CONSTANTS AND PARAMETERS
