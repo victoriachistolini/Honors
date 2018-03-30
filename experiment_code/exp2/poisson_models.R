@@ -38,6 +38,8 @@ first_veg <- compress_predictor_stack(predictor_stack[[1]])
 max_airtemp <- compress_predictor_stack(predictor_stack[[2]])
 mean_airtemp <- compress_predictor_stack(predictor_stack[[3]])
 mean_humidity <- compress_predictor_stack(predictor_stack[[4]])
+sncvr <- compress_predictor_stack(predictor_stack[[5]])
+sndepth <- compress_predictor_stack(predictor_stack[[6]])
 trnstr <- compress_predictor_stack(predictor_stack[[7]])
 uwind <- compress_predictor_stack(predictor_stack[[8]])
 mean_vegcvr <- compress_predictor_stack(predictor_stack[[9]])
@@ -81,7 +83,7 @@ d_cor_melt <- dplyr::filter(d_cor_melt, value > .5)
 d_cor_melt <- dplyr::filter(d_cor_melt, value != 1)
 
 
-PPM0 <- 	ppm(ticks.ppp ~  mean_airtemp+ uwind+ vwind+ sum_precip+trnstr )
+PPM0 <- 	ppm(ticks.ppp ~  mean_airtemp+  uwind+mean_vegcvr+ vwind+ wilt + sum_precip+v4)
 
 
 PPM0 <- 		ppm(ticks.ppp ~ first_veg+max_airtemp + mean_airtemp+ mean_humidity+ trnstr+ uwind+mean_vegcvr+ vwind+ wilt + min_airtemp + sum_precip )
@@ -92,7 +94,7 @@ anova( PPM0,PPM1, test="LRT")
 
 # CONSTANTS AND PARAMETERS
 window = c(-3,3)
-day = 292
+day = 139 
 params = c("first_vegtyp", "max_airtemp", "mean_airtemp", "mean_relhum", 
            "mean_sncvr", "mean_sndep", "mean_trnstr", "mean_uwind", "mean_vegcvr", 
            "mean_vwind", "mean_wilt", "min_airtemp", "sum_precip")
