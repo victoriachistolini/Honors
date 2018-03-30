@@ -1,0 +1,1 @@
+# Number of points per day and window size
