@@ -92,7 +92,9 @@ process_corr_matrix(data_matrx,params)
 
 \end{lstlisting}
 
-\section{Poisson Point Process Models }
+\section{Poisson Point Process Models for Predictor Selection and Evaluation}
+
+\subsection{ Building and Interpreting Point Process Models}
 
 \noindent My first look at the Poisson Point Process Models for explaining the distribution of points across the state focused on Day 150 over the years of our experiment 2006-2013. I tried two different window sizes: +/- 3 days and +/- 7 days. Both window periods have lead me to similar conclusions, however the 7 day window had twice as many points so I will discuss my findings for this window.\newline
 
@@ -110,7 +112,7 @@ process_corr_matrix(data_matrx,params)
 \begin{equation}
 \lambda(i) = e^{-483.93 + 1.54*meanAirtemp(i) + 0.58*meanHumidity(i) + 4.46*trnstr(i) - 5*uwind(i) + 1.35*vwind(i) + 0.81*sumPrecip(i) }
 \end{equation}
-
+\newline
 
 
 \begin{figure} [t]
@@ -118,4 +120,101 @@ process_corr_matrix(data_matrx,params)
 \caption{Tick observations in the State of Maine on May 30, 2006-2013.}
 \label{fig6}
 \end{figure}
+
+\section{Predictor Selection Process}
+
+ \begin{longtable}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ \caption{Long table caption.\label{long}}\\
+
+ \hline
+ \multicolumn{4}{| c |}{Selected Models}\\
+ \hline
+ Day of Year & Window Size & Number of Observations & Predictors\\
+ \hline
+ 19   & 20    &12 &   meanAirtemp, vwind, sndepth, sumPrecip \\
+ \hline
+ 19 &   20  & 12   & meanAirtemp, v4 \\
+ \hline
+ 50 & 20 & 11 &  meanAirtemp,  vwind, sncvr\\
+ \hline
+ 50 & 20 & 11 &  meanAirtemp,  vwind, v4\\
+ \hline
+ 78  & 7 & 117 &  meanAirtemp, meanVegcvr, vwind, sumPrecip, sncvr, v4\\
+ \hline
+ 109 &  3   & 118 & meanAirtemp, uwind, meanVegcvr, vwind, minAirtemp, sumPrecip, v4 \\
+ \hline
+ 139 & 3  & 233  & meanAirtemp, uwind, meanVegcvr, vwind, wilt, sumPrecip \\
+  \hline
+ 139 & 3  & 233  & meanAirtemp, meanVegcvr, vwind, sncvr \\
+  \hline
+ 139 & 3  & 233  & meanAirtemp, uwind, meanVegcvr, vwind, wilt, sumPrecip, v4 \\
+ \hline
+ 139 & 3  & 233  & meanAirtemp, meanVegcvr, vwind, sndepth, v4 \\
+  \hline
+ 139 & 3  & 233  & meanAirtemp, meanVegcvr, vwind, sndepth \\
+ \hline
+ 150 & 7  & 445 & meanAirtemp, meanHumidity, meanVegcvr, uwind, vwind, sumPrecip\\
+ \hline
+
+ \endfirsthead
+ \hline
+ \multicolumn{4}{| c |}{Selected Models Continued }\\
+ \hline
+  Day of Year & Window Size & Number of Observations & Predictors \\
+  \hline
+  \endhead
+ %\hline 
+ %\endfoot
+ 
+ %\hline
+ %\multicolumn{4}{| c |}{End of Table}\\
+ %\hline\hline
+ %\endlastfoot
+
+
+ \hline
+ 150 & 7  & 445 & minAirtemp, meanVegcvr, uwind, vwind, sumPrecip, v4\\
+ \hline
+150 & 7  & 445 & meanAirtemp, meanHumidity, uwind, sumPrecip, v4\\
+ \hline
+ 150 & 7  & 445 & minAirtemp, meanVegcvr, uwind, vwind, sumPrecip, v4\\
+  \hline
+ 170 & 7  & 262 & meanAirtemp, meanHumidity, uwind, vwind, sumPrecip, v4\\
+ \hline
+ 170 & 7  & 262 & minAirtemp, meanHumidity, uwind, sumPrecip, v4\\
+ \hline
+ 170 & 7  & 262 & minAirtemp, maxAirtemp, meanHumidity, uwind, vwind, sumPrecip, v4\\
+ \hline
+  170 & 7  & 262 & minAirtemp, maxAirtemp, meanHumidity, uwind, trnstr, sumPrecip, v4\\
+ \hline
+   170 & 7  & 262 & minAirtemp, maxAirtemp, meanHumidity, uwind, trnstr, sumPrecip, v4\\
+ \hline
+   170 & 7  & 262 & minAirtemp, maxAirtemp, meanHumidity, uwind, vwind, wilt, sumPrecip, v4\\
+ \hline
+    200 & 10  & 61 & wilt, sumPrecip, v4\\
+ \hline
+     231 & 13  & 13 & meanAirtemp\\
+ \hline
+      231 & 13  & 13 & trnstr\\
+ \hline
+      231 & 13  & 13 & wilt\\
+ \hline
+       262 & 10  & 62 & meanAirtemp, uwind, vwind, sumPrecip\\
+ \hline
+        292 & 3  & 553 & meanAirtemp, uwind, meanVegcvr, v4\\
+ \hline
+         292 & 3  & 553 & maxAirtemp, uwind, wilt, v4\\
+ \hline
+          292 & 3  & 553 & maxAirtemp, uwind, trnstr, v4)\\
+ \hline
+          323 & 3  & 250 & meanAirtemp, trnstr, uwind, vwind, v4)\\
+ \hline
+           323 & 3  & 250 & meanAirtemp, wilt, uwind, vwind, v4)\\
+ \hline
+            323 & 3  & 250 & meanAirtemp, meanVegcvr, uwind, vwind, v4)\\
+ \hline
+             353 & 10  & 34 & meanHumidity, uwind, meanVegcvr, v4)\\
+ \hline
+\end{longtable}
+
 

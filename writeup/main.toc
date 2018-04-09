@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {2.1.2}Null Model and Modified Point Processes}{11}{subsection.28}
 \contentsline {subsection}{\numberline {2.1.3}Controlling for Processes between points and within points}{11}{subsection.29}
 \contentsline {section}{\numberline {2.2}Exploratory Data Analysis }{13}{section.30}
-\contentsline {section}{\numberline {2.3}Poisson Point Process Models }{13}{section.50}
-\contentsline {chapter}{\numberline {A}Code for Experiments}{17}{appendix.54}
-\contentsline {section}{\numberline {A.1}Experiment 1}{17}{section.55}
-\contentsline {chapter}{\numberline {B}Sources}{19}{appendix.56}
+\contentsline {section}{\numberline {2.3}Poisson Point Process Models for Predictor Selection and Evaluation}{13}{section.50}
+\contentsline {subsection}{\numberline {2.3.1} Building and Interpreting Point Process Models}{13}{subsection.51}
+\contentsline {section}{\numberline {2.4}Predictor Selection Process}{14}{section.55}
+\contentsline {chapter}{\numberline {3}Sources}{21}{chapter.57}
