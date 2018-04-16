@@ -54,6 +54,7 @@ run_maxEnt_model <- function(flag,pts){
   
   mpath <- "/dev/shm/model"
   model <- try(dismo::maxent(pts, flag, path = mpath))
+  traceback()
   
   # store model
   if (!inherits(model, 'try-error') ) {
@@ -130,7 +131,8 @@ extract_back_points_ex <- function(pp,obs,nback,v4){
 }
 
 
-days_vector <- c(15,46,74,105,135,146,166,196,227, 258, 288, 319, 349 )
+#days_vector <- c(15,46,74,105,135,146,166,196,227, 258, 288, 319, 349 )
+days_vector <- c(15,46)
 windows <- c(40, 40,7,3,3,3,3,15,30,15,2,2,20)
 mat_meta_dat <- cbind(days_vector, windows)
 num_obs <- vector()
