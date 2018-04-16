@@ -30,7 +30,7 @@ auc_test_model <- function(window,day){
   test_data = set_up_data(window,day)
   num_obs = sum(test_data$flag)
   
-  for (i in 1:length(predictors_data)) {
+  for (i in 1:nrow(predictors_data)) {
     # parse selected variables from predictors_data
     current <- predictors_data[i,]
     names <- unlist(current, use.names=FALSE)
