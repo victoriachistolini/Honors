@@ -43,7 +43,8 @@ auc_test_model <- function(window,day){
     auc_scores[i] = run_maxEnt_model(test_data$flag,input_points)
   }
   cat(auc_scores)
-  return(c(auc_scores,num_obs))
+  
+  return(list("scores" = auc_scores, "obs" = num_obs))
   
 }
 
@@ -143,8 +144,8 @@ for (i in 1:length(days_vector)) {
   day = days_vector[i]
   window <- c(-windows[i], windows[i])
   out <- auc_test_model(window,day)
-  num_obs[i] <- out[2]
-  auc_scorez[[i]] = out[1]
+  num_obs[i] <- out$obs
+  auc_scorez[[i]] = out$scores
 }
 
 # write out to csv 
