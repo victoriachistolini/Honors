@@ -38,17 +38,17 @@ auc_test_model <- function(window,day){
     input_points <- dplyr::select(as_data_frame(test_data$input), names)
     
     # create a model
-    run_maxEnt_model(test_data$flag,input_points)
+    run_maxEnt_model(test_data$flag,input_points,i)
   }
   
 }
 
 
-run_maxEnt_model <- function(flag,pts){
+run_maxEnt_model <- function(flag,pts,idx){
   
   # run MAXENT model
   
-  mpath <- "/mnt/ecocast/projectdata/students/VC"
+  mpath <- paste("/mnt/ecocast/projectdata/students/VC/m",idx,sep="")
   model <- try(dismo::maxent(pts, flag, path = mpath))
   traceback()
   
