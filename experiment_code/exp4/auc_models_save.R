@@ -69,7 +69,8 @@ set_up_data <- function(window,day){
              "mean_vwind", "mean_wilt", "min_airtemp", "sum_precip")
   
   # set default time period 
-  SS <- as.POSIXct(c("2006-06-01 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
+  #SS <- as.POSIXct(c("2006-06-01 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
+  SS <- as.POSIXct(c("2006-06-01 00:00:00", "2010-12-31 00:00:00"), tz = 'UTC')
   # format binary veg-type raster
   v2 <- raster("/home/vchisto/veg_raster_data/v2.tif")
   v3 <- raster("/home/vchisto/veg_raster_data/v3.tif")

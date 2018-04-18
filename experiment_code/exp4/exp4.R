@@ -2,8 +2,6 @@
 
 
 
-
-
 model = dismotools::read_maxent(path)
 predictors = namtools::read_archived_forecast(date)
 xcast = dismo::predict(model, predictors)
