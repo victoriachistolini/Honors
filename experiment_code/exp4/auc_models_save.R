@@ -38,7 +38,8 @@ auc_test_model <- function(window,day){
     input_points <- dplyr::select(as_data_frame(test_data$input), names)
     
     # create a model
-    run_maxEnt_model(test_data$flag,input_points,i)
+    idx = paste (day,i,sep="_")
+    run_maxEnt_model(test_data$flag,input_points,idx)
   }
   
 }
