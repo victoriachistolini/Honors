@@ -1,5 +1,6 @@
 # code to generate forcast auc 
 library(raster)
+library(dismotools)
 
 
 parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "max_airtemp"), pstack = load_predictors()){
@@ -14,6 +15,8 @@ parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "m
 
 pstack = parse_predictor_brick()
 
+
+# load paths of archived raster layers
 load_predictors <- function(){
   
   # list the files in the 'day-brick' directory
@@ -30,51 +33,58 @@ load_predictors <- function(){
   
 }
 
-run_func <- function(day, window){
-  # paramaters dataset 
-  predictors_data <- read.csv(file="/mnt/ecocast/projectdata/students/VC/params_data.csv", header=TRUE, sep=",", stringsAsFactors = FALSE)
+run_func <- function(day, path_m, additional_params, archived_forecast_lib, testObs){
   
-  # load the veg cover raster binary raster
-  v2 <- raster("/mnt/ecocast/projectdata/students/VC/veg_raster_data/v2.tif")
-  v3 <- raster("/mnt/ecocast/projectdata/students/VC/veg_raster_data/v3.tif")
-  v4 = v2+v3
-  
-  # load predictors and add the veg cover raster to the brick
-  pstack = parse_predictor_brick()
-  pstack <- addLayer(pstack,v4)
-  
-  
+  fauc_scores = vector()
   
   # for each model
-  for (i in 1:nrow(predictors_data)){
+  for (i in 1:32){
     
-    current <- as.character(predictors_data[i,])
-    v4Flag <- "v4" %in% current
+    #current <- as.character(predictors_data[i,])
     
-    names1= names[names != ""] 
-    names= names1[names1 != "v4"] 
+    # load maxent model from given path 
+    mpath <- paste(path_m,i,sep="_")
+    model = dismotools::read_maxent(mpath)
     
+    # get params used in maxent model
+    params = names(dismotools::maxent_get_results(model, 'contribution'))
+    v4Flag <- "v4" %in% params
     
-    # load 
-    path <- paste("/mnt/ecocast/projectdata/students/VC/m",i,sep="")
-    model = dismotools::read_maxent(path)
+    # archievd data does not contain veg binary
+    loadParams = params[params != "v4"]
     
-    contr = names(dismotools::maxent_get_results(model, 'contribution'))
+    # load archived data
+    pstack = parse_predictor_brick(day,loadParams,archived_forecast_lib)
     
-    # load predictor stack 
+    if (v4Flag){
+      pstack <- addLayer(pstack,additional_params)
+    }
     
+    # create forecast
+    xcast = dismo::predict(model, pstack)
     
-    xcast = dismo::predict(model, predictors)
+    # assess forcast sucess 
+    fauc_scores[i] = dismotools::auc_raster(xcast, testObs)
     
-    # obesrvations found on this ADAY
-    fauc = dismotools::auc_raster(xcast, test_obs)
-    
-    #save xcast > write raster
+    # maybe save xcast > write raster? 
   }
+  
+  return(fauc_scores)
   
 }
 
-# loop over dates
+#load forecast library 
+predictorSet = load_predictors()
+
+# load the veg cover raster binary raster
+v2 <- raster("/mnt/ecocast/projectdata/students/VC/veg_raster_data/v2.tif")
+v3 <- raster("/mnt/ecocast/projectdata/students/VC/veg_raster_data/v3.tif")
+v4 = v2+v3
+
+# doy dates
+days_vector <- c(15,46,74,105,135,146,166,196,227, 258, 288, 319, 349 )
+windows <- c(40, 40,7,3,3,3,3,15,30,15,2,2,20)
+
 
 # different set of dates to try out
 dates = c("20110115", "20110215", "20110314", "20110414", "20110514", "20110625", "20110714", "20110814", "20110914", "20111014", "20111114", "20111214")
@@ -82,9 +92,21 @@ dates = c("20110115", "20110215", "20110314", "20110414", "20110514", "20110625"
 # here they are in the form we need them which is "AYYYYjjj" (It's a long story)
 adates <- format(as.Date(dates, format = "%Y%m%d"), "A%Y%j")
 
-test_date = adates[1]
+auc_scorez <- list()
+
+# loop over dates day, dayIdx, doy, additional_params, archived_forecast_lib
+for (i in 1:length(days_vector)) {
+  # generate test obs
+  SS <- as.POSIXct(c("2010-12-31 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
+  testObs = load_trimmed_tick_obs(SS,days_vector[i],c(-windows[i],windows[i]))
+  
+  path = paste("/mnt/ecocast/projectdata/students/VC/m", days_vector[i], sep="")
+  auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
+  
+}
+# write out fauc scores 
+dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
+write.csv(dd, file = "fauc_scores.csv")
 
 #dates2 = c("20120115", "20120215", "20120314", "20120414", "20120514", "20120625", "20120714", "20120814", "20120914", "20121014", "20121114", "20121214")
 #dates3 = c("20130115", "20130215", "20130314", "20130414", "20130514", "20130625", "20130714", "20130814", "20130914", "20131014", "20131114", "20131214")
-#desired projections 
-#current_proj = "+proj=lcc +lat_1=25 +lat_0=25 +lon_0=-95 +k_0=1 +x_0=0 +y_0=0 +a=6367470.21484375 +b=6367470.21484375 +units=km +no_defs"
