@@ -46,10 +46,11 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
     mpath <- paste(path_m,i,sep="_")
     model = dismotools::read_maxent(mpath)
     
-    # get params used in maxent model
-    params = names(dismotools::maxent_get_results(model, 'contribution'))
+    if (dismotools:model_successful(model)){
     
-    if (!is.na(params)){
+      # get params used in maxent model
+      params = names(dismotools::maxent_get_results(model, 'contribution'))
+    
       v4Flag <- "v4" %in% params
     
       # archievd data does not contain veg binary
