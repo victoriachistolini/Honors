@@ -1,20 +1,8 @@
 # code to generate forcast auc 
 library(raster)
 library(dismotools)
-
-
-parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "max_airtemp"), pstack = load_predictors()){
-  
-  parse_stack <- lapply(params, function(current_name){
-    pstack[[current_name]][[date]]
-    
-  })
-  names(parse_stack) <- params
-  return(stack(parse_stack))
-}
-
-pstack = parse_predictor_brick()
-
+library(dataTools)
+library(dplyr)
 
 # load paths of archived raster layers
 load_predictors <- function(){
@@ -32,6 +20,20 @@ load_predictors <- function(){
   return(PP)
   
 }
+
+
+parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "max_airtemp"), pstack = load_predictors()){
+  
+  parse_stack <- lapply(params, function(current_name){
+    pstack[[current_name]][[date]]
+    
+  })
+  names(parse_stack) <- params
+  return(stack(parse_stack))
+}
+
+
+
 
 run_func <- function(day, path_m, additional_params, archived_forecast_lib, testObs){
   
@@ -60,11 +62,20 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
       pstack <- addLayer(pstack,additional_params)
     }
     
+    # update names
+    names(pstack) = params
+    cat(mpath)
+    cat("\n")
     # create forecast
     xcast = dismo::predict(model, pstack)
     
-    # assess forcast sucess 
-    fauc_scores[i] = dismotools::auc_raster(xcast, testObs)
+    if (!inherits(xcast, 'try-error')){
+      # assess forcast sucess 
+      out = dismotools::auc_raster(xcast, testObs)
+      fauc_scores[i] = out$area
+    } else {
+      cat("ERROR")
+    }
     
     # maybe save xcast > write raster? 
   }
@@ -74,6 +85,7 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
 }
 
 #load forecast library 
+
 predictorSet = load_predictors()
 
 # load the veg cover raster binary raster
@@ -95,18 +107,20 @@ adates <- format(as.Date(dates, format = "%Y%m%d"), "A%Y%j")
 auc_scorez <- list()
 
 # loop over dates day, dayIdx, doy, additional_params, archived_forecast_lib
-for (i in 1:length(days_vector)) {
+#for (i in 1:1) {
+  i=1
   # generate test obs
   SS <- as.POSIXct(c("2010-12-31 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
   testObs = load_trimmed_tick_obs(SS,days_vector[i],c(-windows[i],windows[i]))
+  testObs = testObs[,c("x","y")]
   
   path = paste("/mnt/ecocast/projectdata/students/VC/m", days_vector[i], sep="")
-  auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
-  
-}
+  #auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
+  cat(run_func(adates[i], path, v4, predictorSet, testObs))
+#}
 # write out fauc scores 
-dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
-write.csv(dd, file = "fauc_scores.csv")
+#dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
+#write.csv(dd, file = "fauc_scores.csv")
 
 #dates2 = c("20120115", "20120215", "20120314", "20120414", "20120514", "20120625", "20120714", "20120814", "20120914", "20121014", "20121114", "20121214")
 #dates3 = c("20130115", "20130215", "20130314", "20130414", "20130514", "20130625", "20130714", "20130814", "20130914", "20131014", "20131114", "20131214")
