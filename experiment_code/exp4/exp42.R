@@ -42,47 +42,48 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
   # for each model
   for (i in 1:32){
     
-    #current <- as.character(predictors_data[i,])
-    
     # load maxent model from given path 
     mpath <- paste(path_m,i,sep="_")
     model = dismotools::read_maxent(mpath)
     
     # get params used in maxent model
     params = names(dismotools::maxent_get_results(model, 'contribution'))
-    v4Flag <- "v4" %in% params
     
-    # archievd data does not contain veg binary
-    loadParams = params[params != "v4"]
+    if (!is.na(params)){
+      v4Flag <- "v4" %in% params
     
-    # load archived data
-    pstack = parse_predictor_brick(day,loadParams,archived_forecast_lib)
+      # archievd data does not contain veg binary
+      loadParams = params[params != "v4"]
     
-    if (v4Flag){
-      pstack <- addLayer(pstack,additional_params)
-    }
+      # load archived data
+      pstack = parse_predictor_brick(day,loadParams,archived_forecast_lib)
     
-    # update names
-    names(pstack) = params
-    cat(mpath)
-    cat("\n")
-    # create forecast
-    xcast = dismo::predict(model, pstack)
+      if (v4Flag){
+        pstack <- addLayer(pstack,additional_params)
+      }
     
-    if (!inherits(xcast, 'try-error')){
+      # update names
+      names(pstack) = params
+    
+      # create forecast
+      xcast = dismo::predict(model, pstack)
+    
+     
       # assess forcast sucess 
       out = dismotools::auc_raster(xcast, testObs)
       fauc_scores[i] = out$area
     } else {
-      cat("ERROR")
+      fauc_scores[i] = NA
+    }
+    
     }
     
     # maybe save xcast > write raster? 
+    return(fauc_scores)
   }
   
-  return(fauc_scores)
   
-}
+  
 
 #load forecast library 
 
@@ -115,12 +116,11 @@ auc_scorez <- list()
   testObs = testObs[,c("x","y")]
   
   path = paste("/mnt/ecocast/projectdata/students/VC/m", days_vector[i], sep="")
-  #auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
-  cat(run_func(adates[i], path, v4, predictorSet, testObs))
+  auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
 #}
 # write out fauc scores 
-#dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
-#write.csv(dd, file = "fauc_scores.csv")
+dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
+write.csv(dd, file = "fauc_scores.csv")
 
 #dates2 = c("20120115", "20120215", "20120314", "20120414", "20120514", "20120625", "20120714", "20120814", "20120914", "20121014", "20121114", "20121214")
 #dates3 = c("20130115", "20130215", "20130314", "20130414", "20130514", "20130625", "20130714", "20130814", "20130914", "20131014", "20131114", "20131214")
