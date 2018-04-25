@@ -8,38 +8,27 @@ library(dismotools)
 library(tickdata)
 library(rscripting)
 library(binaryLogic)
-library(spatstat)  
 library(rgdal)     
-library(maptools)  
 library(raster)
 library(magrittr)
 library(dataTools)
-library(reshape2)
-library(ggplot2)
+
 
 
 # get window size , auc associations 
 auc_test_model <- function(day,windows){
   
   auc_scores = vector()
+  num_obs = vector()
   
   
-  test_data = set_up_data(window,day)
-  num_obs = sum(test_data$flag)
-  
-  for (i in 1:nrow(predictors_data)) {
-    # parse selected variables from predictors_data
-    current <- predictors_data[i,]
-    names <- unlist(current, use.names=FALSE)
-    names= names[names != ""] 
-    names = levels(names)[names[1:length(names)]]
-  
-    # trim dataframe to predictors wanted 
-    input_points <- dplyr::select(as_data_frame(test_data$input), names)
+  for (i in 1:length(windows)) {
 
-    auc_scores[i] = run_maxEnt_model(test_data$flag,input_points)
+    test_data = set_up_data(windows[i],day)
+    num_obs[i] = sum(test_data$flag)
+    
+    auc_scores[i] = run_maxEnt_model(test_data$flag,test_data$input)
   }
-  cat(auc_scores)
   
   return(list("scores" = auc_scores, "obs" = num_obs))
   
@@ -132,12 +121,13 @@ windows <- c(2,3,7,15,20,30,40)
 auc_scorez <- list()
 num_obs = list()
 
-for (i in 1:length(days_vector)) {
+#for (i in 1:length(days_vector)) {
+  i=1
   day = days_vector[i]
   out <- auc_test_model(day,windows)
   num_obs[[i]] <- out$obs
   auc_scorez[[i]] = out$scores
-}
+#}
 
 # write out to csv 
 dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
