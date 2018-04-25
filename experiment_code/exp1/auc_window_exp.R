@@ -19,7 +19,7 @@ library(ggplot2)
 
 
 # get window size , auc associations 
-auc_test_model <- function(day){
+auc_test_model <- function(day,windows){
   
   auc_scores = vector()
   
@@ -70,7 +70,7 @@ run_maxEnt_model <- function(flag,pts){
 set_up_data <- function(window,day){
   
   # load all default params 
-  params = c("mean_airtemp", "mean_relhum", )
+  params = c("mean_airtemp", "mean_relhum","mean_vegcvr", "mean_vwind", "mean_uwind","sum_precip" )
   
   # set default time period 
   SS <- as.POSIXct(c("2006-06-01 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
@@ -130,14 +130,18 @@ extract_back_points_ex <- function(pp,obs,nback,v4){
 days_vector <- c(15,46,74,105,135,146,166,196,227, 258, 288, 319, 349 )
 windows <- c(2,3,7,15,20,30,40)
 auc_scorez <- list()
+num_obs = list()
 
 for (i in 1:length(days_vector)) {
   day = days_vector[i]
-  out <- auc_test_model(day)
-  num_obs[i] <- out$obs
+  out <- auc_test_model(day,windows)
+  num_obs[[i]] <- out$obs
   auc_scorez[[i]] = out$scores
 }
 
 # write out to csv 
 dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
+ddd  <-  as.data.frame(matrix(unlist(num_obs), nrow=length(unlist(num_obs[1]))))
+
 write.csv(dd, file = "auc_scores.csv")
+write.csv(dd, file = "auc_scores_obs.csv")
