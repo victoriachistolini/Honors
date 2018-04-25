@@ -1,20 +1,8 @@
 # code to generate forcast auc 
 library(raster)
 library(dismotools)
-
-
-parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "max_airtemp"), pstack = load_predictors()){
-  
-  parse_stack <- lapply(params, function(current_name){
-    pstack[[current_name]][[date]]
-    
-  })
-  names(parse_stack) <- params
-  return(stack(parse_stack))
-}
-
-pstack = parse_predictor_brick()
-
+library(dataTools)
+library(dplyr)
 
 # load paths of archived raster layers
 load_predictors <- function(){
@@ -33,6 +21,20 @@ load_predictors <- function(){
   
 }
 
+
+parse_predictor_brick <- function(date = "A2011015", params=c("mean_airtemp", "max_airtemp"), pstack = load_predictors()){
+  
+  parse_stack <- lapply(params, function(current_name){
+    pstack[[current_name]][[date]]
+    
+  })
+  names(parse_stack) <- params
+  return(stack(parse_stack))
+}
+
+
+
+
 run_func <- function(day, path_m, additional_params, archived_forecast_lib, testObs){
   
   fauc_scores = vector()
@@ -40,40 +42,52 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
   # for each model
   for (i in 1:32){
     
-    #current <- as.character(predictors_data[i,])
-    
     # load maxent model from given path 
     mpath <- paste(path_m,i,sep="_")
     model = dismotools::read_maxent(mpath)
     
-    # get params used in maxent model
-    params = names(dismotools::maxent_get_results(model, 'contribution'))
-    v4Flag <- "v4" %in% params
+    if (dismotools:model_successful(model)){
     
-    # archievd data does not contain veg binary
-    loadParams = params[params != "v4"]
+      # get params used in maxent model
+      params = names(dismotools::maxent_get_results(model, 'contribution'))
     
-    # load archived data
-    pstack = parse_predictor_brick(day,loadParams,archived_forecast_lib)
+      v4Flag <- "v4" %in% params
     
-    if (v4Flag){
-      pstack <- addLayer(pstack,additional_params)
+      # archievd data does not contain veg binary
+      loadParams = params[params != "v4"]
+    
+      # load archived data
+      pstack = parse_predictor_brick(day,loadParams,archived_forecast_lib)
+    
+      if (v4Flag){
+        pstack <- addLayer(pstack,additional_params)
+      }
+    
+      # update names
+      names(pstack) = params
+    
+      # create forecast
+      xcast = dismo::predict(model, pstack)
+    
+     
+      # assess forcast sucess 
+      out = dismotools::auc_raster(xcast, testObs)
+      fauc_scores[i] = out$area
+    } else {
+      fauc_scores[i] = NA
     }
     
-    # create forecast
-    xcast = dismo::predict(model, pstack)
-    
-    # assess forcast sucess 
-    fauc_scores[i] = dismotools::auc_raster(xcast, testObs)
+    }
     
     # maybe save xcast > write raster? 
+    return(fauc_scores)
   }
   
-  return(fauc_scores)
   
-}
+  
 
 #load forecast library 
+
 predictorSet = load_predictors()
 
 # load the veg cover raster binary raster
@@ -95,15 +109,16 @@ adates <- format(as.Date(dates, format = "%Y%m%d"), "A%Y%j")
 auc_scorez <- list()
 
 # loop over dates day, dayIdx, doy, additional_params, archived_forecast_lib
-for (i in 1:length(days_vector)) {
+#for (i in 1:1) {
+  i=1
   # generate test obs
   SS <- as.POSIXct(c("2010-12-31 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
   testObs = load_trimmed_tick_obs(SS,days_vector[i],c(-windows[i],windows[i]))
+  testObs = testObs[,c("x","y")]
   
   path = paste("/mnt/ecocast/projectdata/students/VC/m", days_vector[i], sep="")
   auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
-  
-}
+#}
 # write out fauc scores 
 dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
 write.csv(dd, file = "fauc_scores.csv")
