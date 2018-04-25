@@ -45,11 +45,12 @@ run_func <- function(day, path_m, additional_params, archived_forecast_lib, test
     # load maxent model from given path 
     mpath <- paste(path_m,i,sep="_")
     model = dismotools::read_maxent(mpath)
+    # get params used in maxent model
+    params = names(dismotools::maxent_get_results(model, 'contribution'))
     
-    if (dismotools:model_successful(model)){
+    if (!is.na(params)){
     
-      # get params used in maxent model
-      params = names(dismotools::maxent_get_results(model, 'contribution'))
+     
     
       v4Flag <- "v4" %in% params
     
@@ -108,9 +109,9 @@ adates <- format(as.Date(dates, format = "%Y%m%d"), "A%Y%j")
 
 auc_scorez <- list()
 
-# loop over dates day, dayIdx, doy, additional_params, archived_forecast_lib
-#for (i in 1:1) {
-  i=1
+# loop over dates
+for (i in 1:length(adates)) {
+
   # generate test obs
   SS <- as.POSIXct(c("2010-12-31 00:00:00", "2013-12-31 00:00:00"), tz = 'UTC')
   testObs = load_trimmed_tick_obs(SS,days_vector[i],c(-windows[i],windows[i]))
@@ -118,10 +119,7 @@ auc_scorez <- list()
   
   path = paste("/mnt/ecocast/projectdata/students/VC/m", days_vector[i], sep="")
   auc_scorez[[i]] = run_func(adates[i], path, v4, predictorSet, testObs)
-#}
+}
 # write out fauc scores 
 dd  <-  as.data.frame(matrix(unlist(auc_scorez), nrow=length(unlist(auc_scorez[1]))))
 write.csv(dd, file = "fauc_scores.csv")
-
-#dates2 = c("20120115", "20120215", "20120314", "20120414", "20120514", "20120625", "20120714", "20120814", "20120914", "20121014", "20121114", "20121214")
-#dates3 = c("20130115", "20130215", "20130314", "20130414", "20130514", "20130625", "20130714", "20130814", "20130914", "20131014", "20131114", "20131214")
