@@ -35,32 +35,27 @@ According to the Center for Disease Control (CDC) in 2015, 95\% of reported Lyme
 %\subsection{Data Quality and Selection Bias} % is this good to have if so where????
 %\noindent We need to address selection bias, spacial-auto correlation, correlation with roads, sampling effort is correlated with population density. \newline
 
-
 %----------------------------------------------------------------------------------------
-
-
 \section{The Maximum Entropy Model}
 
-As we have mentioned above, there are several competing models that can build high preforming classifiers from data that has not been labeled with categories, however the assumption necessary for for those unsupervised algorithms to work is that the dataset contains examples of all of the categories that you are trying to classify, so that the algorithms can use the patterns of the data to distinguish and predict different categories. However, our dataset actually does not reflect an appropriate dataset for unsupervised or supervised learning algorithms, since we do not have any recorded observations for the absence category, rather we only have observations for the presence category. 
+To determine the appropriateness of any modeling approach we first start by summarizing what information we know to begin with. We know a sample of locations (latitude and longitude coordinates), where ticks have been found, called presence points. Assuming the presence points are well collected and representative of the locations and environmental conditions where ticks are likely to be found by humans, then we can use this information to estimate and predict locations with high likelihood of encounter. \newline
+
+\noindent We have no information about unsuitable locations, where encounter risk is low, however, we can use our study region, the state of Maine as a constraint on our distribution. By taking a random sample of points from our study region, we create a representation of the diverse habitat conditions in our region, called background points. While we have a high degree of certainty that the presence points represent spaces where ticks should be found, we have no opinion at all about whether or not ticks should be found in the background locations. The theory of minimizing cross entropy ( which can be proved analogous to maximizing entropy)  says that given the information that we do have we can actually find a unique distribution that is optimized to the information that we know and does not penalize us for what we don't know, by selecting the distribution with minimal cross entropy [10].
 
 
-The reason that Maximum Entropy Models work so well for modeling species distributions is that 
-
-Since we have previously described that we cannot use traditional models to build a tick-human encounter predictive model, due to the fact that our data contains only information about the presence locations of observations and no information on their absence locations, we will begin by discussing the MaxEnt model and how methods of its model building process allow it to work well with presence only data. \newline
-
-\noindent The basic premise of the MaxEnt model is that the model has two probability densities as input: the point observations of tick locations and the environmental predictor variables [6]. The algorithm at its core needs to solve the problem of minimizing the entropy between the the two probability densities. It is through this process that the predictor variables undergo transformations that help to maximize the entropy of the solution during the model fitting process [6]. The covariates can become terms of the type : linear, quadratic, product (representing interaction), hinge, threshold or categorical, in the final model. The effectiveness of the transformations are assessed through cross validation process, using L1 regulation to avoid overfitting [6].  \newline
-
-\noindent To better understand the MaxEnt model, we first need to get a better idea of what the maximum entropy method is. Maximum entropy and minimum cross entropy are methods which are based in Bayesian statistics and information theory. If we begin by thinking in the discrete setting, we understand that there is a set of ticks and they are distributed with a certain probability function based on the environmental parameters with a given probability. In a way, we already have an idea about where tick are distributed in space based on our observations and so we know some information about their distribution, but we are missing information. We do not have the complete picture of all of the suitable locations and we have no information about unsuitable locations. \newline
-
-\noindent Since we do have some information about the distribution however, we can use a cross entropy approach [10]. Minimizing the cross entropy of a system is analogous to finding the relative entropy which is analogous to maximizing entropy [10].   At this point, we have some information about the distribution of ticks and we also have constraints on our distribution, the region that we are mapping to, which is represented by background points. The theory of minimizing cross entropy says that given the information that we do have we can actually find a unique distribution that optimized to the information that we know and does not penalize us for what we don't know, by selecting the distribution with minimal cross entropy. Basically what we need to do is minimize the cross entropy function:  \newline
+\noindent More technically put, what we begin with are two probability density functions, $p(x)$ the distribution of tick from our presence and background points and $q(x)$, the probably density function of the tick encounter likelihood conditional on weather conditions and geographic constraints. The process of finding maximum entropy, then is  accomplished by minimize the cross entropy function:  \newline
 
 \begin{equation}
 \int q(x)log(\frac{q(x)}{p(x)}) dx
 \end{equation}
 
-\noindent where $p(x)$ is the probability density function of the distribution of ticks and $q(x)$ is the probably density function of the tick encounter likelihood based on weather conditions. We have an estimate of $q(x)$ because of our observations, but we don't know anything about q(x) other than some constraints about geographic location and weather conditions.\newline
 
-\noindent When we began the modeling process, we had our dataset of tick observations, which highlight the set of locations where ticks are know to be able to survive, we also start with another subset of point locations in the state of Maine, called the background points, which represent the landscape that we are trying to model. Perhaps the background points dataset with two environmental features, elevation and vegetation type look like this: 
+\noindent  During the minimization process predictor variables undergo transformations that help to maximize the entropy of the solution; this is how the model is fit [6]. The covariates may be transformed into terms of the type : linear, quadratic, product (representing interaction), hinge, threshold or categorical variables in the final model. The effectiveness of the transformations are assessed through cross validation process, using L1 regulation to avoid overfitting [6].  \newline
+
+
+\subsection{Maximum Entropy Example}
+
+\noindent When we began the modeling process, we had our dataset of tick observations, which highlighted the set of locations where ticks are know to be able to survive, we also start with another subset of point locations in the state of Maine, called the background points, which represent the landscape that we are trying to model. Perhaps the background points dataset consists of two environmental features, elevation and vegetation type look like this: 
 
 \begin{center}
  \begin{tabular}{||c c c c||} 
@@ -89,8 +84,6 @@ Since we have previously described that we cannot use traditional models to buil
  \hline
 \end{tabular}
 \end{center}
-
-
 
 
 \noindent We know nothing more than this about the background locations, so we distribute probability to the subset of locations uniformly. That is if we were to go back to each of these locations then the chances of us getting a tick is equally in each location; so if we have $n$ observations in our set, then the probability of getting a tick at any of the locations would be $\frac{1}{n}$. This is a very naive estimate that each location is equiprobable this is our best first guess at the distribution and is called the prior distribution. By preforming a spacial analysis we may be able to find patterns between the locations of our tick sightings in the observations dataset, for example that 90\% of the locations were below a certain elevation. Based on this insight, which we call a constraint, we can recalculate the probabilities predicted for each location in our background point dataset. \newline
@@ -123,30 +116,24 @@ Since we have previously described that we cannot use traditional models to buil
 \end{tabular}
 \end{center}
 
-
-
 \noindent Next we define another constraint on the model; we find that 82\% of the tick sightings are happening at vegetation types 4 and 5. We can incorporate this new constraint and reweigh the model. This time there is not as clear cut a way to reweigh the probabilities. We know 18\% of the probability should be represented in the set $S_1$= \{ 1, 2, 3, 4, 6, 9,10\} and 80\% should be represented in the set $S_2$ = \{5,7,8 \} but how should the probabilities be determined for each element in the set? As mentioned previously, based on the principle of maximum entropy, we want to select the distribution that is most uniform the distribution by minimizing the entropy function in equation 1.2. This equation is difficult to solve analytically, thus numerical methods will be used for the optimization procedure. This toy example is based off of work done in [11]. \newline
 
 \noindent In building the maxent model distribution, we have used constraints in order to add information to our model. There are several methods for figuring out how to derive the constraint rules. One of these processes is similar to the construction of a decision tree where at each new additional leaf we want to choose the feature that maximizes the information gain. We use the environmental features to develop the constraints which are the expected values of the features.\newline
 
+
+\subsection{Pitfalls of Maximum Entropy Models}
+
+\subsection{Current MaxEnt model}
+
 \noindent The algorithm that we will be using to create our maximum entropy model is called MaxEnt and is supported by the R programming language, although the main program is written in Java, by S.J. Phillips et al. The MaxEnt model is of the form:
-
-
 \begin{equation}
 q(x) = \frac{e^{\lambda* f(x)}}{Z}
 \end{equation}
 
 \noindent where $\lambda $ is a set of weights on the features and Z is a scaling constant that makes sure the probability distribution $q(x)$ sums to 1 [12]. \newline 
-
-
-\noindent The L1 regularization method for feature selection to avoid overfitting []... \newline
-
-\subsection{Current MaxEnt model}
-
 -> predictors used, model structure \newline
+
 %----------------------------------------------------------------------------------------
-
-
 
 \section{Predictor Selection and Exploratory Analysis}
 Our dataset is special in several ways: one way which is mentioned above, is that contains a subset of human-tick encounter observations from the state of Maine over a 15 year period, but no information about the subset of human-no tick encounters, a crucial piece of information necessary in classification algorithms. Another complicating factor of this dataset is that it contains data concerning spacial locations across time; spacial and temporal dimensions require explicit analysis and dictate the use of distinct statistical techniques. Spacial analysis is the use of specialized statistical techniques that are designed to help identify patterns that derive from the spacial dimensions of the data [4]. \newline
@@ -207,11 +194,7 @@ TSS \hspace{0.2cm} = \hspace{0.2cm} sensitivity \hspace{0.2cm} + \hspace{0.2cm} 
 \end{equation}
 can be used used to quantify the strength of the classifier at a given threshold [9]. The TSS statistic has been shown to have a good behavior and is well correlated with the AUC statistic [9]. However, in order to calculate the TSS statistic we would need to have access to a complete confusion matrix which we do not have, thus in order to use this powerful statistic, we will need to determine if there is a modified version that we can use. \newline
 
-\noindent A few other metrics to consider are forecast AUC, AIC, and the procedure of cross validation which we will discuss later on ....\newline
-
-\subsection{Assessment of an ensemble of models}
-* summarizing ensembles -> a bayesian approach \newline
-
+%\noindent A few other metrics to consider are forecast AUC, AIC, and the procedure of cross validation which we will discuss later on ....\newline no??
 
 
 
@@ -230,6 +213,7 @@ There is immanent uncertainly in the models that we build to predict human-tick 
 * model physics \newline
 * initial conditions\newline
 * training data \newline
+* summarizing ensembles -> a bayesian approach \newline
 
 
 %----------------------------------------------------------------------------------------
