@@ -15,6 +15,8 @@
 
 %----------------------------------------------------------------------------------------
 
+% where does main INTENT of the PROJECT GO? OR is that for the abstract????
+
 \section{What is Species Distribution Modeling}
 According to the Center for Disease Control (CDC) in 2015, 95\% of reported Lyme Disease cases came from only 14 states; of these 14, 12 were on the east coast and all 6 of the New England States were represented. Since 1996 the annual number of confirmed cases of Lyme Disease per year has increased by over 10,000 additional cases in 2016 [1]. Given the growing magnitude of the problem presented by ticks and Lyme Disease infection, there has been a deep interest to understand where Lyme Disease carrying ticks are located and how we can most effectively reduce human contact. \newline
 
@@ -40,7 +42,7 @@ According to the Center for Disease Control (CDC) in 2015, 95\% of reported Lyme
 
 To determine the appropriateness of any modeling approach we first start by summarizing what information we know to begin with. We know a sample of locations (latitude and longitude coordinates), where ticks have been found, called presence points. Assuming the presence points are well collected and representative of the locations and environmental conditions where ticks are likely to be found by humans, then we can use this information to estimate and predict locations with high likelihood of encounter. \newline
 
-\noindent We have no information about unsuitable locations, where encounter risk is low, however, we can use our study region, the state of Maine as a constraint on our distribution. By taking a random sample of points from our study region, we create a representation of the diverse habitat conditions in our region, called background points. While we have a high degree of certainty that the presence points represent spaces where ticks should be found, we have no opinion at all about whether or not ticks should be found in the background locations. The theory of minimizing cross entropy ( which can be proved analogous to maximizing entropy)  says that given the information that we do have we can actually find a unique distribution that is optimized to the information that we know and does not penalize us for what we don't know, by selecting the distribution with minimal cross entropy [10].
+\noindent We have no information about unsuitable locations, where encounter risk is low, however, we can use our study region, the state of Maine as a constraint on our distribution. By taking a random sample of points from our study region, we create a representation of the diverse habitat conditions in our region, called background points. While we have a high degree of certainty that the presence points represent spaces where ticks should be found, we have no opinion at all about whether or not ticks should be found in the background locations. The theory of minimizing cross entropy ( which can be proved analogous to maximizing entropy)  says that given the information that we do have we can actually find a unique distribution that is optimized to the information that we know and does not penalize us for what we don't know, by selecting the distribution with minimal cross entropy [10].\newline
 
 
 \noindent More technically put, what we begin with are two probability density functions, $p(x)$ the distribution of tick from our presence and background points and $q(x)$, the probably density function of the tick encounter likelihood conditional on weather conditions and geographic constraints. The process of finding maximum entropy, then is  accomplished by minimize the cross entropy function:  \newline
@@ -120,25 +122,28 @@ To determine the appropriateness of any modeling approach we first start by summ
 
 \noindent In building the maxent model distribution, we have used constraints in order to add information to our model. There are several methods for figuring out how to derive the constraint rules. One of these processes is similar to the construction of a decision tree where at each new additional leaf we want to choose the feature that maximizes the information gain. We use the environmental features to develop the constraints which are the expected values of the features.\newline
 
-
-\subsection{Pitfalls of Maximum Entropy Models}
-
 \subsection{Current MaxEnt model}
 
-\noindent The algorithm that we will be using to create our maximum entropy model is called MaxEnt and is supported by the R programming language, although the main program is written in Java, by S.J. Phillips et al. The MaxEnt model is of the form:
+\noindent The algorithm that we will be using to create our maximum entropy model is called MaxEnt and is supported by the R programming language through the dismo package; the main algorithm is written in Java, by S.J. Phillips et al. We have currently developed several different MaxEnt models using environmental covariates that best fit the expert knowledge of the parameters which affect tick survival. The core set of environmental covariates come from North American Mesoscale Forecast System (NAM), in the form of raster images of a certain resolution. Each pixel of the image represents a projected latitude, longitude coordinate and the value stored at the pixel is the value of the covariate at that location. For example if the raster image represented elevation, then the value at each pixel, would be the meters above sea level at that location. \newline
+
+\noindent The core parameter set includes: minimum air temperature, maximum air temperature, mean air temperature, mean percent vegetation cover, mean relative humidity, mean snow cover, mean snow depth, mean transpiration rate, mean u-direction wind speed, mean v-direction wind speed, mean wilt, sum of precipitation. Some models include additional parameters for previous-year's minimum winter temperatures.  
+
+\noindent Once a MaxEnt model is fit using the covariates mentioned above, the output model is of the form:
 \begin{equation}
 q(x) = \frac{e^{\lambda* f(x)}}{Z}
 \end{equation}
 
-\noindent where $\lambda $ is a set of weights on the features and Z is a scaling constant that makes sure the probability distribution $q(x)$ sums to 1 [12]. \newline 
--> predictors used, model structure \newline
+\noindent where $\lambda $ is a set of weights on the features and Z is a scaling constant that makes sure the probability distribution $q(x)$ sums to 1 [12]. A new model is fit for each day of the year using all of the data in the database available for the particular day of the year. Since often there is not enough data for a single day of the year, data is taken from a window of time around the model day. The size for a suitable window depends on the time of year, with larger windows being needed during time of the year with fewer tick observations.\newline
+
+\noindent Since we have created several MaxEnt models our goal is preform exploratory analysis and look at potential sources of error and model refinement through the creation of new models with time-of-year specific parameter combinations to boost overall system performance. 
+
 
 %----------------------------------------------------------------------------------------
+\section{Spacial-Temporal Exploratory Analysis} 
 
-\section{Predictor Selection and Exploratory Analysis}
-Our dataset is special in several ways: one way which is mentioned above, is that contains a subset of human-tick encounter observations from the state of Maine over a 15 year period, but no information about the subset of human-no tick encounters, a crucial piece of information necessary in classification algorithms. Another complicating factor of this dataset is that it contains data concerning spacial locations across time; spacial and temporal dimensions require explicit analysis and dictate the use of distinct statistical techniques. Spacial analysis is the use of specialized statistical techniques that are designed to help identify patterns that derive from the spacial dimensions of the data [4]. \newline
+Another complicating factor of this dataset is that it contains data concerning spacial locations across time; spacial and temporal dimensions require explicit analysis and dictate the use of distinct statistical techniques. Spacial analysis is the use of specialized statistical techniques that are designed to help identify patterns that derive from the spacial dimensions of the data [4]. \newline
 
-\subsection{Spacial Analysis}
+\subsection{Spacial Analysis and Predictor Selection}
 In species distribution modeling there are two components to the data set that will be used to make predictions on the location of ticks in the environment. We have described the first part of the dataset, the tick observations, a set of latitude, longitude pairs that uniquely define a point in space where a tick has been sighted by a person, as well as the date of observation. The second part of the dataset are the predictors, which are a set of environmental variables that will be used to define the specie's environmental niche [3]. Environmental data, collected by the weather service can be downloaded for the location and date of the sightings and will be stored in memory as a raster object, which is a grid of pixels used to represent spacial data[4].  \newline
 
 \noindent Selection of appropriate predictors to use for model building can be very difficult because it takes a good deal of understanding about the way in which the species interacts with its environment to understand what types of environmental parameters influence a its ability to live in an environment. In our case, many additional factors influence the ability of a tick to survive and disperse throughout its environment such as availability of host animals, whose distribution may also be unknown. Further, once we have an idea of what parameters are appropriate to use in to model, based on the literature of known tick habitat conditions, we must be careful to select only variables that are not correlated with one another to include in model building, otherwise contribution estimates for the predictors are confounded. \newline
@@ -155,23 +160,26 @@ In species distribution modeling there are two components to the data set that w
 
 \noindent This logistic model allows the researcher to understand the density of point observations at any arbitrary input location, and thus understand more deeply the relationship that the point observations have with a particular covariate.\newline
 
+% weird should this be included 
 \noindent Also, other examples have included the use of PCA analysis as a preprocessing step to reduce the features used in modeling building to independent highly effective features, with reduced dimensionality [8].   \newline
 
 
 \subsection{Temporal Analysis}
-Time also plays a key role in our model. There is evidence that the range of suitable tick habitats continues to expand as the effects of global climate change become more dramatic [5]. At this point in our primary analysis we have not explicitly done any analysis on the tick distribution and time. We expect that there will be some correlation with the tick distribution, its predictors and time. In order to test this correlation, we can build regression models for each predictor at each location across time. We may display the resulting correlation coefficients for the a particular covariate at a particular location on a heat map to get a picture of how for a given predictor it correlated throughout time in space.  \newline
+% do predictor sets change over time
 
+% window experiments
 \noindent Another temporal component of analysis concerns the amount of point data that the dataset has at different times of the year. Ideally we will be looking to make a model for each day of the year to use for forecast prediction. However, due to the fact that one is less likely to encounter a tick in winter months, we have fewer observations for this time frame. With fewer observations to build the model, the forecast predictions are less accurate.  Thus, we must preform an experiment to understand the impact of the amount of data used to build the model and the model's subsequent accuracy. We seek to understand if adding more data from the observations of surrounding months to the model when there are few observations will positively impact accuracy. We also seek to determine a threshold about the number of observations necessary to achieve a certain error tolerance. \newline
 
-
+% stationarity of the data set
+Another area of interest is the stationarity of the data. There is evidence that the range of suitable tick habitats continues to expand as the effects of global climate change become more dramatic [5]. At this point in our primary analysis we have not explicitly done any analysis on the tick distribution and time. We expect that there will be some correlation with the tick distribution, its predictors and time. In order to test this correlation, we can build regression models for each predictor at each location across time. We may display the resulting correlation coefficients for the a particular covariate at a particular location on a heat map to get a picture of how for a given predictor it correlated throughout time in space.  \newline
 
 
 %----------------------------------------------------------------------------------------
 
 
-\section{Model Assessment }
+\section{Model Assessment }  % FIX include stuff about FAUC 
 
-\subsection{Assessment of a single model}
+\subsection{Assessment of Performance }
 
 % draw a confusion matrix here....
 Assessment of classification algorithms is an essential part of determining their utility as valid predictive models. Classically testing the strength of a classification algorithm involves building the model with a subset of the dataset and keeping another subset for use in testing the model called the training dataset. Then the model is run with the training data and an assessment is made about how well the model has done. The construction of a confusion matrix helps to communicate how well the model did in classifying the training data, by tabulating the number of correctly classified results as well as false positives and false negatives. 
@@ -180,7 +188,10 @@ Assessment of classification algorithms is an essential part of determining thei
                   Predicted\hspace{0.2cm}  Presence & a & b \cr
                   Predicted \hspace{0.2cm} Absence & c & d \cr} \end{equation}
                   
-\noindent The data in the confusion matrix can then be visualized in a plot called the ROC curve. The ROC curve plots the classifier's sensitivity versus 1-specificity, where sensitivity is easily calculated from the confusion matrix as  $\frac{a}{a+c}$ and 1- specificity is $\frac{b}{b+d}$ [7]. Since the results of the MaxEnt model are a series of probabilities given environmental conditions of encountering a tick at a particular location, then in order to create a confusion matrix, we would need to decide on some arbitrary threshold at which we decide that a probability is high enough to be considered a presence of a tick. \newline
+\noindent The data in the confusion matrix can then be visualized in a plot called the ROC curve. \newline
+
+\subsection{The AUC Statistic for model assessment }
+The ROC curve plots the classifier's sensitivity versus 1-specificity, where sensitivity is easily calculated from the confusion matrix as  $\frac{a}{a+c}$ and 1- specificity is $\frac{b}{b+d}$ [7]. Since the results of the MaxEnt model are a series of probabilities given environmental conditions of encountering a tick at a particular location, then in order to create a confusion matrix, we would need to decide on some arbitrary threshold at which we decide that a probability is high enough to be considered a presence of a tick. \newline
 
 \noindent Since the decision of a threshold is arbitrary then ROC is formed from finding the confusion matrix for each threshold, which will give a new sensitivity and 1-specificity value to plot for each matrix. The summary statistic used to characterize the ROC curve is the area under the ROC curve or AUC, which evaluates the strength of the classifier by the characteristics of the ROC curve. An AUC statistic of 0.5 represents a random classifier, and scores above 0.5 represent a better than random model [7].    \newline
 
@@ -188,11 +199,15 @@ Assessment of classification algorithms is an essential part of determining thei
 
 \noindent Since we do not have absence data in our dataset and thus our training dataset is devoid of this essential information, then a more accurate substitute is using is using the proportion of area predicted present instead of 1-specificity [7]. With the simple modification under way we can proceed to interpret the AUC in a similar fashion as our interpretations of the traditionally defined AUC.  \newline
 
-\noindent Another limiting factor that about AUC that we have previously mentioned is that it represents the classification ability of the model independent of a threshold. The threshold determines the minimum probability that will be considered a presence. In our application this threshold is important because we are creating a forecast and the interpretability of a forecast greatly depends on the ability to discriminate events from non-events, thus the their seems to be an implied necessity to define the threshold as a single number when calculating a summary statistic about the skill of the forecast. The statistic True Skill Statistic (TSS):
+
+\subsection{The F-AUC statistic for assessment of future predictive power }
+
+\subsection{Limitations of AUC Interpretability}
+\noindent Another limiting factor that about AUC that we have previously mentioned is that it represents the classification ability of the model independent of a threshold. The threshold determines the minimum probability that will be considered a presence. In our application this threshold is important because we are creating a forecast and the interpretability of a forecast greatly depends on the ability to discriminate events from non-events, thus the there seems to be an implied necessity to define the threshold as a single number when calculating a summary statistic about the skill of the forecast. The statistic True Skill Statistic (TSS):
 \begin{equation}
 TSS \hspace{0.2cm} = \hspace{0.2cm} sensitivity \hspace{0.2cm} + \hspace{0.2cm} specificity\hspace{0.2cm}  -\hspace{0.2cm} 1 \hspace{0.2cm} =  \hspace{0.2cm} \frac{ad -bc}{(a+c)(b+d)}
 \end{equation}
-can be used used to quantify the strength of the classifier at a given threshold [9]. The TSS statistic has been shown to have a good behavior and is well correlated with the AUC statistic [9]. However, in order to calculate the TSS statistic we would need to have access to a complete confusion matrix which we do not have, thus in order to use this powerful statistic, we will need to determine if there is a modified version that we can use. \newline
+can be used used to quantify the strength of the classifier at a given threshold [9]. The TSS statistic has been shown to have a good behavior and is well correlated with the AUC statistic [9]. However, in order to calculate the TSS statistic we would need to have access to a complete confusion matrix which we do not have, thus in order to use the TSS, we would need to substitute our proxy metric calculated at a given threshold. \newline
 
 %\noindent A few other metrics to consider are forecast AUC, AIC, and the procedure of cross validation which we will discuss later on ....\newline no??
 
