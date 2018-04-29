@@ -15,57 +15,15 @@
 
 %----------------------------------------------------------------------------------------
 
-\section{Analyzing Spacial Patterns}
-
-\subsection{What is a point pattern}
-Using point process methods: quantify the process (random mechanism) whose outcome is a point pattern [12]. \newline
-
-We want to answer questions about how to points have been distributed in space, are they random, does their distribution depend on a covariate? \newline
-
-We treat each point as a random variable, thus the point itself has its own distribution; follow a Poisson distribution if the probability of a point being in any region is random, ie there is spacial independence. \newline
-
-\subsection{Null Model and Modified Point Processes}
-The null model for the point process is complete spacial randomness (CRS); thus the points come from a Poisson distribution and are independent of each other and have homogeneity, also we assume that points are mapped without omission, and that the process is stationary (without autocorrelation) \newline
-
-Inhomogeneous point process: modified Poisson point process such that the average density of points is spatially varying. Assumptions are: ..., small world model \newline
-
-\subsection{Controlling for Processes between points and within points}
-Intensity can be quantified by a function of spacial location in an inhomogeneous point process. In order to judge if data is clustered we need to eliminate the possibility that there is spacial variation in intensity, 
-and spacial variation in intensity would need to be accounted for in a clustering analysis. \newline
 
 
-Estimated intensity at or around a point can be use to weight the point and give it greater importance in a dataset. \newline
-
-If covariates are categorical it is necessary to create a tessellated surface from which to measure intensity. The surface can be tessellated by means of the covariate. Can use a chi-squared point counting method to determine if the goodness of fit to data within quadrants. \newline
-
-There can also be inter-point interaction: a stochastic departure, or trend between points. We can model this using the K-function to try and separate correlation between points to covariate explained trends in the data.  
-For example, perhaps the points repel each other because of competition for nutrition, or other nuanced interaction between points in an ecological sense. \newline
-
-CURRENT PLAN: \newline
-
-* determine which covariates are correlated with each other and should probably not be included in the model building COV-experiment \newline
-COV experiment details:\newline
-1 - currently looked at each week from may-sept with background of +/-3 days \newline
-2 -  found the average values of each of the parameters \newline
-3 - determined pairwise covariance \newline
-
-Design other COV experiments to get full coverage of entire year \newline
-
-Use Poisson point to determine statistical sig of params in model can help further eliminate params\newline
-
-Start work with maxent using 'optimal param set': \newline
-begin with AUC / background point experiments \newline
-tick data \newline
-\pagebreak
-
-
-\section{Exploratory Data Analysis }
+\section{Temporal Stationarity Experiments }
 
 The initial experiment in exploratory analysis was to determine how each of the environmental parameters that we are potentially going to be using in the MaxEnt models are related to one another. In order to do this we carry out a correlation analysis to understand how each pairwise set of parameters varies with one another. \newline
 
 \noindent We broke the experiment into four seasons to see if there might be different highly correlated covariates depending on the season. Then we looked at the entire year a more general picture. Below is a section of code used to run the experiment. The dataTools library contains all of the main functions used throughout the code snippet. Here we define 
 
-\begin{figure} [t]
+\begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/meta,width=7in}}
 \caption{Correlation Analysis between parameters for four seasons, fall (A), summer (B), winter (C), Spring (D) and all year (E).}
 \label{fig6}
@@ -115,12 +73,6 @@ process_corr_matrix(data_matrx,params)
 \newline
 
 
-\begin{figure} [t]
-\centerline{\psfig{figure=Figures/pts,width=7in,height=9in}}
-\caption{Tick observations in the State of Maine on May 30, 2006-2013.}
-\label{fig6}
-\end{figure}
-
 \section{Predictor Selection Process}
 
  \begin{longtable}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
@@ -163,13 +115,6 @@ process_corr_matrix(data_matrx,params)
   Day of Year & Window Size & Number of Observations & Predictors \\
   \hline
   \endhead
- %\hline 
- %\endfoot
- 
- %\hline
- %\multicolumn{4}{| c |}{End of Table}\\
- %\hline\hline
- %\endlastfoot
 
 
  \hline

@@ -175,12 +175,15 @@ Exploratory data analysis is a crucial step in the model development process, it
 
 \subsection{Temporal Analysis}
 % do predictor sets change over time
+Ideally we are trying to create a forecasting model for each day of the year. The need for models that are season or even month-day specific is based off of the fact that the weather conditions can vary greatly throughout the year, as with the behavioral patterns of the humans who are going to encounter ticks. Therefore, when designing our experiments of predictor selection, it is important to repeat the experiments to capture the yearly variability. One way to do this is to run a predictor selection experiment for a day mid-month for each month in the year. \newline
 
 % window experiments
-\noindent Another temporal component of analysis concerns the amount of point data that the dataset has at different times of the year. Ideally we will be looking to make a model for each day of the year to use for forecast prediction. However, due to the fact that one is less likely to encounter a tick in winter months, we have fewer observations for this time frame. With fewer observations to build the model, the forecast predictions are less accurate.  Thus, we must preform an experiment to understand the impact of the amount of data used to build the model and the model's subsequent accuracy. We seek to understand if adding more data from the observations of surrounding months to the model when there are few observations will positively impact accuracy. We also seek to determine a threshold about the number of observations necessary to achieve a certain error tolerance. \newline
+\noindent Another temporal component of analysis concerns the amount of point data that the dataset has at different times of the year. Ideally we will be looking to make a model for each day of the year to use for forecast prediction. However, due to the fact that one is less likely to encounter a tick in winter months, we have fewer observations for this time frame. With fewer observations to build the model, the forecast predictions are less accurate. \newline 
+
+\noindent Thus, we must preform an experiment to understand the impact of the amount of data used to build the model and the model's subsequent accuracy. We seek to understand if adding more data from the observations of surrounding months to the model when there are few observations will positively impact accuracy. We also seek to determine a threshold about the number of observations necessary to achieve a certain error tolerance and a bound on the window size based on day of the year. \newline
 
 % stationarity of the data set
-Another area of interest is the stationarity of the data. There is evidence that the range of suitable tick habitats continues to expand as the effects of global climate change become more dramatic [5]. At this point in our primary analysis we have not explicitly done any analysis on the tick distribution and time. We expect that there will be some correlation with the tick distribution, its predictors and time. In order to test this correlation, we can build regression models for each predictor at each location across time. We may display the resulting correlation coefficients for the a particular covariate at a particular location on a heat map to get a picture of how for a given predictor it correlated throughout time in space.  \newline
+\noindent Another area of interest is the stationarity of the data. There is evidence that the range of suitable tick habitats continues to expand as the effects of global climate change become more dramatic [5]. At this point in our primary analysis we have not explicitly done any on how, if present at all the lack of stationarity of data is present in our database. We expect that there will be some correlation with the tick distribution, its predictors and time. In order to test this correlation, we can build regression models for each predictor at each location across time to quantify the degree and strength of non-stationarity in the data.  \newline
 
 
 %----------------------------------------------------------------------------------------
@@ -199,7 +202,8 @@ Assessment of classification algorithms is an essential part of determining thei
                   
 \noindent The data in the confusion matrix can then be visualized in a plot called the ROC curve. \newline
 
-\subsection{The AUC Statistic for model assessment }
+\subsection{The AUC statistic for model assessment }
+
 The ROC curve plots the classifier's sensitivity versus 1-specificity, where sensitivity is easily calculated from the confusion matrix as  $\frac{a}{a+c}$ and 1- specificity is $\frac{b}{b+d}$ [7]. Since the results of the MaxEnt model are a series of probabilities given environmental conditions of encountering a tick at a particular location, then in order to create a confusion matrix, we would need to decide on some arbitrary threshold at which we decide that a probability is high enough to be considered a presence of a tick. \newline
 
 \noindent Since the decision of a threshold is arbitrary then ROC is formed from finding the confusion matrix for each threshold, which will give a new sensitivity and 1-specificity value to plot for each matrix. The summary statistic used to characterize the ROC curve is the area under the ROC curve or AUC, which evaluates the strength of the classifier by the characteristics of the ROC curve. An AUC statistic of 0.5 represents a random classifier, and scores above 0.5 represent a better than random model [7].    \newline
@@ -211,14 +215,14 @@ The ROC curve plots the classifier's sensitivity versus 1-specificity, where sen
 
 \subsection{The F-AUC statistic for assessment of future predictive power }
 
+The F-AUC or forecast AUC, is another validation technique used to assess the strength a performance of models. I model is built with a given predictor set, using only a subset of the data in the database. For example years 2006-2010, then the model is tested using data from 2011-2013, using the 2006-2010 model to predict the outcomes for the 2011-2013 data. Using this metric we can get a more accurate estimate of the true predictive power of the model. 
+
 \subsection{Limitations of AUC Interpretability}
 \noindent Another limiting factor that about AUC that we have previously mentioned is that it represents the classification ability of the model independent of a threshold. The threshold determines the minimum probability that will be considered a presence. In our application this threshold is important because we are creating a forecast and the interpretability of a forecast greatly depends on the ability to discriminate events from non-events, thus the there seems to be an implied necessity to define the threshold as a single number when calculating a summary statistic about the skill of the forecast. The statistic True Skill Statistic (TSS):
 \begin{equation}
 TSS \hspace{0.2cm} = \hspace{0.2cm} sensitivity \hspace{0.2cm} + \hspace{0.2cm} specificity\hspace{0.2cm}  -\hspace{0.2cm} 1 \hspace{0.2cm} =  \hspace{0.2cm} \frac{ad -bc}{(a+c)(b+d)}
 \end{equation}
 can be used used to quantify the strength of the classifier at a given threshold [9]. The TSS statistic has been shown to have a good behavior and is well correlated with the AUC statistic [9]. However, in order to calculate the TSS statistic we would need to have access to a complete confusion matrix which we do not have, thus in order to use the TSS, we would need to substitute our proxy metric calculated at a given threshold. \newline
-
-%\noindent A few other metrics to consider are forecast AUC, AIC, and the procedure of cross validation which we will discuss later on ....\newline no??
 
 
 
