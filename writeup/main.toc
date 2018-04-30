@@ -20,8 +20,11 @@
 \contentsline {section}{\numberline {1.5}Ensemble Models}{10}{section.24}
 \contentsline {subsection}{\numberline {1.5.1}Future Work with Ensembles}{10}{subsection.25}
 \contentsline {chapter}{\numberline {2}Exploratory Analysis}{11}{chapter.26}
-\contentsline {section}{\numberline {2.1}Temporal Stationarity Experiments }{11}{section.27}
-\contentsline {section}{\numberline {2.2}Poisson Point Process Models for Predictor Selection and Evaluation}{11}{section.47}
-\contentsline {subsection}{\numberline {2.2.1} Building and Interpreting Point Process Models}{11}{subsection.48}
-\contentsline {section}{\numberline {2.3}Predictor Selection Process}{12}{section.51}
-\contentsline {chapter}{\numberline {3}Sources}{17}{chapter.53}
+\contentsline {section}{\numberline {2.1}Looking at distributions }{11}{section.27}
+\contentsline {section}{\numberline {2.2}Window size implications }{12}{section.29}
+\contentsline {section}{\numberline {2.3}Understanding predictor variables}{13}{section.31}
+\contentsline {section}{\numberline {2.4}Temporal Stationarity Experiments }{13}{section.32}
+\contentsline {section}{\numberline {2.5}Poisson Point Process Models for Predictor Selection and Evaluation}{13}{section.34}
+\contentsline {subsection}{\numberline {2.5.1} Building and Interpreting Point Process Models}{13}{subsection.35}
+\contentsline {section}{\numberline {2.6}Predictor Selection Process}{13}{section.38}
+\contentsline {chapter}{\numberline {3}Sources}{19}{chapter.40}

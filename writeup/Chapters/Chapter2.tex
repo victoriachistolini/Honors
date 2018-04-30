@@ -15,7 +15,38 @@
 
 %----------------------------------------------------------------------------------------
 
+\section{Looking at distributions }
 
+We start by looking at how the raw data of our observations set is distributed. We are looking to create a testing and training dataset that are distributed similarly. Figure 2.1 shows two plots of the number of observations recorded on a given day of the year for the time period 2006-2010 (A) and 2011-2013 (B). Although in (A), we see that there are overall more points per day, the yearly shape of observation records is strikingly similar between these two sets. The first and third quarter of the year have few observations per day, while the second and forth quarters of the year have increasing activity, which spikes mid quarter and then declines for the second half of the quarter. 
+
+\begin{figure} [!ht]
+\centerline{\psfig{figure=Figures/obs_dist.pdf,width=4in,height=3in}}
+\caption{Distribution of tick observations during the year for (A) years 2006-2010 and (B) year 2011-2013. }
+\label{fig6}
+\end{figure}
+
+
+\noindent Given the nature of this yearly activity cycle of the tick, we need to be cognizant of the number of points being used to create each model. Clearly, there will be a much smaller pool of observations during the first and third quarters, however, many days may have zero observations even as we are aggregating data from a span of almost 10 years. On days with so few data points it becomes impossible to create a model. One way around this obstacle of low observations counts is to pull in observations from a window of time around the forecast date. We will call this new parameter, the window size of the model. \newline
+
+\section{Window size implications }
+
+\noindent The window size parameter has a lot of uncertainty around it. It is unclear what values this parameter should take on at different times of the year. Further we do not know the impact that increasing the size of the window parameter has on the accuracy and precision of the model. One hypothesis is that it is necessary to keep the window size parameter large enough so that the model has exposure to enough data to create well informed predictions. Another hypothesis is that if the window size is increased by too much, then the accuracy of the predictions will be weakened due to the presence of data irrelevant to the current stage of tick activity. \newline
+
+\noindent In order to assess the impact of window size on forecast skill, we run a MaxEnt model with a subset of the 13 core parameters as predictors against 7 candidate window sizes: $\pm$ 2, 3, 7, 15, 20, 30, 40 days, for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, 349 of the year. \newline
+
+\begin{figure} [!ht]
+\centerline{\psfig{figure=Figures/wsize.png,width=4in,height=3in}}
+\caption{AUC score by day of year for the 2006-2013 time period of observations. Each line represents a different window size from the 7 candidate sizes. }
+\label{fig6}
+\end{figure}
+
+\noindent The general trend of figure 2.2 independent of window size is the inverse of figure 2.1. Highest AUC's are seen during the first and third quarters of the year, while steep crashes in AUC scores are experienced during the second and forth quarters. It is important to note that as a rule, the fewer points we have in our model, the higher the AUC will be because there is a lower chance of being wrong. For example, the null model of simply guessing that no location has high probability of tick encounter means that with fewer points this model will be more correct than the exact same model judged with more points. However, it is clear that the null model is a very poor choice of a model if future forecast skill is of concern. \newline
+
+\noindent Thus in order to correctly interpret figure 2.2, we focus on the first and third quarters of the year.   
+
+
+
+\section{Understanding predictor variables}
 
 \section{Temporal Stationarity Experiments }
 
@@ -29,26 +60,6 @@ The initial experiment in exploratory analysis was to determine how each of the 
 \label{fig6}
 \end{figure}
 
-
-\begin{lstlisting} [language=R]
-
-library(dataTools)
-
-window = c(-3,3)
-params = c("first_vegtyp", "max_airtemp", "mean_airtemp", "mean_relhum", 
-                  "mean_sncvr", "mean_sndep", "mean_trnstr", "mean_uwind", 
-                  "mean_vegcvr", "mean_vwind", "mean_wilt", "min_airtemp", 
-                  "sum_precip")
-           
-           
-fall_days = c(273, 280, 287, 294, 301, 308, 315, 322, 329, 336)
-data = create_multi_week_set(fall_days, window, params)
-corr_matrx(data,length(params),"fall.csv")
-
-data_matrx = read.csv("fall.csv")
-process_corr_matrix(data_matrx,params)
-
-\end{lstlisting}
 
 \section{Poisson Point Process Models for Predictor Selection and Evaluation}
 
