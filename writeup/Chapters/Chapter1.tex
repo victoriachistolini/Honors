@@ -230,18 +230,18 @@ can be used used to quantify the strength of the classifier at a given threshold
 
 \section{Ensemble Models}
 
-\subsection{Communicating Uncertainty}
-There is immanent uncertainly in the models that we build to predict human-tick encounters, and clearly communicating this expected margin of error is important for those who seek to use the models. One source of error for our models comes from the data that we use as predictor variables. Our models inherit the uncertainty of the tools used to measure these environmental variables. There is generally well understood data on the accuracy and expected error for satellite weather data. \newline
+Since we are trying to develop models to forecast human-tick encounter for the entire year, it is reasonable to assume that it is unlikely that a single model will be able provide the best predictions for every day of the year. However, it is reasonable to believe that a collection models with different parameter combinations could be specialized to preform better at different times of the year. Evidence has shown that collections of models, called ensemble models provide more robust forecast models, where each of the individual models in the ensemble provides independent and novel information to contribute to a collective consensus [15]. \newline
 
-\noindent Another source of uncertainty and error however, comes from the point observations of the human-tick encounters. Since there is likely sampling bias in the data collection methods due to human activity not being randomly distributed throughout the state of Maine, some areas of the state or more represented and over-sampled, while other areas, particularly in the Northern regions may be left un-sampled. Thus, if we have weather data accurate to the county level in Maine, then we may report our forecast predictions at this level of aggregation, however there will be unequal uncertainty in each of the counties which must be quantified and reported.
+\noindent An ensemble of models is defined as creating duplicated models with altered initial conditions, boundary conditions, types of model, and parameter combinations [15]. We we create a model there are many sources of uncertainty, we do not know what the true mechanisms that drive human-tick encounters, so we must take educated guesses at which predictors are useful to include. We began by intuitively selecting parameters and used the statistical frame work of the poisson point process to guide predictor selection for different times of the year.  We also preformed exploratory experiments on the window size parameter at different times of the year, perturbing it based on season and subsequent observation density.  \newline
 
- ...\newline
+\noindent Despite having created many new models, looking specifically at conditions at certain times of the year to fit the highly variable patterns of observations conditional on time of year, it is possible that our ensemble, as many ensembles are, is underdispersive meaning that the ensemble is not as variable as would be expected given the diversity of its members [16]. \newline
 
-\subsection{Ensembles with MaxEnt}
-* model physics \newline
-* initial conditions\newline
-* training data \newline
-* summarizing ensembles -> a bayesian approach \newline
+\noindent Variability is desirable in an ensemble because, it ensures robustness and representation of future potential variability [15] Underdispersion occurs because it is very difficult to capture all of the types of uncertainty that exist and thus there is a trade off between exhaustively searching the multi-dimensional space of model uncertainty versus spending effort in creating an ensemble of fewer, perhaps less variable, but individually more skillful members. There is evidence that focusing energy on improving the quality of individual models, produces higher quality results. [15]
+
+
+\subsection{Future Work with Ensembles}
+ 
+Currently we have done the first step of creating an ensemble by selecting a set of skillful models that have strengths at different times of the year. Currently we do not have enough information to distinguish which models preform better than others conditional on the time of the year. Future work includes more rigorous testing of the ensemble members on future collected data and storing model performance over the long term. With this information we would be able to discern which models are more skill full an properly calibrate the ensemble as described in [16]. 
 
 
 %----------------------------------------------------------------------------------------

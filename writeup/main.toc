@@ -18,11 +18,10 @@
 \contentsline {subsection}{\numberline {1.4.3}The F-AUC statistic for assessment of future predictive power }{9}{subsection.21}
 \contentsline {subsection}{\numberline {1.4.4}Limitations of AUC Interpretability}{9}{subsection.22}
 \contentsline {section}{\numberline {1.5}Ensemble Models}{10}{section.24}
-\contentsline {subsection}{\numberline {1.5.1}Communicating Uncertainty}{10}{subsection.25}
-\contentsline {subsection}{\numberline {1.5.2}Ensembles with MaxEnt}{10}{subsection.26}
-\contentsline {chapter}{\numberline {2}Exploratory Analysis}{11}{chapter.27}
-\contentsline {section}{\numberline {2.1}Temporal Stationarity Experiments }{11}{section.28}
-\contentsline {section}{\numberline {2.2}Poisson Point Process Models for Predictor Selection and Evaluation}{11}{section.48}
-\contentsline {subsection}{\numberline {2.2.1} Building and Interpreting Point Process Models}{11}{subsection.49}
-\contentsline {section}{\numberline {2.3}Predictor Selection Process}{12}{section.52}
-\contentsline {chapter}{\numberline {3}Sources}{17}{chapter.54}
+\contentsline {subsection}{\numberline {1.5.1}Future Work with Ensembles}{10}{subsection.25}
+\contentsline {chapter}{\numberline {2}Exploratory Analysis}{11}{chapter.26}
+\contentsline {section}{\numberline {2.1}Temporal Stationarity Experiments }{11}{section.27}
+\contentsline {section}{\numberline {2.2}Poisson Point Process Models for Predictor Selection and Evaluation}{11}{section.47}
+\contentsline {subsection}{\numberline {2.2.1} Building and Interpreting Point Process Models}{11}{subsection.48}
+\contentsline {section}{\numberline {2.3}Predictor Selection Process}{12}{section.51}
+\contentsline {chapter}{\numberline {3}Sources}{17}{chapter.53}
