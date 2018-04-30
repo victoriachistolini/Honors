@@ -42,28 +42,33 @@ We start by looking at how the raw data of our observations set is distributed. 
 
 \noindent The general trend of figure 2.2 independent of window size is the inverse of figure 2.1. Highest AUC's are seen during the first and third quarters of the year, while steep crashes in AUC scores are experienced during the second and forth quarters. It is important to note that as a rule, the fewer points we have in our model, the higher the AUC will be because there is a lower chance of being wrong. For example, the null model of simply guessing that no location has high probability of tick encounter means that with fewer points this model will be more correct than the exact same model judged with more points. However, it is clear that the null model is a very poor choice of a model if future forecast skill is of concern. \newline
 
-\noindent Thus in order to correctly interpret figure 2.2, we focus on the first and third quarters of the year.   
+\noindent Thus in order to correctly interpret figure 2.2, we focus on the first and third quarters of the year. For the first 25\% of the year it seems that the accuracy is about equal for all window sizes, and thus it is likely useful to include a larger window size so that the model has access to more information at fit time. By around day 70 though, this is not entirely true, window that are too large like sizes 30 and 40 produce much weaker AUC scores. The window size of 15, however, remains of high performance, so it would be wise to use window sizes up to 15 during this time of the year. Even maintaining a window size as large as 7 into the beginning and at the end of second quarter seems justified based on continued high performance of the 7 day window during these transitional times. For the third quarter a window of size 15 seems to have the best balance of performance and inclusion of data. For the second and fourth quarters, windows sizes or 1 - 2 days are sufficient for high performance because there is plenty of data amassed even for small windows during this time. By the end of the fourth quarter, however as winter begins to take hold, window sizes of 15 or 20 are best. \newline
+
+\begin{figure} [!ht]
+\centerline{\psfig{figure=Figures/num_obs.pdf,width=3in,height=4in}}
+\caption{AUC score by number of observations for the 2006-2013 time period of observations. Each dot comes from one of the 13 days of the year mentioned above, with one of the 7 window sizes. }
+\label{fig6}
+\end{figure}
+
+\noindent Another metric that we can use to assess the window size parameter is by the number of points contained within a given window size. Figure 2.3 shows a decreasing trend of AUC values produced by having too large of a window size. Up to around 200 points the models seem to produce high quality results with AUC scores hovering around 0.9. However, once we go past 500 points, AUC scores start to tank, indicating that window sizes generating such high point values are probably too big to provide valuable information.  \newline
 
 
 
 \section{Understanding predictor variables}
 
-\section{Temporal Stationarity Experiments }
-
-The initial experiment in exploratory analysis was to determine how each of the environmental parameters that we are potentially going to be using in the MaxEnt models are related to one another. In order to do this we carry out a correlation analysis to understand how each pairwise set of parameters varies with one another. \newline
-
-\noindent We broke the experiment into four seasons to see if there might be different highly correlated covariates depending on the season. Then we looked at the entire year a more general picture. Below is a section of code used to run the experiment. The dataTools library contains all of the main functions used throughout the code snippet. Here we define 
+Before we try to fit models to our observation set, it is necessary to understand what the distributions of our predictor variables look like. This will allow us to identify is there might be some kinds of transformations to the covariates that might be beneficial to our model. In Figure 2.4, we have created histograms of all of the predictor variables for day 150 of 2007. Day 150 is around the height of the first peak in tick activity. We can see that variables like mean air temperature and wind have distributions that appear continuous in nature. However, transpiration rate, wilt and vegetation cover appear to have discrete distributions of values. 
 
 \begin{figure} [!ht]
-\centerline{\psfig{figure=Figures/meta,width=7in}}
-\caption{Correlation Analysis between parameters for four seasons, fall (A), summer (B), winter (C), Spring (D) and all year (E).}
+\centerline{\psfig{figure=Figures/2007_day_150.jpg,width=4in,height=4in}}
+\caption{Histograms of the distributions of core predictor  variables for day 150 of 2007. }
 \label{fig6}
 \end{figure}
 
+\noindent The vegetation cover variable is categorical, with 20 different categories, based on the International Geosphere-Biosphere Programme (IGBP) land cover classification system. According to figure 2.4, the most popular vegetation type for tick observations is 11, permanent wetlands, as well as 12-15 which represent cropland and mix vegetation types of forest, shrub and grassland. A more through examination about how vegetation cover of where ticks are found changes throughout the year, reveled another important vegetation type in the second and fourth quarters of the year to be 5, mixed forests. Since a categorical variable with 20 categories does not seem reasonable since so few categories are actually represented, we create a binary indicator variable, called v4 that represents if a tick is found in vegetation type 11-15 or not. 
 
-\section{Poisson Point Process Models for Predictor Selection and Evaluation}
 
-\subsection{ Building and Interpreting Point Process Models}
+\section{Poisson point process models for predictor selection and evaluation}
+
 
 \noindent My first look at the Poisson Point Process Models for explaining the distribution of points across the state focused on Day 150 over the years of our experiment 2006-2013. I tried two different window sizes: +/- 3 days and +/- 7 days. Both window periods have lead me to similar conclusions, however the 7 day window had twice as many points so I will discuss my findings for this window.\newline
 
@@ -83,8 +88,12 @@ The initial experiment in exploratory analysis was to determine how each of the 
 \end{equation}
 \newline
 
+\subsection{ Predictor reduction algorithm}
 
-\section{Predictor Selection Process}
+
+\section{Creating MaxEnt models}
+
+\section{Evaluating MaxEnt models}
 
  \begin{longtable}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
  \caption{Long table caption.\label{long}}\\
