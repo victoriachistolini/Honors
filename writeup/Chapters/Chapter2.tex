@@ -208,7 +208,7 @@ One way to easily assess model performance is to evaluate how well the model fit
 
 Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt models, now we want to utilize the testing dataset that we saved from years 2011-2013 to evaluate the model's performance on data that is has not yet seen. Figures 2.8 and 2.9 show the F-AUC scores of each of the models at the 13 time points of the experiment. The models in figure 2.8 so poor performance up through the first half of the first quarter at around day 60. From a peak at day 60, the models begin a gradual decline in performance up through the beginning of the fourth quarter. During this time period the variability between models is rather low. During the fourth quarter we see increased performance and greater between model variability. \newline
 
-\noindent Although it intuitively make seem that it is good for the ensemble to have low variability, since it may seem like the models are providing a consistent answer, this is not the case, it is ok to have variability between models and in fact this is a desired quality of an ensembles. When ensemble have too little variability between models it is a sign of ucnderdispersion and indicates that the ensemble needs calibration [16]. So it is a good sign that we see variability in our ensemble and not one model dominating the other models, a contrast to what we saw in figure 2.7. \ newline
+\noindent Although it intuitively make seem that it is good for the ensemble to have low variability, since it may seem like the models are providing a consistent answer, this is not the case, it is ok to have variability between models and in fact this is a desired quality of an ensembles. When ensemble have too little variability between models it is a sign of ucnderdispersion and indicates that the ensemble needs calibration [16]. So it is a good sign that we see variability in our ensemble and not one model dominating the other models, a contrast to what we saw in figure 2.7. \newline
 
 
 \begin{figure} [!ht]
@@ -226,14 +226,17 @@ Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt
 \label{fig6}
 \end{figure}
 
-\noindent  If we look at the patterns of the covariate combinations that make up the models in figure 2.8 and figure 2.9, we can see some interesting patterns. 
-\begin{figure} [!ht]
+\noindent  If we look at the patterns of the covariate combinations that make up the models in figure 2.8 and figure 2.9, we can see some interesting patterns. In Figure 2.10, we can see that the models in figure 2.8, who have a fairly consistent trend year long, have a high emphasis on the vegetation cover and vegetation type parameters as well as both u and v direction wind and mean air temperature. \newline
+
+\noindent However, we see in figure 2.11, that the models that have more yearly volatility emphasize parameters such as the range of air temperature ( minimum and maximum air temperature) as well as sum of precipitation, u-direction wind, but most surprisingly is the almost complete absence of the mean vegetation cover predictor. \newline
+
+\begin{figure} [t]
 \centerline{\psfig{figure=Figures/group1.png,width=4in,height=2in}}
 \caption{Summary of predictor combinations from figure 2.8. }
 \label{fig6}
 \end{figure}
 
-\begin{figure} [!ht]
+\begin{figure} [t]
 \centerline{\psfig{figure=Figures/group2.png,width=4in,height=2in}}
 \caption{Summary of predictor combinations from figure 2.9. }
 \label{fig6}
@@ -241,3 +244,6 @@ Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt
 
   
 \section{Future directions}
+
+Now that we have identified a set of candidate models and have evidence that these models provide a decent amount of variability and quality performance, it is necessary to collect more data about their performance over the log term. By keeping track of how well the models do on future data, we will then be able to build up a better understanding of long term performance of the models and different points in the year so that we can come up with a posterior weighted averaging of the models based on the knowledge that we have gained. This will help calibrate the ensemble and create a further robust and effective system. \newline
+

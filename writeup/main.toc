@@ -29,5 +29,5 @@
 \contentsline {section}{\numberline {2.5}Creating MaxEnt models}{19}{section.40}
 \contentsline {subsection}{\numberline {2.5.1} MaxEnt model fit results}{19}{subsection.41}
 \contentsline {section}{\numberline {2.6}Evaluating MaxEnt models}{20}{section.43}
-\contentsline {section}{\numberline {2.7}Future directions}{21}{section.48}
-\contentsline {chapter}{\numberline {3}Sources}{23}{chapter.49}
+\contentsline {section}{\numberline {2.7}Future directions}{22}{section.48}
+\contentsline {chapter}{\numberline {3}Sources}{25}{chapter.49}
