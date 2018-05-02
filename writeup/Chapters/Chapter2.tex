@@ -71,10 +71,24 @@ Before we try to fit models to our observation set, it is necessary to understan
 
 Using the insights that we gained from the exploratory analysis of our dataset we begin with the first step of the ensemble creation process. In section 1.5, we outlined the process for creating an ensemble which involves perturbing initial conditions (in our case window size and study space boundaries), using different model types or creating novel parameter combinations. We will focus on creating novel parameter combinations that are specialized to certain times of the year and using the statistical frame work of the poisson point process model to assess the significance of each of the parameters in the new models. \newline
 
-We build poisson point process models for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, 349 of the year. We derive the window size parameter by trying to minimize the window while maintaining a good coverage of observation data over the study space. 
+\noindent We build poisson point process models for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, and 349 of the year. We derive the window size parameter by trying to minimize the window size while maintaining a good coverage of observation data over the study space. If increasing window size does not seem to add more coverage and 50 or more points are included, then we do not expand the window size. These judgements are made qualitatively by looking at point spread across the map of Maine. On the other hand sometimes we increase the window size as much as up to $\pm$ 20 days, a size which evidence from the previous exploratory window experiments reveals is about as large as possible without sacrificing too much performance over the long term, and we still only have a few points. Despite having little information, we build a model with what we have.  \newline
 
-
+\begin{figure} [!ht]
+\centerline{\psfig{figure=Figures/pseudo_code.png,width=4in,height=2in}}
+\caption{Pseudo code for the predictor selection algorithm. }
+\label{fig6}
+\end{figure}
 \subsection{ Predictor reduction algorithm}
+
+For each of the 13 days of the year mentioned above, download the tick observation data from the time span of 2006-2013, with the window size chosen by hand using the method described above. Data about the window sizes selected for each of the experiments run is shown in table 2.1. We also extract data for each of the core 13 covariates from the raster images at the pixels where each observation in the day and window range being studied occurred. \newline
+
+\noindent We begin parameter selection by generating a correlation matrix of all of the 13 covariates. Trying to create a poisson point process model with covariates that are highly correlated impairs the performance of the model. Once we have information about the highly correlated predictors we are able to create subsets of the parameters that do not contain any of the highly correlated predictors. Then we build a poisson point process model using the command ppm() from the spatstat package in r. Once we have a model built, we prune unnecessary predictors using a greedy, stepwise algorithm, which removes the predictor with the lowest z-score (an indication of its statistical significance) until all predictors are significant at the 5\% level.  \newline
+
+\subsection{ Results from predictor selection experiments}
+
+Figure 2.6 shows the summarized results of the predictor selection experiments, while table 2.1 shows detailed descriptions of the number of observations and number of points used for each experiment. In figure 2.6, highlights many striking patterns throughout the year. We see that during the winter and early spring, the predictors mean air temperature and v-direction wind appear consistently up to day 150 in the year. \newline
+
+\noindent Based on figure 2.1, day 150 occurs approximately at the first peak in tick activity, which coincides with the onset of late spring / early summer. The predictors of highest importance during this time period are the relative humidity, the temperature range (minimum air temperature and maximum air temperature), the type of vegetation and the amount of precipitation. Late summer and fall show a renewed importance of mean air temperature, u-direction wind and vegetation type.  \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/summary.png,width=4in,height=4in}}
@@ -172,4 +186,27 @@ We build poisson point process models for 13 days of the year (approximately the
 
 \section{Creating MaxEnt models}
 
+Having determined combinations of predictor variables that are specialized for different times of the year, we can now build maximum entropy models with these new predictor combinations. We create a new maxent model for each of the 13 studied days of the year, using the window sizes listed in table 2.1, for each of the 32 predictor sets, resulting in 416 maxent models. We calculate the AUC statistic of each model to indicate how well the models fit the data that they were trained on. \newline
+
+\noindent Looking back at figure 2.1 we see the two plots of the number of tick observations on given days of the year. We see that the year trace in figure 2.1 (A)  from 2006-2010 and 2011-2013 in (B) have the same trajectory and thus represent a good split of the data. We use the time span from 2006-2010 to build the 416 maxent models and will use the time span 2011-2013 in section 2.6 to evaluate model performance on testing data that it has never seen before. \newline
+
+\subsection{ MaxEnt model fit results}
+
+One way to easily assess model performance is to evaluate how well the model fits the data that it was trained on. We can think of this step in model evaluation like interpreting a correlation coefficient. The correlation coefficient tells us how well a linear model fits the trends in the data, however it does not indicate anything about how well the model will preform in the task of accurately classifying future data. The AUC statistic provides the same function for MaxEnt models, acting as an indication of goodness of fit. \newline
+
+\begin{figure} [!ht]
+\centerline{\psfig{figure=Figures/model_aucs.png,width=6in,height=4in}}
+\caption{AUC results from running the 32 different covariate combinations. }
+\label{fig6}
+\end{figure}
+
+
+\noindent Figure 2.7 shows the AUC 32 predictor combinations MaxEnt models fitted at each of the 13 time points in the year. In the winter months, there is quite a large degree of variability between the models, which tightens quite a bit during the early spring. As we approach mid-way through the second quarter mode fit tanks and there is enlarged variability again. In the third quarter, the models regain some of their quality performance around mid summer, which remains stable although highly varied until fall what the variability decreases and peaks quickly, followed by a quick crash and slow regain of fit into the new year. 
+
+
+
 \section{Evaluating MaxEnt models}
+
+
+
+  
