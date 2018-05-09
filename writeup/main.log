@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 MAY 2018 23:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 MAY 2018 14:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1357,7 +1357,11 @@ File: english.lbx 2015/04/19 v3.0 biblatex localization (PK/JW/AB)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 
-(./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux
+(./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
+(./Chapters/Chapter3.aux
+
+LaTeX Warning: Label `Chapter2' multiply defined.
+
 
 LaTeX Warning: Label `fig6' multiply defined.
 
@@ -1702,10 +1706,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 27.
+)
+1: section
+[1
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+]
+\openout2 = `Chapters/Chapter2.aux'.
+
+ (./Chapters/Chapter2.tex [2
+
+
+
+]
+Chapter 2.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 10.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 10.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+1: section
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
@@ -1714,52 +1762,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-1: section
-[1
 
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--36
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--46
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
@@ -1768,43 +1802,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
-[4]
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+<Figures/CSR_exp.pdf, id=242, 722.7pt x 542.025pt>
+File: Figures/CSR_exp.pdf Graphic file (type pdf)
+ <use Figures/CSR_exp.pdf>
+Package pdftex.def Info: Figures/CSR_exp.pdf used on input line 151.
+(pdftex.def)             Requested size: 289.07487pt x 216.80615pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+[8 <./Figures/CSR_exp.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
 
  []
 
@@ -1813,674 +1852,652 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
-<Figures/CSR_exp.pdf, id=229, 722.7pt x 542.025pt>
-File: Figures/CSR_exp.pdf Graphic file (type pdf)
- <use Figures/CSR_exp.pdf>
-Package pdftex.def Info: Figures/CSR_exp.pdf used on input line 168.
-(pdftex.def)             Requested size: 289.07487pt x 216.80615pt.
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
-
- []
-
-[7 <./Figures/CSR_exp.pdf>]
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 222--224
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
 
-) [10]
-\openout2 = `Chapters/Chapter2.aux'.
 
- (./Chapters/Chapter2.tex
-Chapter 2.
-<Figures/obs_dist.pdf, id=287, 722.7pt x 542.025pt>
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+
+ []
+
+[11]) [12]
+\openout2 = `Chapters/Chapter3.aux'.
+
+ (./Chapters/Chapter3.tex
+Chapter 3.
+<Figures/obs_dist.pdf, id=301, 722.7pt x 542.025pt>
 File: Figures/obs_dist.pdf Graphic file (type pdf)
  <use Figures/obs_dist.pdf>
-Package pdftex.def Info: Figures/obs_dist.pdf used on input line 23.
+Package pdftex.def Info: Figures/obs_dist.pdf used on input line 14.
 (pdftex.def)             Requested size: 289.07487pt x 216.80615pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
 1: section
-[11
+[13
 
 
 
  <./Figures/obs_dist.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 35--36
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
-<Figures/wsize.png, id=326, 1088.065pt x 633.36626pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+<Figures/wsize.png, id=339, 1088.065pt x 633.36626pt>
 File: Figures/wsize.png Graphic file (type png)
  <use Figures/wsize.png>
-Package pdftex.def Info: Figures/wsize.png used on input line 38.
+Package pdftex.def Info: Figures/wsize.png used on input line 29.
 (pdftex.def)             Requested size: 289.08296pt x 216.81067pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--46
+[14 <./Figures/wsize.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
-[12 <./Figures/wsize.png>] <Figures/num_obs.pdf, id=334, 614.295pt x 794.97pt>
+<Figures/num_obs.pdf, id=347, 614.295pt x 794.97pt>
 File: Figures/num_obs.pdf Graphic file (type pdf)
-
-<use Figures/num_obs.pdf>
-Package pdftex.def Info: Figures/num_obs.pdf used on input line 48.
+ <use Figures/num_obs.pdf>
+Package pdftex.def Info: Figures/num_obs.pdf used on input line 39.
 (pdftex.def)             Requested size: 216.80615pt x 289.0881pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
-[13 <./Figures/num_obs.pdf>]
-<Figures/2007_day_150.jpg, id=342, 481.8pt x 481.8pt>
+[15 <./Figures/num_obs.pdf>]
+<Figures/2007_day_150.jpg, id=355, 481.8pt x 481.8pt>
 File: Figures/2007_day_150.jpg Graphic file (type jpg)
 
 <use Figures/2007_day_150.jpg>
-Package pdftex.def Info: Figures/2007_day_150.jpg used on input line 62.
+Package pdftex.def Info: Figures/2007_day_150.jpg used on input line 53.
 (pdftex.def)             Requested size: 289.08957pt x 289.08957pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--73
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
 
  []
 
-[14 <./Figures/2007_day_150.jpg>]
+[16 <./Figures/2007_day_150.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
+<Figures/pseudo_code.png, id=361, 582.175pt x 201.75375pt>
+File: Figures/pseudo_code.png Graphic file (type png)
+
+<use Figures/pseudo_code.png>
+Package pdftex.def Info: Figures/pseudo_code.png used on input line 68.
+(pdftex.def)             Requested size: 289.08804pt x 144.5422pt.
+
 Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
-<Figures/pseudo_code.png, id=348, 582.175pt x 201.75375pt>
-File: Figures/pseudo_code.png Graphic file (type png)
 
-<use Figures/pseudo_code.png>
-Package pdftex.def Info: Figures/pseudo_code.png used on input line 77.
-(pdftex.def)             Requested size: 289.08804pt x 144.5422pt.
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
+ []
+
+[17 <./Figures/pseudo_code.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
-[15 <./Figures/pseudo_code.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
-
- []
-
-<Figures/summary.png, id=355, 693.59125pt x 511.9125pt>
+<Figures/summary.png, id=369, 693.59125pt x 511.9125pt>
 File: Figures/summary.png Graphic file (type png)
 
 <use Figures/summary.png>
-Package pdftex.def Info: Figures/summary.png used on input line 94.
+Package pdftex.def Info: Figures/summary.png used on input line 85.
 (pdftex.def)             Requested size: 289.08383pt x 289.08269pt.
 
-Underfull \hbox (badness 3701) in paragraph at lines 106--106
+Underfull \hbox (badness 3701) in paragraph at lines 97--97
 []|\T1/ppl/m/n/10.95 Number of Ob-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 2617) in paragraph at lines 108--109
+Underfull \hbox (badness 2617) in paragraph at lines 99--100
 \T1/ppl/m/n/10.95 vwind, sndepth,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--113
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 \T1/ppl/m/n/10.95 vwind, sum-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 \T1/ppl/m/n/10.95 Pre-cip, sncvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 \T1/ppl/m/n/10.95 uwind, mean-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 \T1/ppl/m/n/10.95 Veg-cvr, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 \T1/ppl/m/n/10.95 mi-nAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 \T1/ppl/m/n/10.95 uwind, mean-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 \T1/ppl/m/n/10.95 Veg-cvr, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 \T1/ppl/m/n/10.95 uwind, mean-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 \T1/ppl/m/n/10.95 Veg-cvr, vwind,
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 124--125
+Underfull \hbox (badness 3229) in paragraph at lines 115--116
 \T1/ppl/m/n/10.95 wilt, sum-Pre-cip,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 2617) in paragraph at lines 126--127
+Underfull \hbox (badness 2617) in paragraph at lines 117--118
 \T1/ppl/m/n/10.95 vwind, sndepth,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 3701) in paragraph at lines 137--137
+Underfull \hbox (badness 3701) in paragraph at lines 128--128
 []|\T1/ppl/m/n/10.95 Number of Ob-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 4582) in paragraph at lines 145--146
+Underfull \hbox (badness 4582) in paragraph at lines 136--137
 \T1/ppl/m/n/10.95 uwind, sum-Pre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 4582) in paragraph at lines 151--152
+Underfull \hbox (badness 4582) in paragraph at lines 142--143
 \T1/ppl/m/n/10.95 uwind, sum-Pre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 \T1/ppl/m/n/10.95 max-Airtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \T1/ppl/m/n/10.95 max-Airtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \T1/ppl/m/n/10.95 uwind, trn-str,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \T1/ppl/m/n/10.95 max-Airtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \T1/ppl/m/n/10.95 uwind, trn-str,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 []|\T1/ppl/m/n/10.95 minAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \T1/ppl/m/n/10.95 max-Airtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \T1/ppl/m/n/10.95 mean-Hu-mid-ity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 159--160
+Underfull \hbox (badness 3229) in paragraph at lines 150--151
 \T1/ppl/m/n/10.95 wilt, sum-Pre-cip,
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 161--162
+Underfull \hbox (badness 3229) in paragraph at lines 152--153
 []|\T1/ppl/m/n/10.95 wilt, sum-Pre-cip,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 \T1/ppl/m/n/10.95 uwind, mean-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 []|\T1/ppl/m/n/10.95 maxAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 []|\T1/ppl/m/n/10.95 maxAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 \T1/ppl/m/n/10.95 trn-str, uwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 \T1/ppl/m/n/10.95 wilt, uwind,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 []|\T1/ppl/m/n/10.95 meanAirtemp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 \T1/ppl/m/n/10.95 mean-Veg-cvr,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 \T1/ppl/m/n/10.95 uwind, vwind,
  []
 
 
-Underfull \vbox (badness 10000) detected at line 182
+Underfull \vbox (badness 10000) detected at line 173
  []
 
-[16 <./Figures/summary.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+[18 <./Figures/summary.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 []|\T1/ppl/m/n/10.95 meanHumidity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 \T1/ppl/m/n/10.95 uwind, mean-
  []
 
-[17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+[19] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--196
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
-[19] <Figures/model_aucs.png, id=376, 1171.37625pt x 638.385pt>
+[21] <Figures/model_aucs.png, id=389, 1171.37625pt x 638.385pt>
 File: Figures/model_aucs.png Graphic file (type png)
 
 <use Figures/model_aucs.png>
-Package pdftex.def Info: Figures/model_aucs.png used on input line 198.
+Package pdftex.def Info: Figures/model_aucs.png used on input line 189.
 (pdftex.def)             Requested size: 433.61691pt x 289.0824pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+[22 <./Figures/model_aucs.png>]
+<Figures/group1_Fauc.png, id=396, 1158.3275pt x 626.34pt>
+File: Figures/group1_Fauc.png Graphic file (type png)
+
+<use Figures/group1_Fauc.png>
+Package pdftex.def Info: Figures/group1_Fauc.png used on input line 206.
+(pdftex.def)             Requested size: 433.61174pt x 289.08516pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 211--212
 
  []
 
-[20 <./Figures/model_aucs.png>]
-<Figures/group1_Fauc.png, id=383, 1158.3275pt x 626.34pt>
-File: Figures/group1_Fauc.png Graphic file (type png)
+<Figures/group2_Fauc.png, id=397, 1153.30875pt x 633.36626pt>
+File: Figures/group2_Fauc.png Graphic file (type png)
 
-<use Figures/group1_Fauc.png>
-Package pdftex.def Info: Figures/group1_Fauc.png used on input line 215.
-(pdftex.def)             Requested size: 433.61174pt x 289.08516pt.
+<use Figures/group2_Fauc.png>
+Package pdftex.def Info: Figures/group2_Fauc.png used on input line 215.
+(pdftex.def)             Requested size: 433.616pt x 289.08089pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
-<Figures/group2_Fauc.png, id=384, 1153.30875pt x 633.36626pt>
-File: Figures/group2_Fauc.png Graphic file (type png)
 
-<use Figures/group2_Fauc.png>
-Package pdftex.def Info: Figures/group2_Fauc.png used on input line 224.
-(pdftex.def)             Requested size: 433.616pt x 289.08089pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 229--230
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-[21 <./Figures/group1_Fauc.png>]
-<Figures/group1.png, id=391, 912.40875pt x 239.89626pt>
+[23 <./Figures/group1_Fauc.png>]
+<Figures/group1.png, id=405, 912.40875pt x 239.89626pt>
 File: Figures/group1.png Graphic file (type png)
 
 <use Figures/group1.png>
-Package pdftex.def Info: Figures/group1.png used on input line 234.
+Package pdftex.def Info: Figures/group1.png used on input line 225.
 (pdftex.def)             Requested size: 289.06702pt x 144.54283pt.
 
-<Figures/group2.png, id=392, 914.41624pt x 300.12125pt>
+<Figures/group2.png, id=406, 914.41624pt x 300.12125pt>
 File: Figures/group2.png Graphic file (type png)
 
 <use Figures/group2.png>
-Package pdftex.def Info: Figures/group2.png used on input line 240.
+Package pdftex.def Info: Figures/group2.png used on input line 231.
 (pdftex.def)             Requested size: 289.07515pt x 144.54198pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--249
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
 
  []
 
-) [22 <./Figures/group2_Fauc.png>] [23 <./Figures/group1.png> <./Figures/group2
+) [24 <./Figures/group2_Fauc.png>] [25 <./Figures/group1.png> <./Figures/group2
 .png>]
 \openout2 = `Bib/bib.aux'.
 
- (./Bib/bib.tex [24
+ (./Bib/bib.tex [26
 
 
 
 ]
-Chapter 3.
+Chapter 4.
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
@@ -2559,13 +2576,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
 
-
+1: section
+[27]
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
 
  []
 
-1: section
-[25]
+
 Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
@@ -2581,15 +2598,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--57
 
  []
 
-) [26]
+) [28]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 214.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
  (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
-(./Bib/bib.aux))
+(./Chapters/Chapter3.aux) (./Bib/bib.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D9459B2DCB681BA2E905B8387755587F;6049.
+(rerunfilecheck)             Checksum: 0384D64543A9065FD66C1A34F3D95DD3;6253.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2599,13 +2616,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30924 strings out of 493089
- 621821 string characters out of 6134842
+ 30939 strings out of 493089
+ 622102 string characters out of 6134842
  777550 words of memory out of 5000000
- 33978 multiletter control sequences out of 15000+600000
+ 33983 multiletter control sequences out of 15000+600000
  51486 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,20n,78p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,20n,83p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -2615,10 +2632,10 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (34 pages, 780554 bytes).
+Output written on main.pdf (36 pages, 781783 bytes).
 PDF statistics:
- 469 PDF objects out of 1000 (max. 8388607)
- 381 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 483 PDF objects out of 1000 (max. 8388607)
+ 393 compressed objects within 4 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 309 words of extra memory for PDF output out of 10000 (max. 10000000)
 
