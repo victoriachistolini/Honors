@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 MAY 2018 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 MAY 2018 16:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2514,87 +2514,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--11
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
+Underfull \hbox (badness 10000) in paragraph at lines 12--16
 
  []
 
 
-Overfull \hbox (37.94182pt too wide) in paragraph at lines 14--18
-\T1/ppl/m/n/10.95 on In-fec-tious Dis-eases, vol. 2009, Ar-ti-cle ID 593232, 12
- pages, 2009. doi:10.1155/2009/593232 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-
-Overfull \hbox (10.99492pt too wide) in paragraph at lines 19--21
+Overfull \hbox (10.99492pt too wide) in paragraph at lines 17--19
 \T1/ppl/m/n/10.95 and Dis-tri-bu-tions, vol. 17, no. 1, 2010, pp. 43?57., doi:1
 0.1111/j.1472-4642.2010.00725.x. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
+Underfull \hbox (badness 10000) in paragraph at lines 17--19
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--25
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--30
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--40
-
- []
-
-
-Overfull \hbox (1.73978pt too wide) in paragraph at lines 41--43
+Overfull \hbox (1.73978pt too wide) in paragraph at lines 20--22
 \T1/ppl/m/n/10.95 https://www.cs.cmu.edu/afs/cs/user/aberger/www/html/tutorial/
 tutorial.html 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--43
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
+Underfull \hbox (badness 10000) in paragraph at lines 23--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
+
+ []
+
+
+Overfull \hbox (37.94182pt too wide) in paragraph at lines 35--39
+\T1/ppl/m/n/10.95 on In-fec-tious Dis-eases, vol. 2009, Ar-ti-cle ID 593232, 12
+ pages, 2009. doi:10.1155/2009/593232 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--39
+
+ []
+
+
+Overfull \hbox (29.65306pt too wide) in paragraph at lines 41--44
+\T1/ppl/m/n/10.95 Ecological Mod-elling, vol. 213, no. 1, 2008, pp. 63-72., doi
+:10.1016/j.ecolmodel.2007.11.008. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--44
 
  []
 
 1: section
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 49--51
+Underfull \hbox (badness 10000) in paragraph at lines 45--49
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
-
- []
-
-
-Overfull \hbox (11.26785pt too wide) in paragraph at lines 54--57
-\T1/ppl/m/n/10.95 Species Dis-tri-bu-tions." Ecog-ra-phy, vol. 32, no. 3, 2009,
- pp. 369?373., doi:10.1111/j.1600-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--57
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
@@ -2616,11 +2611,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30939 strings out of 493089
- 622102 string characters out of 6134842
+ 30940 strings out of 493089
+ 622119 string characters out of 6134842
  777550 words of memory out of 5000000
- 33983 multiletter control sequences out of 15000+600000
- 51486 words of font info for 93 fonts, out of 8000000 for 9000
+ 33984 multiletter control sequences out of 15000+600000
+ 52383 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,20n,83p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -2632,7 +2627,7 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (36 pages, 781783 bytes).
+Output written on main.pdf (36 pages, 781861 bytes).
 PDF statistics:
  483 PDF objects out of 1000 (max. 8388607)
  393 compressed objects within 4 object streams
