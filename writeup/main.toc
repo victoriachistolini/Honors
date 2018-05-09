@@ -4,31 +4,33 @@
 \contentsline {chapter}{Abstract}{iii}{section*.1}
 \contentsline {chapter}{Acknowledgements}{v}{section*.2}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.4}
-\contentsline {section}{\numberline {1.1}What is Species Distribution Modeling?}{1}{section.5}
-\contentsline {chapter}{\numberline {2}Approach}{3}{chapter.6}
-\contentsline {subsection}{\numberline {2.0.1}Data used in Species Distribution Models}{3}{subsection.7}
-\contentsline {section}{\numberline {2.1}The Maximum Entropy Model}{4}{section.8}
-\contentsline {subsection}{\numberline {2.1.1}Maximum Entropy Example}{4}{subsection.10}
-\contentsline {subsection}{\numberline {2.1.2}Current MaxEnt model}{6}{subsection.11}
-\contentsline {section}{\numberline {2.2}Spacial-Temporal Exploratory Analysis}{7}{section.13}
-\contentsline {subsection}{\numberline {2.2.1}Spatial Analysis and Predictor Selection}{7}{subsection.14}
-\contentsline {subsection}{\numberline {2.2.2}Temporal Analysis}{9}{subsection.17}
-\contentsline {section}{\numberline {2.3}Model Assessment }{9}{section.18}
-\contentsline {subsection}{\numberline {2.3.1}Assessment of Performance }{9}{subsection.19}
-\contentsline {subsection}{\numberline {2.3.2}The AUC statistic for model assessment }{10}{subsection.21}
-\contentsline {subsection}{\numberline {2.3.3}The F-AUC statistic for assessment of future predictive power }{10}{subsection.22}
-\contentsline {subsection}{\numberline {2.3.4}Limitations of AUC Interpretability}{11}{subsection.23}
-\contentsline {section}{\numberline {2.4}Ensemble Models}{11}{section.25}
-\contentsline {subsection}{\numberline {2.4.1}Future Work with Ensembles}{12}{subsection.26}
-\contentsline {chapter}{\numberline {3}Exploratory Analysis and Model Development}{13}{chapter.27}
-\contentsline {section}{\numberline {3.1}Looking at distributions }{13}{section.28}
-\contentsline {section}{\numberline {3.2}Window size implications }{14}{section.30}
-\contentsline {section}{\numberline {3.3}Understanding predictor variables}{16}{section.33}
-\contentsline {section}{\numberline {3.4}Poisson point process models for predictor selection and evaluation}{17}{section.35}
-\contentsline {subsection}{\numberline {3.4.1} Predictor reduction algorithm}{17}{subsection.37}
-\contentsline {subsection}{\numberline {3.4.2} Results from predictor selection experiments}{18}{subsection.38}
-\contentsline {section}{\numberline {3.5}Creating MaxEnt models}{21}{section.41}
-\contentsline {subsection}{\numberline {3.5.1} MaxEnt model fit results}{21}{subsection.42}
-\contentsline {section}{\numberline {3.6}Evaluating MaxEnt models}{22}{section.44}
-\contentsline {section}{\numberline {3.7}Future directions}{24}{section.49}
-\contentsline {chapter}{\numberline {4}Sources}{27}{chapter.50}
+\contentsline {section}{\numberline {1.1}Ticks in Maine}{1}{section.5}
+\contentsline {section}{\numberline {1.2}What is Species Distribution Modeling?}{1}{section.6}
+\contentsline {chapter}{\numberline {2}Approach}{3}{chapter.7}
+\contentsline {subsection}{\numberline {2.0.1}Models used in Species Distribution Models}{3}{subsection.8}
+\contentsline {section}{\numberline {2.1}The Maximum Entropy Model}{4}{section.9}
+\contentsline {subsection}{\numberline {2.1.1}Maximum Entropy Example}{4}{subsection.11}
+\contentsline {subsection}{\numberline {2.1.2}Current MaxEnt model}{6}{subsection.12}
+\contentsline {section}{\numberline {2.2}Spacial-Temporal Exploratory Analysis}{7}{section.14}
+\contentsline {subsection}{\numberline {2.2.1}Spatial Analysis and Predictor Selection}{7}{subsection.15}
+\contentsline {subsection}{\numberline {2.2.2}Temporal Analysis}{9}{subsection.18}
+\contentsline {section}{\numberline {2.3}Model Assessment }{9}{section.19}
+\contentsline {subsection}{\numberline {2.3.1}Assessment of Performance }{9}{subsection.20}
+\contentsline {subsection}{\numberline {2.3.2}The AUC statistic for model assessment }{10}{subsection.22}
+\contentsline {subsection}{\numberline {2.3.3}Modified AUC Example }{10}{subsection.23}
+\contentsline {subsection}{\numberline {2.3.4}FAUC forecast Metric}{10}{subsection.25}
+\contentsline {subsection}{\numberline {2.3.5}Other metrics of forecast performance}{11}{subsection.26}
+\contentsline {section}{\numberline {2.4}Ensemble Models}{11}{section.28}
+\contentsline {subsection}{\numberline {2.4.1}Future Work with Ensembles}{12}{subsection.29}
+\contentsline {chapter}{\numberline {3}Exploratory Analysis and Model Development}{13}{chapter.30}
+\contentsline {section}{\numberline {3.1}Looking at distributions }{13}{section.31}
+\contentsline {section}{\numberline {3.2}Window size implications }{14}{section.33}
+\contentsline {section}{\numberline {3.3}Understanding predictor variables}{16}{section.36}
+\contentsline {section}{\numberline {3.4}Poisson point process models for predictor selection and evaluation}{17}{section.38}
+\contentsline {subsection}{\numberline {3.4.1} Predictor reduction algorithm}{18}{subsection.40}
+\contentsline {subsection}{\numberline {3.4.2} Results from predictor selection experiments}{18}{subsection.41}
+\contentsline {section}{\numberline {3.5}Creating MaxEnt models}{22}{section.44}
+\contentsline {subsection}{\numberline {3.5.1} MaxEnt model fit results}{22}{subsection.45}
+\contentsline {section}{\numberline {3.6}Evaluating MaxEnt models}{23}{section.47}
+\contentsline {section}{\numberline {3.7}Future directions}{25}{section.52}
+\contentsline {chapter}{\numberline {4}Sources}{27}{chapter.53}

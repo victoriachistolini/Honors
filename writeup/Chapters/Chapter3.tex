@@ -6,9 +6,15 @@
 
 %----------------------------------------------------------------------------------------
 
+We will begin a close analysis of the Maine Tick database following the outline of the methodology in the Approach section. We begin by conducting an exploratory analysis on the tick data, covariates and window size model parameter. We want to understand how the tick data and covariates are distributed and how this may change throughout the year. We want to understand the implications of the window size parameter in the model. Specifically, we want to know how the model fit (AUC) is related to different values of window size. \newline
+
+\noindent Then we will use the statistical framework of the Poisson point process model to evaluate how the predictive effectiveness of different covariates changes throughout the year by studying 13 days of the year (the 15th day of each month). The Poisson point process models will guide our predictor selection conditional on time of the year. We will then use the time of year specific covariate combinations to build maximum entropy (MaxEnt) models using training data (data from 2006-2010) with each of these combinations, in an effort to build a forecast ensemble. \newline
+
+\noindent We will evaluate the model fit against the training data using AUC and then evaluate model performance on testing data (data from 2011-2013) using the FAUC. The FAUC will guide a preliminary analysis of the ensemble, but further work will be required in developing rigorous tests for ensemble performance. 
+
 \section{Looking at distributions }
 
-We start by looking at how the raw data of our observations set is distributed. We are looking to create a testing and training dataset that are distributed similarly. Figure 2.1 shows two plots of the number of observations recorded on a given day of the year for the time period 2006-2010 (A) and 2011-2013 (B). Although in (A), we see that there are overall more points per day, the yearly shape of observation records is strikingly similar between these two sets. The first and third quarter of the year have few observations per day, while the second and forth quarters of the year have increasing activity, which spikes mid quarter and then declines for the second half of the quarter. 
+We start by looking at how the raw data of our observations set is distributed. We are looking to create a testing and training dataset that are distributed similarly. Figure 2.1 shows two plots of the number of observations recorded on a given day of the year for the time period 2006-2010 (A) and 2011-2013 (B). Although in (A), we see that there are overall more points per day, the yearly shape of observation records is strikingly similar between these two sets. The first and third quarter of the year have few observations per day, while the second and forth quarters of the year have increasing activity, which spikes mid quarter and then declines for the second half of the quarter. \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/obs_dist.pdf,width=4in,height=3in}}
