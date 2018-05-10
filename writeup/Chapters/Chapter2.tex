@@ -7,7 +7,7 @@
 %----------------------------------------------------------------------------------------
 
 
-\subsection{Models used in Species Distribution Models}
+\section{Models used in Species Distribution Models}
 % mention more detail about data, like predictors (ie raster images each pixel represents a value), each sighting entry has its lat/lon coordinates 
 \noindent The database of tick encounters developed by MMCRI houses information from the sightings of over 4,000 sightings of female deer ticks in the state of Maine, however in its raw form, the data is missing a crucial metric: information about where ticks are not found. \newline
 
@@ -195,18 +195,25 @@ The ROC curve plots the classifier's sensitivity versus 1-specificity, where sen
 
 \subsection{Modified AUC Example }
 
+Using the method of area predicted present to calculate AUC, we are seeking to quantify model fit by how much area we need to include in order to capture all of the presence points. For example in figure 2.2 we see two mappings of the same set of presence points. The blue boarder line marks the boarder with the Atlantic Ocean. All points above this boarder line are in the study space, while the area below is part of the Atlantic Ocean. \newline
+
+\noindent In (A), there are two area bands present, the red band encircles points in the region that is predicted high likelihood of encounter at a given threshold \textit{t}, the yellow band represents the study area that is predicted moderately high likelihood of encounter given \textit{t}. In (B) there is a third green band that represents the area predicted low likelihood of encounter given \textit{t}. Based on the area predicted present method, (A) would have a higher AUC than (B) because we only had to include area from highly likely and moderately likely to capture almost all of the points, while in (B), a large chunk of presence points were only captured if we included a low likelihood chunk  of area. In a perfectly fit model, we would capture all points by only including highly likely areas. \newline
+
+\noindent 
+
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/auc_exp.pdf,width=4in,height=3in}}
 \caption{Example of modified AUC principle. Red bands represent high probability area, yellow bands represent medium probability area and green bands represent low likelihood probability area.  }
 \label{fig6}
 \end{figure}
 
+\noindent One caveat of the area predicted present method is that higher AUC values are easier to get when there are fewer observation points used to fit the model. In times of low tick activity, for example during the winter, the few observations that we do have are often highly clustered, thus it is easy to fit a model right to this single cluster of points. This results in an overfit model that has a high AUC score because all of the points will be captured in a high likelihood of encounter region. We can help identify the models with overfitting, and thus inflated AUC scores, but preforming forecast testing using the FAUC metric. 
 
-\subsection{FAUC forecast metric}
+\subsection{FAUC: a forecast testing metric}
 
 When we build our model using the training dataset, we are interested in how well the fitted model fits the data. We use AUC as the primary metric to assess the model fit under the training data. AUC only provides information on how well the model represents the data used to tune it. The forecast AUC (FAUC), is a validation technique used to assess the strength and performance of models in a forecasting context. \newline
 
-First we build a MaxEnt model using only a subset of the data in the database, a training dataset, then performance on predicting the rest of the data, the testing dataset can be measured by the FAUC. For example years 2006-2010 of data of day 150 are used to build the model, then the model is tested using data from 2011-2013 of day 150, using the 2006-2010 model to predict the outcomes for the 2011-2013 data. Partitioning our data into testing and training sets allows us to more accurately estimate of the true predictive power of the model. 
+\noindent First we build a MaxEnt model using only a subset of the data in the database, a training dataset, then performance on predicting the rest of the data, the testing dataset can be measured by the FAUC. For example years 2006-2010 of data of day 150 are used to build the model, then the model is tested using data from 2011-2013 of day 150, using the 2006-2010 model to predict the outcomes for the 2011-2013 data. Partitioning our data into testing and training sets allows us to more accurately estimate of the true predictive power of the model. 
 
 \subsection{Other metrics of forecast performance}
 \noindent AUC represents the classification ability of the model independent of a threshold, however interpretation of a forecast depends on eventually selecting a threshold. The threshold determines the minimum probability that will be considered a presence. Since the utility of our forecast greatly depends on the ability to discriminate events from non-events, it is useful to define the threshold as a single number when calculating a summary statistic about the skill of the forecast. The statistic True Skill Statistic (TSS):
@@ -232,7 +239,7 @@ Since we are trying to develop models to forecast human-tick encounter for the e
 
 \subsection{Future Work with Ensembles}
  
-Currently we have done the first step of creating an ensemble by selecting a set of skillful models that have strengths at different times of the year. Currently we do not have enough information to distinguish which models perform better than others conditional on the time of the year. Future work includes more rigorous testing of the ensemble members on future collected data and storing model performance over the long term. With this information we would be able to discern which models are more skill full an properly calibrate the ensemble as described in [15]. 
+Currently we have done the first step of creating an ensemble by selecting a set of skillful models that have strengths at different times of the year. Currently we do not have enough information to distinguish which models perform better than others conditional on the time of the year. Future work includes more rigorous testing of the ensemble members on future data, and storing model performance over the long term. With this information we would be able to discern which models are more skillful and properly calibrate the ensemble as described in [15]. 
 
 
 %----------------------------------------------------------------------------------------
