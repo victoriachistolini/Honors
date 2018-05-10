@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 MAY 2018 11:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 MAY 2018 15:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1663,6 +1663,11 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <20.74> not available
 --------------------
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 150.
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+
+ []
+
 1: section
 [3] [4
 
@@ -1675,7 +1680,7 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 
 ]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 169.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 173.
  (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
@@ -2640,12 +2645,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
  []
 
 ) [30]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 215.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 215.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 219.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 219.
  (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
 (./Chapters/Chapter3.aux) (./Bib/bib.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 215.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 215.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 219.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 219.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 531C59CB88E4B777DEC313829CFA607A;6404.
 
@@ -2657,10 +2662,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30952 strings out of 493089
- 622299 string characters out of 6134842
+ 30951 strings out of 493089
+ 622284 string characters out of 6134842
  775550 words of memory out of 5000000
- 33990 multiletter control sequences out of 15000+600000
+ 33989 multiletter control sequences out of 15000+600000
  52383 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,20n,83p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2673,7 +2678,7 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (38 pages, 868619 bytes).
+Output written on main.pdf (38 pages, 869722 bytes).
 PDF statistics:
  540 PDF objects out of 1000 (max. 8388607)
  436 compressed objects within 5 object streams
