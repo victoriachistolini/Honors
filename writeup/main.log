@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 MAY 2018 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 MAY 2018 15:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1807,6 +1807,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
  []
 
 [6]
+Overfull \hbox (3.41528pt too wide) in paragraph at lines 129--130
+\T1/ppl/m/n/10.95 to an-swer ques-tions about the Spatial-Temporal as-pects of 
+our data. Spatial-Temporal
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
@@ -1846,7 +1852,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-[8 <./Figures/CSR_exp.pdf>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 161--162
 
  []
@@ -1856,7 +1862,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
-
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
@@ -1866,7 +1872,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
-[9]
+[9 <./Figures/CSR_exp.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
@@ -1891,15 +1897,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
-
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
-[10] <Figures/auc_exp.pdf, id=301, 722.7pt x 542.025pt>
+<Figures/auc_exp.pdf, id=301, 722.7pt x 542.025pt>
 File: Figures/auc_exp.pdf Graphic file (type pdf)
-
-<use Figures/auc_exp.pdf>
+ <use Figures/auc_exp.pdf>
 Package pdftex.def Info: Figures/auc_exp.pdf used on input line 205.
 (pdftex.def)             Requested size: 289.07487pt x 216.80615pt.
 
@@ -1922,12 +1927,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
 
-
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
  []
 
-[12]) [13]
+) [13]
 \openout2 = `Chapters/Chapter3.aux'.
 
  (./Chapters/Chapter3.tex [14
@@ -1998,11 +2003,12 @@ File: Figures/num_obs.pdf Graphic file (type pdf)
 Package pdftex.def Info: Figures/num_obs.pdf used on input line 47.
 (pdftex.def)             Requested size: 216.80615pt x 289.0881pt.
 
+[17 <./Figures/wsize.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-[17 <./Figures/wsize.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
@@ -2018,12 +2024,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
-
+[19 <./Figures/2007_day_150.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 73--74
 
  []
 
-[19 <./Figures/2007_day_150.jpg>]
 <Figures/pseudo_code.png, id=418, 582.175pt x 201.75375pt>
 File: Figures/pseudo_code.png Graphic file (type png)
 
@@ -2040,7 +2045,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
-
+[20 <./Figures/pseudo_code.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
@@ -2050,7 +2055,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
-[20 <./Figures/pseudo_code.png>]
 <Figures/summary.png, id=426, 693.59125pt x 511.9125pt>
 File: Figures/summary.png Graphic file (type png)
 
@@ -2487,12 +2491,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-
+[25 <./Figures/model_aucs.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
-[25 <./Figures/model_aucs.png>]
 <Figures/group1_Fauc.png, id=454, 1158.3275pt x 626.34pt>
 File: Figures/group1_Fauc.png Graphic file (type png)
 
@@ -2515,12 +2518,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
-
+[26 <./Figures/group1_Fauc.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
-[26 <./Figures/group1_Fauc.png>]
 <Figures/group1.png, id=462, 912.40875pt x 239.89626pt>
 File: Figures/group1.png Graphic file (type png)
 
@@ -2539,8 +2541,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
  []
 
-) [27 <./Figures/group2_Fauc.png>] [28 <./Figures/group1.png> <./Figures/group2
-.png>]
+[27 <./Figures/group2_Fauc.png>]) [28 <./Figures/group1.png> <./Figures/group2.
+png>]
 \openout2 = `Bib/bib.aux'.
 
  (./Bib/bib.tex
@@ -2652,7 +2654,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 219.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 219.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 219.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 531C59CB88E4B777DEC313829CFA607A;6404.
+(rerunfilecheck)             Checksum: 2EDB7DED19BF176675518263106E5C7E;6488.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2664,11 +2666,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  30951 strings out of 493089
  622284 string characters out of 6134842
- 775550 words of memory out of 5000000
+ 777550 words of memory out of 5000000
  33989 multiletter control sequences out of 15000+600000
  52383 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,20n,83p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,20n,78p,10454b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -2678,7 +2680,7 @@ ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (38 pages, 869722 bytes).
+Output written on main.pdf (38 pages, 873116 bytes).
 PDF statistics:
  540 PDF objects out of 1000 (max. 8388607)
  436 compressed objects within 5 object streams

@@ -152,7 +152,7 @@ headsepline, % Uncomment to get a line under the header
 
 \noindent In the Northeastern United States, ticks bites and subsequent Lyme Disease infection are becoming a growing problem [1]. Data collected by the Maine Medical Center Research Institute from 1995 - 2013 from citizen reports of ticks, presents the unique opportunity to study patterns of human - tick encounters in the state of Maine [2]. The field of species distribution modeling seeks to develop mathematical and computational models to characterize the distribution of a species based on it environment, and often uses the Maximum Entropy model to accomplish this goal [3]. Tick activity is highly dependent on the time of year and the tick life cycle, thus it is reasonable to expect that a single model will not be able to capture the time-of-year specific drivers of activity. \newline
 
-\noindent Thus we seek to develop an ensemble of Maximum Entropy models that are tuned to forecasting tick encounter likelihood at different times of the year. Ensembles of models can effectively be created by altering the combination of predictor variables in the model [14]. We will use the Poisson point process model as a statistical framework for evaluating predictor combinations at different times of the year. Using the best performing parameter set at for each month of the year, we will build Maximum Entropy models on training data and evaluate model fit of training data and model performance on testing data using a modified AUC statistic [12]. 
+\noindent Thus we seek to develop an ensemble of Maximum Entropy models that are tuned to forecasting tick encounter likelihood at different times of the year. Ensembles of models can effectively be created by altering the combination of predictor variables in the model [14]. We will use the Poisson point process model as a statistical framework for evaluating predictor combinations at different times of the year. Using the best performing parameter set for each month of the year, we will build Maximum Entropy models on training data and evaluate model fit of training data and model performance on testing data using a modified AUC statistic [12]. 
 
 \end{abstract}
 
@@ -160,9 +160,9 @@ headsepline, % Uncomment to get a line under the header
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 
-\begin{acknowledgements}'
+\begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-I would like to thank Stephanie Taylor for her continued guidance, support and mentorship throughout my work on this project. Nick Record, thank you for welcoming me into your lab, introducing me to your research and helping me to learning more about your incredible field of computational - mathematical modeling. A big thanks to Ben Tupper for always welcoming my questions and helping guide me through the massive code base that he has built. Manny Gimond, thank you for introducing me to spatial point pattern analysis and for sharing your course resources and mentorship on the accompanying R programming. 
+I would like to thank Stephanie Taylor for her continued guidance, support and mentorship throughout my work on this project. Nick Record, thank you for welcoming me into your lab, introducing me to your research and helping me to learn more about your incredible field of computational - mathematical modeling. A big thanks to Ben Tupper for always welcoming my questions and helping guide me through the massive code base that he has built. Manny Gimond, thank you for introducing me to spatial point pattern analysis and for sharing your course resources and mentorship on the accompanying R programming. 
 
 \end{acknowledgements}
 

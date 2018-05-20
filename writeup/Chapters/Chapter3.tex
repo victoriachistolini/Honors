@@ -6,11 +6,11 @@
 
 %----------------------------------------------------------------------------------------
 
-We will begin a close analysis of the Maine Tick database following the outline of the methodology in the Approach section. We begin by conducting an exploratory analysis on the tick data, covariates and window size model parameter. We want to understand how the tick data and covariates are distributed and how this may change throughout the year. We want to understand the implications of the window size parameter in the model. Specifically, we want to know how the model fit (AUC) is related to different values of window size. \newline
+We will begin a close analysis of the Maine Tick database following the outline of the methodology in the Approach section. We begin by conducting an exploratory analysis on the tick data, covariates and window size model parameter. We want to understand how the tick data and covariates are distributed and how this may change throughout the year. We want to understand the implications of the window size parameter on the model. Specifically, we want to know how the model fit (AUC) is related to different values of window size. \newline
 
 \noindent Then we will use the statistical framework of the Poisson point process model to evaluate how the predictive effectiveness of different covariates changes throughout the year by studying 13 days of the year (the 15th day of each month). The Poisson point process models will guide our predictor selection conditional on time of the year. We will then use the time of year specific covariate combinations to build maximum entropy (MaxEnt) models using training data (data from 2006-2010) with each of these combinations, in an effort to build a forecast ensemble. \newline
 
-\noindent We will evaluate the model fit against the training data using AUC and then evaluate model performance on testing data (data from 2011-2013) using the FAUC. The FAUC will guide a preliminary analysis of the ensemble, but further work will be required in developing rigorous tests for ensemble performance. 
+\noindent We will evaluate the model fit on the training data using AUC and then evaluate model performance on testing data (data from 2011-2013) using the FAUC. The FAUC will guide a preliminary analysis of the ensemble, but further work will be required in developing rigorous tests for ensemble performance. 
 
 \section{Looking at distributions }
 
@@ -18,80 +18,80 @@ We start by looking at how the raw data of our observations set is distributed. 
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/obs_dist.pdf,width=4in,height=3in}}
-\caption{Distribution of tick observations during the year for (A) years 2006-2010 and (B) year 2011-2013. }
+\caption{Distribution of tick observations during the year for (A) years 2006-2010 and (B) year 2011-2013. It is clear that tick activity is very dependent on the time of year, with two noticeable spikes in the second and fourth quarters in the year. Also we see that the patterns of activity remain the same in the two subsets of data in (A) and (B). We will be using (A) as our training data and (B) as testing data for building and evaluating MaxEnt models in section 3.5 and 3.6.}
 \label{fig6}
 \end{figure}
 
 
-\noindent Given the yearly activity cycle of the tick, we need to be cognizant of the number of points being used to create each model. Clearly, there will be a much smaller pool of observations during the first and third quarters. Many days may have zero observations even as we are aggregating data from a span of almost 10 years. On days with so few data points it becomes impossible to create a model. One way around this obstacle of low observations counts is to pull in observations from a window of time around the forecast date. We will call this new parameter the window size of the model. \newline
+\noindent Given the yearly activity cycle of the tick, we need to be cognizant of the number of points being used to create each model. Clearly, there will be a much smaller pool of observations during the first and third quarters. Many days may have zero observations even as we are aggregating data from a span of almost 10 years. On days with so few data points it becomes impossible to create a model. One way around this obstacle of low observation counts is to pull in observations from a window of time around the forecast date. We will call this new parameter the window size of the model. \newline
 
 \section{Window size implications }
 
-\noindent The window size parameter has a lot of uncertainty around it. It is unclear what values this parameter should take on at different times of the year. Further we do not know the impact of increasing the window size parameter on the accuracy and precision of the model. One hypothesis is that it is necessary to keep the window size parameter large enough so that the model has exposure to enough data to create well-informed predictions. Another hypothesis is that if the window size is increased by too much, then the accuracy of the predictions will be weakened due to the presence of data irrelevant to the current stage of tick activity. \newline
+\noindent The optimal value of the window size parameter is uncertain. It is unclear what values this parameter should take on at different times of the year. Further we do not know the impact of increasing the window size parameter on the accuracy and precision of the model. One hypothesis is that it is necessary to keep the window size parameter large enough so that the model has exposure to enough data to create well-informed predictions. Another hypothesis is that if the window size is increased by too much, then the accuracy of the predictions will be weakened due to the presence of data irrelevant to the current stage of tick activity. \newline
 
 \noindent In order to assess the impact of window size on forecast skill, we run a MaxEnt model with a subset of the 13 core parameters as predictors against 7 candidate window sizes: $\pm$ 2, 3, 7, 15, 20, 30, 40 days, for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, 349 of the year. \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/wsize.png,width=4in,height=3in}}
-\caption{AUC score by day of year for the 2006-2013 time period of observations. Each line represents a different window size from the 7 candidate sizes. }
+\caption{AUC score by day of year for the 2006-2013 time period of observations. Each line represents a different window size from the 7 candidate sizes. This figure shows that independent of window size, there is a general yearly trend in quality of model fit. Fit is better at times of lower tick activity. Also the larger the window size the worse the model fit.}
 \label{fig6}
 \end{figure}
 
-\noindent The general trend of figure 3.2 independent of window size is the inverse of figure 3.1. Highest AUC's are seen during the first and third quarters of the year, while steep crashes in AUC scores are experienced during the second and forth quarters. It is important to note that as a rule, the fewer points we have in our model, the higher the AUC will be because there is a lower chance of being wrong as described in section 2.4.3 and demonstrated in figure 2.2. Thus figure 3.2 shows that models during low activity are better fit to the training data, than those models developed during high activity periods, however it is unclear if high AUC is correlated with good long term forecast performance or if it is an indicator of an overfit model. \newline
+\noindent The general trend of figure 3.2 independent of window size is the inverse of figure 3.1. Highest AUC's are seen during the first and third quarters of the year, while steep crashes in AUC scores are experienced during the second and forth quarters. It is important to note that as a rule, the fewer points we have in our model, the higher the AUC will be because there is a lower chance of being wrong as described in section 2.4.3 and demonstrated in figure 2.2. Thus figure 3.2 shows that models during low activity are better fit to the training data, than those models developed during high activity periods, however it is unclear if high AUC is correlated with good long term forecast performance or if it is just an indicator of an overfit model. \newline
 
 \noindent The question of window size is particularly relevant during the low activity of the first and third quarters of the year. We want to increase the window size to get more data and more information about trends in tick encounters during the time of year, but we don't want the window size to be too big and provide irrelevant information. For the first 25\% of the year it seems that the accuracy is about equal for all window sizes, and thus it is likely useful to include a larger window size so that the model has access to more information at fit time. By around day 70 though, this is not entirely true, windows that are too large such as the sizes 30 and 40 produce much weaker AUC scores. \newline
 
-\noindent The window size of 15, however, continue to perform well high, so it would be advisable to use window sizes up to 15 during this time of the year. Even maintaining a window size as large as 7 into the beginning and at the end of second quarter seems justified based on continued high performance of the 7 day window during these transitional times. For the third quarter a window of size 15 seems to have the best balance of performance and inclusion of data. For the second and fourth quarters, windows sizes or 1 - 2 days are sufficient for high performance because there is plenty of data amassed even for small windows during this time. By the end of the fourth quarter, however, as winter begins to take hold, window sizes of 15 or 20 are best. \newline
+\noindent The window size of 15, however, continues to perform well, so it would be advisable to use window sizes up to 15 during this time of the year. Even maintaining a window size as large as 7 into the beginning and at the end of the second quarter seems justified based on continued high performance of the 7 day window during these transitional times. For the third quarter a window of size 15 seems to have the best balance of performance and inclusion of data. For the second and fourth quarters, windows sizes or 1 - 2 days are sufficient for high performance because there is plenty of data amassed even for small windows during this time. By the end of the fourth quarter, however, as winter begins to take hold, window sizes of 15 or 20 are best. \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/num_obs.pdf,width=3in,height=4in}}
-\caption{AUC score by number of observations for the 2006-2013 time period of observations. Each dot comes from one of the 13 days of the year mentioned above, with one of the 7 window sizes. }
+\caption{AUC score by number of observations for the 2006-2013 time period of observations. Each dot comes from one of the 13 days of the year mentioned above, with one of the 7 window sizes. There does not seem to a large effect on AUC by number of points until we start having huge numbers of points, above 500 for a model run.  }
 \label{fig6}
 \end{figure}
 
-\noindent Another metric that we can use to assess the window size parameter is by the number of points contained within a given window size. Figure 3.3 shows a decreasing trend of AUC values produced by having too large of a window size. Up to around 200 points the models seem to produce high quality results with AUC scores hovering around 0.9. However, once we go past 500 points, AUC scores start to tank, indicating that window sizes generating such high point values are probably too big to provide valuable information.  \newline
+\noindent Another metric that we can use to assess the window size parameter is by the number of points contained within a given window size. Figure 3.3 shows a decreasing trend of AUC values produced by having too large of a window size. Up to around 200 points the models seem to produce high quality results with AUC scores hovering around 0.9. However, once we go past 500 points, AUC scores start to decline, indicating that window sizes generating such high point values are probably too big to provide valuable information.  \newline
 
 
 
 \section{Understanding predictor variables}
 
-Before we try to fit models to our observation set, it is necessary to understand what the distributions of our predictor variables look like. This will allow us to identify is there might be some kinds of transformations to the covariates that might be beneficial to our model. In Figure 3.4, we have created histograms of all of the predictor variables for day 150 of 2007. Day 150 is around the height of the first peak in tick activity. We can see that variables like mean air temperature and wind have distributions that appear continuous in nature. However, transpiration rate, wilt and vegetation cover appear to have discrete distributions of values. \newline
+Before we try to fit models to our observation set, it is necessary to understand what the distributions of our predictor variables look like. This will allow us to identify if there might be some kinds of transformations to the covariates that would be beneficial to our model. In Figure 3.4, we have created histograms of all of the predictor variables for day 150 of 2007. Day 150 is around the height of the first peak in tick activity. We can see that variables like mean air temperature and wind have distributions that appear continuous in nature. However, transpiration rate, wilt and vegetation cover appear to have discrete distributions of values. \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/2007_day_150.jpg,width=4in,height=4in}}
-\caption{Histograms of the distributions of core predictor  variables for day 150 of 2007. }
+\caption{Histograms of the distributions of core predictor  variables for day 150 of 2007. Variables like mean air temperature and wind have distributions that appear continuous in nature, however, transpiration rate, wilt and vegetation cover appear to have discrete distributions of values which may benefit from a discretized representation in the model }
 \label{fig6}
 \end{figure}
 
-\noindent The vegetation cover variable is categorical, with 20 different categories, based on the International Geosphere-Biosphere Programme (IGBP) land cover classification system. According to figure 3.4, the most popular vegetation type for tick observations is 11, permanent wetlands, as well as 12-15 which represent cropland and mix vegetation types of forest, shrub and grassland. A more through examination about how vegetation cover of where ticks are found changes throughout the year, reveled another important vegetation type in the second and fourth quarters of the year to be 5, mixed forests. Since a categorical variable with 20 categories does not seem reasonable since so few categories are actually represented, we create a binary indicator variable, called v4 that represents if a tick is found in vegetation type 11-15 or not. 
+\noindent The vegetation cover variable is categorical, with 20 different categories, based on the International Geosphere-Biosphere Programme (IGBP) land cover classification system. According to figure 3.4, the most popular vegetation type for tick observations is 11, permanent wetlands, as well as 12-15 which represent cropland and mix vegetation types of forest, shrub and grassland. A more through examination about how vegetation cover of where ticks are found changes throughout the year, revealed another important vegetation type in the second and fourth quarters of the year to be 5, mixed forests. Since a categorical variable with 20 categories does not seem reasonable since so few categories are actually represented, we create a binary indicator variable, called v4 that represents if a tick is found in vegetation type 11-15 or not. 
 
 
 \section{Poisson point process models for predictor selection and evaluation}
 
-Using the insights that we gained from the exploratory analysis of our dataset we begin with the first step of the ensemble creation process. In section 1.5, we outlined the process for creating an ensemble which involves perturbing initial conditions (in our case window size and study space boundaries), using different model types or creating novel parameter combinations. We will focus on creating novel parameter combinations that are specialized to certain times of the year and using the statistical frame work of the poisson point process model to assess the significance of each of the parameters in the new models. \newline
+Using the insights that we gained from the exploratory analysis of our dataset we begin with the first step of the ensemble creation process. In section 1.5, we outlined the process for creating an ensemble which involves perturbing initial conditions (in our case window size and study space boundaries), using different model types or creating novel parameter combinations. We will focus on creating novel parameter combinations that are specialized to certain times of the year and using the statistical framework of the poisson point process model to assess the significance of each of the parameters in the new models. \newline
 
-\noindent We build poisson point process models for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, and 349 of the year. We derive the window size parameter by trying to minimize the window size while maintaining a good coverage of observation data over the study space. If increasing window size does not seem to add more coverage and 50 or more points are included, then we do not expand the window size. These judgements are made qualitatively by looking at point spread across the map of Maine. Sometimes, however, we increase the window size as much as up to $\pm$ 20 days, a size which evidence from the previous exploratory window experiments reveals is about as large as possible without sacrificing performance over the long term, and we still only have a few points. Despite having little information, we build a model with what we have.  \newline
+\noindent We build poisson point process models for 13 days of the year (approximately the 15th day of each month is tested); days 15, 46, 76, 105, 135, 146, 166, 196, 227, 258, 288, 319, and 349 of the year. We derive the window size parameter by trying to minimize the window size while maintaining a good coverage of observation data over the study space. If increasing window size does not seem to add more coverage and 50 or more points are included, then we do not expand the window size. These judgements are made qualitatively by looking at point spread across the map of Maine. Sometimes, however, we increase the window size as much as up to $\pm$ 20 days, a size which evidence from the previous exploratory window experiments reveals is about as large as possible without sacrificing performance over the long term, and we still only have a few points. Despite having little information in such cases, we build a model with what we have.  \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/pseudo_code.png,width=4in,height=2in}}
-\caption{Pseudo code for the predictor selection algorithm. }
+\caption{Pseudo code for the predictor selection algorithm. We iterate over the 13 study days, and download data about observations within a given window size. Then we determine all subsets of uncorrelated predictors and store them in a matrix called models. Then for each model predictor combination in models, we reduce the model until there are only statistically significant terms (at the 5\% level).  }
 \label{fig6}
 \end{figure}
 \subsection{ Predictor reduction algorithm}
 
-For each of the 13 days of the year mentioned above, download the tick observation data from the time span of 2006-2013, with the window size chosen by hand using the method described above. Data about the window sizes selected for each of the experiments run is shown in table 3.1. We also extract data for each of the core 13 covariates from the raster images at the pixels where each observation in the day and window range being studied occurred. \newline
+For each of the 13 days of the year mentioned above, we download the tick observation data from the time span of 2006-2013, with the window size chosen by hand using the method described above. Data about the window sizes selected for each of the experiments run is shown in table 3.1. We also extract data for each of the core 13 covariates from the raster images at the pixels where each observation in the day and window range being studied occurred. \newline
 
 \noindent We begin parameter selection by generating a correlation matrix of all of the 13 covariates. Trying to create a poisson point process model with covariates that are highly correlated impairs the performance of the model. Once we have information about the highly correlated predictors we are able to create subsets of the parameters that do not contain any of the highly correlated predictors. Then we build a poisson point process model using the command ppm() from the spatstat package in r. Once we have a model built, we prune unnecessary predictors using a greedy, stepwise algorithm, which removes the predictor with the lowest z-score (an indication of its statistical significance) until all predictors are significant at the 5\% level.  \newline
 
 \subsection{ Results from predictor selection experiments}
 
-Figure 3.6 shows the summarized results of the predictor selection experiments, while table 2.1 shows detailed descriptions of the number of observations and number of points used for each experiment. In figure 3.6, highlights many striking patterns throughout the year. We see that during the winter and early spring, the predictors mean air temperature and v-direction wind appear consistently up to day 150 in the year. \newline
+Figure 3.6 shows the summarized results of the predictor selection experiments, while table 2.1 shows detailed descriptions of the number of observations and number of points used for each experiment. Figure 3.6 highlights many striking patterns throughout the year. We see that during the winter and early spring, the predictors mean air temperature and v-direction wind appear consistently up to day 150 in the year. \newline
 
 \noindent Based on figure 3.1, day 150 occurs approximately at the first peak in tick activity, which coincides with the onset of late spring / early summer. The predictors of highest importance during this time period are the relative humidity, the temperature range (minimum air temperature and maximum air temperature), the type of vegetation and the amount of precipitation. Late summer and fall show a renewed importance of mean air temperature, u-direction wind and vegetation type.  \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/summary.png,width=4in,height=4in}}
-\caption{Histograms of the distributions of core predictor  variables for day 150 of 2007. }
+\caption{Predictor selection experiments summarized results. Each horizontal line represents a new model for a particular day of the year. The red boxes indicate that the covariate is included in the model. In the beginning of the year the covariates mean airtemp,  mean veg cover and v-direction wind are emphasized. Mid year, the covariates min and max airtemp, relative humidity, u-direction wind, precipitation and v4 are most notable.  In the fall and early winter, mean airtemp and v4 and u-direction wind stand out.}
 \label{fig6}
 \end{figure}
 
@@ -187,32 +187,32 @@ Figure 3.6 shows the summarized results of the predictor selection experiments, 
 
 Having determined combinations of predictor variables that are specialized for different times of the year, we can now build maximum entropy models with these new predictor combinations. We create a new maxent model for each of the 13 studied days of the year, using the window sizes listed in table 3.1, for each of the 32 predictor sets, resulting in 416 maxent models. We calculate the AUC statistic of each model to indicate how well the models fit the data that they were trained on. \newline
 
-\noindent Looking back at figure 3.1 we see the two plots of the number of tick observations on given days of the year. We see that the year trace in figure 3.1 (A)  from 2006-2010 and 2011-2013 in (B) have the same trajectory and thus represent a good split of the data. We use the time span from 2006-2010 to build the 416 maxent models and will use the time span 2011-2013 in section 3.6 to evaluate model performance on testing data that it has never seen before. \newline
+\noindent Looking back at figure 3.1 we see the two plots of the number of tick observations on given days of the year. We see that the year trace in figure 3.1 (A)  from 2006-2010 and 2011-2013 in (B) have the same trajectory and thus represent a good split of the data. We use the time span from 2006-2010 to build the 416 maxent models and will use the time span 2011-2013 in section 3.6 to evaluate model performance on testing data that the models have never seen before. \newline
 
 \subsection{ MaxEnt model fit results}
 
-One way to easily assess model performance is to evaluate how well the model fits the data that it was trained on. We can think of this step in model evaluation like interpreting a correlation coefficient. The correlation coefficient tells us how well a linear model fits the trends in the data, however it does not indicate anything about how well the model will preform in the task of accurately classifying future data. The AUC statistic provides the same function for MaxEnt models, acting as an indication of goodness of fit. \newline
+One way to easily assess model performance is to evaluate how well the model fits the data that it was trained on. We can think of this step in model evaluation like interpreting a correlation coefficient. The correlation coefficient tells us how well a linear model fits the trends in the data, however it does not indicate anything about how well the model will perform in the task of accurately classifying future data. The AUC statistic provides the same function for MaxEnt models, acting as an indication of goodness of fit. \newline
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/model_aucs.png,width=6in,height=4in}}
-\caption{AUC results from running the 32 different covariate combinations. }
+\caption{AUC results from running the 32 different covariate combinations for the 13 study days throughout the year. Similar to figure 3.2, we see that there is a clear trend in model fit based on time of year, such that periods of high tick activity drive decreased quality of model fit.  }
 \label{fig6}
 \end{figure}
 
 
-\noindent Figure 3.7 shows the AUC for 32 predictor combinations MaxEnt models fitted at each of the 13 time points in the year. In the winter months, there is a large degree of variability between the models, which tightens during the early spring. As we approach mid-way through the second quarter mode fit tanks and there is enlarged variability again. In the third quarter, the models regain some of their quality performance around mid summer, which remains stable although highly varied until fall what the variability decreases and peaks quickly, followed by a quick crash and slow regain of fit into the new year. 
+\noindent Figure 3.7 shows the AUC for 32 predictor combinations MaxEnt models fitted at each of the 13 time points in the year. In the winter months, there is a large degree of variability between the models, which tightens during the early spring. As we approach mid-way through the second quarter, mode fit declines and there is enlarged variability again. In the third quarter, the models regain some of their quality performance around mid summer, which remains stable although highly varied until fall what the variability decreases and peaks quickly, followed by a quick crash and slow regain of fit into the new year. 
 
 
 \section{Evaluating MaxEnt models}
 
-Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt models, we want to utilize the testing dataset that we saved from years 2011-2013 to evaluate the model's performance on data that is has not yet seen. Figures 3.8 and 3.9 show the F-AUC scores of each of the models at the 13 time points of the experiment. The models in figure 3.8 so poor performance up through the first half of the first quarter at around day 60. From a peak at day 60, the models begin a gradual decline in performance up through the beginning of the fourth quarter. During this time period the variability between models is rather low. During the fourth quarter we see increased performance and greater between model variability. \newline
+Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt models, we want to utilize the testing dataset that we saved from years 2011-2013 to evaluate the model's performance on data that is has not yet seen. Figures 3.8 and 3.9 show the F-AUC scores of each of the models at the 13 time points of the experiment. The models in figure 3.8 show poor performance up through the first half of the first quarter at around day 60. From a peak at day 60, the models begin a gradual decline in performance up through the beginning of the fourth quarter. During this time period the variability between models is rather low. During the fourth quarter we see increased performance and greater between model variability. \newline
 
-\noindent Although it intuitively make seem that it is good for the ensemble to have low variability, since it may seem like the models are providing a consistent answer, this is not the case, it is ok to have variability between models and in fact this is a desired quality of an ensembles. When ensemble have too little variability between models it is a sign of ucnderdispersion and indicates that the ensemble needs calibration [15]. So it is a good sign that we see variability in our ensemble and not one model dominating the other models, a contrast to what we saw in figure 3.7. \newline
+\noindent Although it intuitively may seem that it is good for the ensemble to have low variability, since it may seem like the models are providing a consistent answer, this is not the case. It is ok to have variability between models and in fact this is a desired quality of an ensembles. When ensemble have too little variability between models it is a sign of underdispersion and indicates that the ensemble needs calibration [15]. So it is a good sign that we see variability in our ensemble and not one model dominating the other models, a contrast to what we saw in figure 3.7. \newline
 
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/group1_Fauc.png,width=6in,height=4in}}
-\caption{F-AUC results from a subset of the 32 predictor combinations that have high performance year round. }
+\caption{F-AUC results from a subset of the 32 predictor combinations that have high performance year round. There is a larger amount of variability between models at the beginning and end of the year for these models.}
 \label{fig6}
 \end{figure}
 
@@ -221,28 +221,30 @@ Now that we have built and assessed the goodness of fit of all of our 416 MaxEnt
 
 \begin{figure} [!ht]
 \centerline{\psfig{figure=Figures/group2_Fauc.png,width=6in,height=4in}}
-\caption{F-AUC results from a subset of the 32 predictor combinations that have two steep dips in performance throughout the round. }
+\caption{F-AUC results from a subset of the 32 predictor combinations that have two steep dips in performance throughout the year. There is more variation in performance in this group of models than those in figure 3.8 }
 \label{fig6}
 \end{figure}
 
-\noindent  If we look at the patterns of the covariate combinations that make up the models in figure 3.8 and figure 3.9, we can see some interesting patterns. In Figure 3.10, we can see that the models in figure 3.8, who have a fairly consistent trend year long, have a high emphasis on the vegetation cover and vegetation type parameters as well as both u and v direction wind and mean air temperature. \newline
+\noindent  If we look at the patterns of the covariate combinations that make up the models in figure 3.8 and figure 3.9, we can see some interesting patterns. In Figure 3.10, we can see that the models in figure 3.8, which have a fairly consistent trend year long, have a high emphasis on the vegetation cover and vegetation type parameters as well as both u and v direction wind and mean air temperature. \newline
 
 \noindent However, we see in figure 3.11, that the models that have more yearly volatility emphasize parameters such as the range of air temperature ( minimum and maximum air temperature) as well as sum of precipitation, u-direction wind, but most surprisingly is the almost complete absence of the mean vegetation cover predictor. \newline
 
 \begin{figure} [t]
 \centerline{\psfig{figure=Figures/group1.png,width=4in,height=2in}}
-\caption{Summary of predictor combinations from figure 2.8. }
+\caption{Summary of predictor combinations from figure 3.8. Each row represents a model and the red squares represent a covariate included in the model. There is a strong emphasis on mean airtemp, wind, veg cover and v4 (vegetation type) within this set of models}
 \label{fig6}
 \end{figure}
 
 \begin{figure} [t]
 \centerline{\psfig{figure=Figures/group2.png,width=4in,height=2in}}
-\caption{Summary of predictor combinations from figure 2.9. }
+\caption{Summary of predictor combinations from figure 3.9. Each row represents a model and the red squares represent a covariate included in the model. There is a strong emphasis on air temperature range (min and max airtemp), relative humidity, wind, sum of precipitation and v4, however veg cover is largely absent from these models. }
 \label{fig6}
 \end{figure}
 
   
 \section{Future directions}
 
-Now that we have identified a set of candidate models and have evidence that these models provide a decent amount of variability and quality performance, it is necessary to collect more data about their performance over the log term. By keeping track of how well the models do on future data, we will then be able to build up a better understanding of long term performance of the models and different points in the year so that we can come up with a posterior weighted averaging of the models based on the knowledge that we have gained. This will help calibrate the ensemble and create a further robust and effective system. \newline
+Now that we have identified a set of candidate models and have evidence that these models provide a decent amount of variability and quality performance, it is necessary to collect more data about their performance over the long term. By keeping track of how well the models do on future data, we will then be able to build up a better understanding of long term performance of the models at different points in the year so that we can come up with a posterior weighted averaging of the models based on the knowledge that we have gained. This will help calibrate the ensemble and create a more robust and effective system. \newline
+
+\noindent Based on the evidence from our research, we can focus on building out our forecast models by running all 32 ensemble members for each day of the year moving into the future. We also need to be carful with which window size we choose. For the first quarter I would recommend using window sizes of 20 and 15, dropping down to 10 and 7 in late winter/early spring. Then in the second quarter try running models with window sizes of 1,2 and 3. Then slowly increase as we move into the third quarter to 7 and then back to 15 and then drop down as we approach our second peak to 1,2, and 3. Then move back up to 7 and 10 and 15 as we hit December. 
 
